@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Choose Your First Running Shoes — nextgen.running</title>
+    <meta name="description" content="A beginner's guide to choosing the right running shoes. Learn what factors matter most — comfort, fit, foot type, cushioning — and discover beginner-friendly models from Asics, Nike, Adidas, New Balance, and Hoka.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Noto+Serif+JP:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .lang-block { display: none; }
+        .lang-block.active { display: block; }
+
+        .post-hero {
+            padding: 160px 52px 100px; background: var(--bg);
+            position: relative; overflow: hidden; min-height: 70vh; display: flex; align-items: flex-end;
+        }
+        .post-hero-blobs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .post-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+        .post-blob-1 { width: 500px; height: 380px; background: var(--mint); opacity: 0.18; top: -10%; right: -4%; animation: blobA 10s ease-in-out infinite; }
+        .post-blob-2 { width: 400px; height: 330px; background: var(--pink); opacity: 0.15; bottom: -10%; left: -6%; animation: blobB 12s ease-in-out infinite; }
+        @keyframes blobA { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(24px,-16px) scale(1.04)} }
+        @keyframes blobB { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-16px,22px) scale(1.03)} }
+        .post-hero-inner { position: relative; z-index: 2; width: 100%; max-width: 900px; }
+        .post-back {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--muted); text-decoration: none; margin-bottom: 52px;
+            opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards; transition: color 0.2s;
+        }
+        .post-back:hover { color: var(--black); }
+        .post-back::before { content: '←'; font-size: 13px; }
+        .post-meta { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards; }
+        .post-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-dot { color: var(--faint); }
+        .post-date { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+        .post-read-time { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+        .post-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 112px); line-height: 0.92; letter-spacing: -0.01em; color: var(--black); margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s forwards; }
+        .post-title .outline { -webkit-text-stroke: 2px var(--black); color: transparent; }
+        .post-divider { width: 100%; height: 1px; background: var(--border); margin-top: 48px; }
+
+        .post-body { background: var(--bg); padding: 80px 52px 120px; }
+        .post-content { max-width: 720px; margin: 0 auto; }
+        .post-lead { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--black); margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards; }
+        .post-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5vw, 56px); letter-spacing: 0.02em; color: var(--black); margin: 80px 0 32px; padding-bottom: 20px; position: relative; }
+        .post-h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 52px; height: 2px; background: var(--iri); }
+        .post-h3 { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 500; color: var(--black); margin: 40px 0 14px; letter-spacing: 0.01em; }
+        .post-p { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(17,17,17,0.78); margin-bottom: 24px; }
+        .post-brand-block { margin: 36px 0; padding: 32px 36px; background: rgba(255,255,255,0.65); border: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
+        .post-brand-block:hover { background: rgba(255,255,255,0.95); }
+        .post-brand-block::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-brand-block:hover::after { width: 100%; }
+        .post-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.04em; color: var(--black); margin-bottom: 4px; }
+        .post-brand-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+        .post-brand-desc { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.75; color: rgba(17,17,17,0.65); }
+        .post-checklist { list-style: none; margin: 40px 0; display: flex; flex-direction: column; gap: 12px; }
+        .post-checklist li { display: flex; gap: 18px; align-items: flex-start; padding: 20px 28px; background: rgba(255,255,255,0.65); border: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 300; line-height: 1.65; color: rgba(17,17,17,0.75); transition: background 0.2s; }
+        .post-checklist li:hover { background: rgba(255,255,255,0.95); }
+        .post-checklist li::before { content: '✓'; font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; flex-shrink: 0; margin-top: 2px; }
+        .post-mistake-list { list-style: none; margin: 16px 0 32px; display: flex; flex-direction: column; }
+        .post-mistake-list li { padding: 18px 0; border-bottom: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(17,17,17,0.72); display: flex; gap: 16px; align-items: flex-start; }
+        .post-mistake-list li:first-child { border-top: 1px solid var(--border); }
+        .post-mistake-list li::before { content: '—'; font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; flex-shrink: 0; margin-top: 3px; }
+        .post-mistake-strong { font-weight: 500; color: var(--black); }
+        .post-closing { margin-top: 80px; padding: 48px 44px; background: var(--dark); position: relative; overflow: hidden; }
+        .post-closing-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .post-closing-blob-1 { position: absolute; width: 300px; height: 240px; background: var(--mint); opacity: 0.12; border-radius: 50%; filter: blur(80px); top: -20%; right: -5%; }
+        .post-closing-blob-2 { position: absolute; width: 250px; height: 200px; background: var(--pink); opacity: 0.1; border-radius: 50%; filter: blur(80px); bottom: -20%; left: -5%; }
+        .post-closing-inner { position: relative; z-index: 2; }
+        .post-closing-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,244,242,0.3); margin-bottom: 16px; }
+        .post-closing-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); color: var(--white); margin-bottom: 16px; line-height: 1; }
+        .post-closing-title span { background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-closing-sub { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 14px; line-height: 1.85; color: rgba(245,244,242,0.45); margin-bottom: 32px; max-width: 380px; }
+        .post-closing-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 14px 28px; border: 1px solid rgba(245,244,242,0.22); transition: border-color 0.2s, background 0.2s; }
+        .post-closing-btn:hover { border-color: rgba(245,244,242,0.6); background: rgba(245,244,242,0.05); }
+        .post-closing-btn::after { content: '→'; font-size: 13px; }
+        .post-related { padding: 80px 52px; background: var(--bg-alt); border-top: 1px solid var(--border); }
+        .post-related-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+        .post-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 720px; }
+        .post-related-card { background: rgba(255,255,255,0.55); padding: 36px 32px; border: 1px solid var(--border); text-decoration: none; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; transition: background 0.3s; }
+        .post-related-card:hover { background: rgba(255,255,255,0.9); }
+        .post-related-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-related-card:hover::after { width: 100%; }
+        .post-related-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-related-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--black); line-height: 1.1; }
+        .post-related-arrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .post-related-card:hover .post-related-arrow { color: var(--black); }
+        .post-related-arrow::after { content: '→'; }
+        @media (max-width: 900px) {
+            .post-hero { padding: 130px 24px 72px; min-height: auto; }
+            .post-body { padding: 56px 24px 80px; }
+            .post-related { padding: 56px 24px; }
+            .post-related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav>
+        <div class="nav-left">
+            <img src="../Next%20Gen.png" alt="Next Gen" class="nav-logo-img">
+            <a href="../index.html" class="nav-brand">nextgen<span>.running</span></a>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html#blog" class="nav-blog" data-i18n="nav_blog">Blog</a>
+            <div class="nav-lang">
+                <a href="#" data-lang="en" class="active">EN</a>
+                <a href="#" data-lang="jp">JP</a>
+                <a href="#" data-lang="ru">RU</a>
+            </div>
+            <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+            </a>
+        </div>
+    </nav>
+
+    <section class="post-hero">
+        <div class="post-hero-blobs">
+            <div class="post-blob post-blob-1"></div>
+            <div class="post-blob post-blob-2"></div>
+        </div>
+        <div class="post-hero-inner">
+            <a href="../index.html#blog" class="post-back" data-i18n="post_back">Back to Blog</a>
+            <div class="post-meta">
+                <span class="post-tag" data-i18n="post_tag">Gear Guide</span>
+                <span class="post-dot">·</span>
+                <span class="post-date" data-i18n="post_date">May 2025</span>
+                <span class="post-dot">·</span>
+                <span class="post-read-time" data-i18n="post_readtime">6 min read</span>
+            </div>
+            <h1 class="post-title" data-i18n="post_title">HOW TO CHOOSE<br>YOUR FIRST<br><span class="outline">RUNNING SHOES</span></h1>
+            <div class="post-divider"></div>
+        </div>
+    </section>
+
+    <article class="post-body">
+        <div class="post-content">
+
+            <!-- ENGLISH -->
+            <div class="lang-block lang-en">
+                <p class="post-lead">Standing in a running store surrounded by walls of colorful shoes — each promising more speed or more comfort than the last — is genuinely overwhelming. Especially when prices range from ¥8,000 to ¥35,000. Here's something experienced runners know but rarely say out loud: your first running shoes don't need to be expensive. Not even close.</p>
+                <p class="post-p">The running shoe industry is very good at marketing. "Carbon fiber plate," "maximum energy return," "race-day technology" — these features are real, and they genuinely help elite athletes shave milliseconds. But as a beginner? They won't make you faster. Overly specialized shoes can work against you if they don't match your foot type or the way you naturally run.</p>
+                <p class="post-p">This guide cuts through the noise. Here's exactly what to look for, the mistakes to avoid, and a shortlist of beginner-friendly models from five of the world's top running brands.</p>
+
+                <h2 class="post-h2 reveal">WHAT ACTUALLY MATTERS WHEN CHOOSING RUNNING SHOES</h2>
+                <h3 class="post-h3">Comfort — Your Most Important Guide</h3>
+                <p class="post-p">The single most important factor: it should feel comfortable immediately, with no break-in period. Running shoes should feel right the moment you put them on. If you feel pinching, pressure, or think "I'll get used to it" — move on. Your feet swell during a run. They never shrink.</p>
+                <h3 class="post-h3">Fit and Size</h3>
+                <p class="post-p">Proper fit means a thumb's width of space between your longest toe and the end of the shoe. Your heel should feel secure without slipping. Many beginners buy shoes that are too short — leading to black toenails and blisters. When in doubt, go up half a size and try shoes at the end of the day when feet are at their largest.</p>
+                <h3 class="post-h3">Understanding Your Foot Type</h3>
+                <p class="post-p">Your foot has an arch — or it doesn't — and this affects how your foot rolls when you run. Three main types:</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">Neutral arch:</span> Your foot rolls slightly inward — normal. Neutral or mild stability shoes work well.</span></li>
+                    <li><span><span class="post-mistake-strong">Overpronation (flat feet):</span> Foot rolls inward excessively. Stability shoes provide the support you need.</span></li>
+                    <li><span><span class="post-mistake-strong">Supination (high arch):</span> Foot rolls outward. Look for extra cushioning and flexibility.</span></li>
+                </ul>
+                <p class="post-p">Not sure? Try the wet test — wet the bottom of your foot and step on paper. A full footprint suggests flat feet; a thin strip suggests a high arch; a moderate curve is neutral. Better yet, visit a specialist running store for a free gait analysis.</p>
+                <h3 class="post-h3">Cushioning and Heel Drop</h3>
+                <p class="post-p">Cushioning protects your joints from impact — especially important when you're just starting. For most beginners, moderate-to-high cushioning is a wise starting point. A standard 8–12mm heel drop suits most beginners. Very low-drop shoes can strain your Achilles tendon if you're not already adapted.</p>
+                <h3 class="post-h3">Intended Use</h3>
+                <p class="post-p">Running on pavement? Road running shoes with smooth, durable outsoles. Trails? Trail shoes with aggressive lugs. Treadmill? Almost any running shoe works. Matching the shoe to the surface protects both the shoe and your body.</p>
+
+                <h2 class="post-h2 reveal">COMMON MISTAKES BEGINNER RUNNERS MAKE</h2>
+                <p class="post-p">Here are the mistakes we see most often — and how to avoid every one of them:</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">Buying for looks, not feel.</span> Aesthetics don't prevent blisters. A shoe must work before it looks good.</span></li>
+                    <li><span><span class="post-mistake-strong">Choosing too tight.</span> Running causes feet to swell. Always leave room at the toe.</span></li>
+                    <li><span><span class="post-mistake-strong">Going by price alone.</span> A ¥30,000 carbon-plated racer is for competitive runners, not beginners building a base. Everything you need is in the ¥12,000–¥18,000 range.</span></li>
+                    <li><span><span class="post-mistake-strong">Using lifestyle sneakers.</span> Nike Air Force 1 and Adidas Stan Smith look great, but their midsoles aren't built for repetitive road impact — leading to shin splints and knee pain.</span></li>
+                    <li><span><span class="post-mistake-strong">Ignoring existing pain.</span> If you have knee issues, plantar fasciitis, or flat feet causing problems, consult a specialist before buying.</span></li>
+                    <li><span><span class="post-mistake-strong">Skipping the in-store jog.</span> Always jog a short distance before buying. Reputable running stores expect this.</span></li>
+                </ul>
+
+                <h2 class="post-h2 reveal">BEGINNER-FRIENDLY MODELS WE RECOMMEND</h2>
+                <p class="post-p">These five models represent the best value and fit for runners just getting started.</p>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ASICS GEL-KAYANO LITE 3</div>
+                    <div class="post-brand-sub">Best for: Overpronators · Stability · approx. ¥14,000–¥16,000</div>
+                    <p class="post-brand-desc">ASICS has built its reputation on reliable, well-engineered running shoes. The Gel-Kayano Lite 3 is one of their most beginner-friendly stability models — structured enough to support overpronating feet without feeling stiff or heavy. The GEL technology absorbs impact smoothly, and the overall fit is forgiving. For beginners with flat feet who want to run without worrying about their knees, this is a top pick.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NIKE AIR ZOOM PEGASUS 41</div>
+                    <div class="post-brand-sub">Best for: Neutral runners · All-around training · approx. ¥15,000–¥16,000</div>
+                    <p class="post-brand-desc">The Pegasus has been Nike's everyday training workhorse for over four decades. Responsive yet cushioned, versatile for 5K jogs and longer weekend runs alike. It runs slightly narrow, so those with wider feet should check for the wide version. A reliable, honest shoe that doesn't over-promise and rarely disappoints.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ADIDAS ADIZERO SL 2</div>
+                    <div class="post-brand-sub">Best for: Neutral feet · Lighter feel · approx. ¥12,000–¥14,000</div>
+                    <p class="post-brand-desc">The Adizero SL 2 sits at the intersection of daily trainer and lightweight racer. For beginners with neutral feet who want to feel the ground without heavy bulk, it offers a springy, responsive ride through its Lightstrike midsole foam. A smart choice if you're working toward your first 5K or 10K.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NEW BALANCE FRESH FOAM X 880V14</div>
+                    <div class="post-brand-sub">Best for: Plush cushioning · Wide feet · approx. ¥15,000–¥17,000</div>
+                    <p class="post-brand-desc">One of the best-cushioned daily trainers at a reasonable price. The Fresh Foam X midsole feels soft and forgiving without being unstable, and the wide toe box suits beginners with wider feet particularly well. If comfort is your priority over the first several months, the 880v14 is hard to beat.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">HOKA CLIFTON 9</div>
+                    <div class="post-brand-sub">Best for: Maximum cushioning · Hard pavement · approx. ¥17,000–¥19,000</div>
+                    <p class="post-brand-desc">Hoka's Clifton series has introduced thousands of beginners to high-cushion running. Soft, protective, and stable thanks to its wide midsole base — ideal for road running on hard surfaces. If protecting your knees and hips as you build mileage is your primary concern, the Clifton 9 is our top recommendation.</p>
+                </div>
+
+                <h2 class="post-h2 reveal">YOUR BEGINNER RUNNER'S SHOE CHECKLIST</h2>
+                <p class="post-p">Before committing to your first running shoe, run through this list. It should be yes on every point.</p>
+                <ul class="post-checklist reveal">
+                    <li>Tried on at the end of the day, when feet are naturally at their largest</li>
+                    <li>At least a thumb's width of space between the longest toe and the shoe's end</li>
+                    <li>Heel feels secure — no slipping when walking or jogging</li>
+                    <li>No pinching, tightness, or pressure points anywhere on the foot</li>
+                    <li>Shoe matches your arch type (neutral / stability / high-cushion)</li>
+                    <li>Correct category for your surface (road / trail / treadmill)</li>
+                    <li>Jogged in the shoe in-store, not just walked around</li>
+                    <li>Decision not based on price or appearance alone</li>
+                    <li>Asked staff about your gait if you were unsure of foot type</li>
+                    <li>Kept the receipt — the first outdoor run is the real test</li>
+                </ul>
+                <p class="post-p">Running is one of the most accessible sports you can take up. The right shoe won't make you fast — but the wrong one can stop you before you even find your stride. Take your time, use this guide, and trust how the shoe feels on your foot. The rest will follow.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">TRAIN WITH<br><span>NEXTGEN</span></h3>
+                        <p class="post-closing-sub">Expert coaching for young athletes in Tokyo. Science-based, individually tailored, and built to produce real results.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Join the Program</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUSSIAN -->
+            <div class="lang-block lang-ru">
+                <p class="post-lead">Стоять в беговом магазине среди сотен разноцветных кроссовок, каждая из которых обещает ещё больше скорости или комфорта, — это настоящий стресс. Особенно когда ценник варьируется от 8 до 35 тысяч иен. Но вот что опытные бегуны знают и редко говорят вслух: первые беговые кроссовки не обязательно должны быть дорогими. Совсем.</p>
+                <p class="post-p">Беговая индустрия очень хорошо умеет продавать. «Карбоновая пластина», «максимальный возврат энергии», «технологии уровня соревнований» — это реальные характеристики, которые помогают профессионалам. Но для новичка? Они не сделают вас быстрее. Более того, чрезмерно специализированная обувь может навредить, если не подходит для вашего типа стопы.</p>
+                <p class="post-p">Этот гид расставит всё по местам. Что именно важно при выборе, каких ошибок избегать — и список дружественных новичку моделей от пяти ведущих брендов.</p>
+
+                <h2 class="post-h2 reveal">ЧТО ДЕЙСТВИТЕЛЬНО ВАЖНО ПРИ ВЫБОРЕ БЕГОВЫХ КРОССОВОК</h2>
+                <h3 class="post-h3">Комфорт — ваш главный критерий</h3>
+                <p class="post-p">Самый главный параметр прост: кроссовки должны быть удобными сразу, без «притирки». Если в магазине вы чувствуете жжение, давление или думаете «привыкну» — уходите. Во время бега стопа увеличивается — она никогда не уменьшается.</p>
+                <h3 class="post-h3">Посадка и размер</h3>
+                <p class="post-p">Правильная посадка — это расстояние шириной большого пальца между кончиком самого длинного пальца и носком. Пятка должна сидеть плотно. Многие новички берут слишком маленькие кроссовки — отсюда чёрные ногти и мозоли. Если сомневаетесь — берите на полразмера больше и примеряйте вечером.</p>
+                <h3 class="post-h3">Понимание типа стопы</h3>
+                <p class="post-p">Высота подъёма стопы влияет на то, как она «заваливается» при беге. Три основных типа:</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">Нейтральный свод:</span> нога слегка заваливается внутрь — норма. Подойдут нейтральные кроссовки.</span></li>
+                    <li><span><span class="post-mistake-strong">Гиперпронация (плоскостопие):</span> нога сильно заваливается внутрь. Нужны стабилизирующие кроссовки.</span></li>
+                    <li><span><span class="post-mistake-strong">Супинация (высокий подъём):</span> нога заваливается наружу. Ищите максимальную амортизацию.</span></li>
+                </ul>
+                <p class="post-p">Не знаете свой тип? Попробуйте «мокрый тест» — намочите подошву и встаньте на лист бумаги. Полный отпечаток — плоскостопие; тонкая полоска — высокий подъём; умеренная кривая — нейтральная стопа. Ещё лучше — зайдите в специализированный магазин: большинство предлагают бесплатный анализ походки.</p>
+                <h3 class="post-h3">Амортизация и перепад высот</h3>
+                <p class="post-p">Амортизация защищает суставы от ударных нагрузок — особенно важно на старте. Для большинства начинающих оптимален умеренный или высокий уровень амортизации. Стандартный перепад 8–12 мм — хороший выбор. Минималистичный перепад может нагружать ахиллово сухожилие.</p>
+                <h3 class="post-h3">Назначение</h3>
+                <p class="post-p">Бежите по асфальту? Выбирайте дорожные кроссовки. Планируете бегать по тропам? Нужны трейловые с агрессивным протектором. На беговой дорожке? Подойдут почти любые.</p>
+
+                <h2 class="post-h2 reveal">ТИПИЧНЫЕ ОШИБКИ НАЧИНАЮЩИХ БЕГУНОВ</h2>
+                <p class="post-p">Вот ошибки, которые мы видим чаще всего — и как их избежать:</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">Выбор ради внешнего вида.</span> Эстетика не спасёт от мозолей. Сначала — функция, потом — дизайн.</span></li>
+                    <li><span><span class="post-mistake-strong">Слишком маленький размер.</span> При беге стопа увеличивается. Всегда оставляйте место у носка.</span></li>
+                    <li><span><span class="post-mistake-strong">Ориентир на цену.</span> Кроссовки за 30 000 иен созданы для профи. Всё необходимое для начала найдёте в диапазоне 12 000–18 000 иен.</span></li>
+                    <li><span><span class="post-mistake-strong">Повседневные кроссовки.</span> Nike Air Force 1 и Stan Smith выглядят отлично, но их подошва не рассчитана на ударные нагрузки при беге — отсюда боли в голени и коленях.</span></li>
+                    <li><span><span class="post-mistake-strong">Игнорирование болей.</span> Если у вас проблемы с коленями или плоскостопие — сначала проконсультируйтесь со специалистом.</span></li>
+                    <li><span><span class="post-mistake-strong">Пропуск «пробежки в магазине».</span> Всегда немного пробегитесь перед покупкой. В хорошем магазине это норма.</span></li>
+                </ul>
+
+                <h2 class="post-h2 reveal">МОДЕЛИ, КОТОРЫЕ МЫ РЕКОМЕНДУЕМ НОВИЧКАМ</h2>
+                <p class="post-p">Пять моделей с лучшим соотношением цены и качества для тех, кто только начинает.</p>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ASICS GEL-KAYANO LITE 3</div>
+                    <div class="post-brand-sub">Лучше всего для: гиперпронаторов · Стабилизация · ~14 000–16 000 иен</div>
+                    <p class="post-brand-desc">ASICS заслужила репутацию надёжного производителя. Gel-Kayano Lite 3 — одна из самых дружественных новичку стабилизирующих моделей: структурированная, но не жёсткая и не тяжёлая. Технология GEL плавно поглощает удары. Для начинающих с плоскостопием, которые хотят бегать без беспокойства о коленях, — лучший выбор.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NIKE AIR ZOOM PEGASUS 41</div>
+                    <div class="post-brand-sub">Лучше всего для: нейтральной стопы · Универсальные тренировки · ~15 000–16 000 иен</div>
+                    <p class="post-brand-desc">Pegasus — тренировочная рабочая лошадка Nike уже более сорока лет. Отзывчивые и амортизирующие, достаточно универсальные для коротких пробежек и длинных кроссов. Модель немного узкая — при широкой стопе стоит проверить версию Wide. Надёжные и честные кроссовки, которые не разочаровывают.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ADIDAS ADIZERO SL 2</div>
+                    <div class="post-brand-sub">Лучше всего для: нейтральной стопы · Лёгкость · ~12 000–14 000 иен</div>
+                    <p class="post-brand-desc">Adizero SL 2 — на пересечении тренировочного кроссовка и лёгкого гоночного. Для новичков с нейтральной стопой, которые хотят чувствовать поверхность без лишней массы: живая и упругая посадка благодаря пене Lightstrike. Хороший выбор, если вы готовитесь к первой «пятёрке» или «десятке».</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NEW BALANCE FRESH FOAM X 880V14</div>
+                    <div class="post-brand-sub">Лучше всего для: мягкой амортизации · Широкой стопы · ~15 000–17 000 иен</div>
+                    <p class="post-brand-desc">Один из лучших тренировочных кроссовков с высокой амортизацией по разумной цене. Пена Fresh Foam X мягкая и прощающая, широкий носок особенно подходит начинающим с широкой стопой. Если в первые месяцы бега комфорт для вас главное — 880v14 сложно превзойти.</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">HOKA CLIFTON 9</div>
+                    <div class="post-brand-sub">Лучше всего для: максимальной амортизации · Твёрдых поверхностей · ~17 000–19 000 иен</div>
+                    <p class="post-brand-desc">Серия Clifton от Hoka привела тысячи новичков в мир кроссовок с высокой амортизацией. Мягкий, защищающий и стабильный — идеален для бега по твёрдым дорогам. Если ваша главная цель — беречь колени при наращивании километража, Clifton 9 — наша главная рекомендация.</p>
+                </div>
+
+                <h2 class="post-h2 reveal">ЧЕКЛИСТ НАЧИНАЮЩЕГО БЕГУНА</h2>
+                <p class="post-p">Перед тем как принять решение о покупке, пройдитесь по этому списку. На каждый пункт должен быть ответ «да».</p>
+                <ul class="post-checklist reveal">
+                    <li>Примерены вечером, когда стопа достигает максимального объёма</li>
+                    <li>Расстояние шириной большого пальца между самым длинным пальцем и носком</li>
+                    <li>Пятка сидит плотно — без проскальзывания</li>
+                    <li>Нет жжения, давления или болевых точек нигде на стопе</li>
+                    <li>Подходит для вашего типа стопы (нейтральный / стабилизирующий / высокая амортизация)</li>
+                    <li>Верная категория для вашей поверхности (асфальт / тропа / беговая дорожка)</li>
+                    <li>Вы пробежались в кроссовках прямо в магазине, а не только прошлись</li>
+                    <li>Решение принято не только на основе цены или внешнего вида</li>
+                    <li>Вы спросили продавца о типе стопы, если были сомнения</li>
+                    <li>Чек сохранён — первая пробежка на улице станет настоящим тестом</li>
+                </ul>
+                <p class="post-p">Бег — один из самых доступных видов спорта. Правильные кроссовки не сделают вас быстрее — но неправильные могут остановить вас ещё до того, как вы найдёте свой ритм. Возьмите время, используйте этот гид и доверяйте ощущениям. Всё остальное придёт.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">ТРЕНИРУЙСЯ С<br><span>NEXTGEN</span></h3>
+                        <p class="post-closing-sub">Профессиональный тренинг для юных спортсменов в Токио. Научный подход, индивидуальная работа, реальные результаты.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Записаться</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JAPANESE -->
+            <div class="lang-block lang-jp">
+                <p class="post-lead">色とりどりのシューズが所狭しと並ぶランニング専門店に立ったとき——それぞれが「これまで以上の速さ」や「最高のクッション性」を約束している——正直、圧倒されますよね。特に価格が8,000円から35,000円まで幅広いとなおさら。でも、経験豊富なランナーが知っていてあまり口にしないことがあります：最初のランニングシューズは、高価である必要はまったくない、ということ。</p>
+                <p class="post-p">ランニングシューズ業界はマーケティングがとても上手です。「カーボンファイバープレート」「最大のエネルギーリターン」「レース向けテクノロジー」——これらは実際に存在する機能で、エリート選手には本当に役立っています。でも、初心者の方には？速くなりません。むしろ、あなたの足型に合っていなければ、過度に専門化されたシューズは逆効果になることも。</p>
+                <p class="post-p">このガイドでは、ノイズを取り除きます。何を重視すべきか、避けるべき失敗は何か、そして世界トップ5ブランドから初心者向けモデルをご紹介します。</p>
+
+                <h2 class="post-h2 reveal">ランニングシューズ選びで本当に大切なこと</h2>
+                <h3 class="post-h3">快適性——最重要ポイント</h3>
+                <p class="post-p">最も重要な基準はシンプルです：履いた瞬間から快適であること、慣らし期間は不要です。「慣れると思う」と感じたなら、そのシューズは選ばない方がいい。走っている間、足はむくみます——小さくなることはありません。</p>
+                <h3 class="post-h3">フィット感とサイズ</h3>
+                <p class="post-p">適切なフィット感とは、最も長い足の指から靴の先端まで親指1本分のスペースがあること。かかとがしっかりホールドされること。多くの初心者は小さすぎるサイズを選び、爪の問題や水ぶくれに悩まされます。迷ったら0.5cm大きいサイズを選び、夕方に試着しましょう。</p>
+                <h3 class="post-h3">足の形を理解する</h3>
+                <p class="post-p">足のアーチが走るときの足の動きに影響します。主に3つのタイプがあります：</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">ニュートラルアーチ：</span> 足が内側にわずかに倒れる——正常です。ニュートラルシューズが合います。</span></li>
+                    <li><span><span class="post-mistake-strong">オーバープロネーション（扁平足）：</span> 足が内側に過度に倒れます。安定性シューズが必要です。</span></li>
+                    <li><span><span class="post-mistake-strong">スピネーション（ハイアーチ）：</span> 足が外側に倒れます。クッション性重視で選びましょう。</span></li>
+                </ul>
+                <p class="post-p">自分がどのタイプか分からない？「ウェットテスト」を試してみましょう——足の裏を濡らして紙の上に乗ります。完全な足跡なら扁平足、細い線状なら高アーチ、中程度の曲線ならニュートラルです。専門のランニングショップで無料のフットプリント解析を受けることもおすすめです。</p>
+                <h3 class="post-h3">クッション性とドロップ</h3>
+                <p class="post-p">クッション性は衝撃から関節を保護します——特に初心者には重要です。中〜高クッション性から始めることをおすすめします。標準的な8〜12mmのヒールドロップがほとんどの初心者に適しています。低ドロップのシューズは慣れていない場合アキレス腱に負担をかけることがあります。</p>
+                <h3 class="post-h3">目的に合わせる</h3>
+                <p class="post-p">舗装路を走る？ロードランニングシューズを選びましょう。トレイル？攻撃的なラグを持つトレイルシューズが必要です。トレッドミル？ほぼどんなランニングシューズでも対応できます。</p>
+
+                <h2 class="post-h2 reveal">初心者ランナーがよくやってしまう失敗</h2>
+                <p class="post-p">新しいランナーが最もよくやってしまう失敗と、その避け方をご紹介します：</p>
+                <ul class="post-mistake-list">
+                    <li><span><span class="post-mistake-strong">見た目で選んで感覚を無視する。</span> 見た目では水ぶくれは防げません。まず機能、次にデザインです。</span></li>
+                    <li><span><span class="post-mistake-strong">サイズが小さすぎる。</span> 走ると足はむくみます。つま先には常に余裕を持たせましょう。</span></li>
+                    <li><span><span class="post-mistake-strong">値段だけで判断する。</span> 3万円のカーボンプレートレーサーは競技ランナー向けです。必要なものはすべて12,000〜18,000円の範囲で手に入ります。</span></li>
+                    <li><span><span class="post-mistake-strong">ファッションスニーカーを使う。</span> エアフォース1やスタンスミスのミッドソールは繰り返しの衝撃に耐えられません——シンスプリントや膝の痛みに繋がります。</span></li>
+                    <li><span><span class="post-mistake-strong">既存の痛みを無視する。</span> 膝の問題や足底筋膜炎がある場合は、購入前に専門家に相談しましょう。</span></li>
+                    <li><span><span class="post-mistake-strong">店内で走らない。</span> 必ず少し走ってから購入してください。評判のいいランニング専門店では当然のことです。</span></li>
+                </ul>
+
+                <h2 class="post-h2 reveal">私たちがおすすめする初心者向けモデル</h2>
+                <p class="post-p">ランニングを始める方に最適な5つのモデルをご紹介します。</p>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ASICS GEL-KAYANO LITE 3</div>
+                    <div class="post-brand-sub">おすすめシーン：オーバープロネーション向け・安定性重視・約14,000〜16,000円</div>
+                    <p class="post-brand-desc">ASICSは信頼性の高いランニングシューズで定評を築いてきました。Gel-Kayano Lite 3は初心者に優しい安定性モデルで、過剰な回内をサポートしながら硬すぎず重すぎない履き心地を実現。フラットフィートでも膝を気にせず走りたい初心者に特におすすめです。</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NIKE AIR ZOOM PEGASUS 41</div>
+                    <div class="post-brand-sub">おすすめシーン：ニュートラルフット向け・オールラウンドトレーニング・約15,000〜16,000円</div>
+                    <p class="post-brand-desc">Pegasusは40年以上にわたってNikeの毎日のトレーニングの主力モデル。レスポンシブでありながらクッション性があり、5kmから週末のロングランまで汎用性抜群。やや幅が狭いため、幅広の足の方はワイドサイズをご確認ください。</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">ADIDAS ADIZERO SL 2</div>
+                    <div class="post-brand-sub">おすすめシーン：ニュートラルフット向け・軽量感重視・約12,000〜14,000円</div>
+                    <p class="post-brand-desc">Adizero SL 2は日常トレーナーと軽量レーサーの中間に位置します。ニュートラルフットの初心者がシューズに重さを感じずに地面を感じたい場合、Lightstrikeフォームが弾むようなレスポンシブな乗り心地を提供します。初めての5km・10kmに向けて準備している方に賢い選択です。</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">NEW BALANCE FRESH FOAM X 880V14</div>
+                    <div class="post-brand-sub">おすすめシーン：豊かなクッション性・幅広の足向け・約15,000〜17,000円</div>
+                    <p class="post-brand-desc">手頃な価格帯で最高クラスのクッション性を誇るデイリートレーナー。Fresh Foam Xミッドソールは柔らかく安定性もあり、広いトゥボックスは幅広の足に最適。ランニング開始の最初の数ヶ月間、快適性を最優先にするなら880v14が最有力候補です。</p>
+                </div>
+                <div class="post-brand-block reveal">
+                    <div class="post-brand-name">HOKA CLIFTON 9</div>
+                    <div class="post-brand-sub">おすすめシーン：最大クッション性・硬い路面向け・約17,000〜19,000円</div>
+                    <p class="post-brand-desc">HokaのCliftonシリーズは何千人もの初心者を高クッションランニングの世界に引き込んできました。柔らかく衝撃から守り、ワイドなミッドソールベースによる安定性は硬い路面でのロードランニングに理想的。走行距離を積み重ねる中で膝や股関節を守ることが最優先なら、Clifton 9が私たちの最推薦モデルです。</p>
+                </div>
+
+                <h2 class="post-h2 reveal">初心者ランナーのシューズチェックリスト</h2>
+                <p class="post-p">最初のランニングシューズを購入する前に、このリストを確認してください。すべての項目が「はい」であるべきです。</p>
+                <ul class="post-checklist reveal">
+                    <li>足がむくむ夕方以降に試着した</li>
+                    <li>最も長い指からシューズの先端まで親指1本分のスペースがある</li>
+                    <li>かかとがしっかりフィット——歩いても走っても滑らない</li>
+                    <li>足のどこにもきつさ、締め付け、圧迫感がない</li>
+                    <li>自分の足の形に合っている（ニュートラル / 安定性重視 / 高クッション性）</li>
+                    <li>使用する地面に合ったカテゴリー（ロード / トレイル / トレッドミル）</li>
+                    <li>店内で走ってみた——歩いただけでなく</li>
+                    <li>値段や見た目だけで決断していない</li>
+                    <li>足型が不安な場合はスタッフにフットプリント解析をお願いした</li>
+                    <li>レシートを保存した——最初の屋外ランが本当のテストになる</li>
+                </ul>
+                <p class="post-p">ランニングは始めやすいスポーツの一つです。正しいシューズがあなたを速くするわけではありませんが、間違ったシューズはリズムを掴む前にあなたを止めてしまうかもしれません。このガイドを活用し、何より足の感覚を信じてください。あとは自然についてきます。</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">NEXTGEN で<br><span>トレーニング</span></h3>
+                        <p class="post-closing-sub">東京の若いアスリートへの本格的なコーチング。科学的アプローチ、個別指導、そして確かな結果。</p>
+                        <a href="../index.html#cta" class="post-closing-btn">参加する</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <section class="post-related">
+        <p class="post-related-label" data-i18n="related_label">More from the Track</p>
+        <div class="post-related-grid">
+            <a href="sprint-mechanics.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related1_tag">Training</span>
+                <span class="post-related-title" data-i18n="related1_title">WHY SPRINT MECHANICS MATTER AT EVERY AGE</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+            <a href="first-session-record.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related2_tag">Coaching</span>
+                <span class="post-related-title" data-i18n="related2_title">THE FIRST SESSION PERSONAL RECORD</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="badge badge--foot"><div class="badge-dots"></div><div class="badge-glow"></div><div class="badge-text">NG</div></div>
+                <div class="footer-brand">nextgen<span>.running</span></div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-langs">
+                    <a href="#" class="footer-lang active" data-lang="en">ENGLISH</a>
+                    <a href="#" class="footer-lang" data-lang="jp">日本語</a>
+                    <a href="#" class="footer-lang" data-lang="ru">РУССКИЙ</a>
+                </div>
+                <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="footer-instagram" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 nextgen.running — All rights reserved</p>
+            <p class="footer-location">東京 · Tokyo, Japan</p>
+        </div>
+    </footer>
+
+    <script>
+    const T = {
+        en: {
+            nav_blog: 'Blog', post_back: 'Back to Blog', post_tag: 'Gear Guide',
+            post_date: 'May 2025', post_readtime: '6 min read',
+            post_title: 'HOW TO CHOOSE<br>YOUR FIRST<br><span class="outline">RUNNING SHOES</span>',
+            related_label: 'More from the Track', related_read: 'Read more',
+            related1_tag: 'Training', related1_title: 'WHY SPRINT MECHANICS MATTER AT EVERY AGE',
+            related2_tag: 'Coaching', related2_title: 'THE FIRST SESSION PERSONAL RECORD',
+        },
+        ru: {
+            nav_blog: 'Блог', post_back: 'Назад к блогу', post_tag: 'Экипировка',
+            post_date: 'Май 2025', post_readtime: '6 мин чтения',
+            post_title: 'КАК ВЫБРАТЬ<br>ПЕРВЫЕ<br><span class="outline">КРОССОВКИ ДЛЯ БЕГА</span>',
+            related_label: 'Ещё с дорожки', related_read: 'Читать далее',
+            related1_tag: 'Тренировки', related1_title: 'ПОЧЕМУ ТЕХНИКА СПРИНТА ВАЖНА В ЛЮБОМ ВОЗРАСТЕ',
+            related2_tag: 'Методология', related2_title: 'ЛИЧНЫЙ РЕКОРД НА ПЕРВОЙ ТРЕНИРОВКЕ',
+        },
+        jp: {
+            nav_blog: 'ブログ', post_back: 'ブログへ戻る', post_tag: 'ギアガイド',
+            post_date: '2025年5月', post_readtime: '6分',
+            post_title: '初めてのランニングシューズの<br><span class="outline">選び方</span>',
+            related_label: 'トラックからもっと読む', related_read: '続きを読む',
+            related1_tag: 'トレーニング', related1_title: 'なぜスプリント技術はどの年齢でも重要か',
+            related2_tag: 'コーチング', related2_title: '初回セッションで自己記録を更新',
+        }
+    };
+
+    function applyLang(lang) {
+        const t = T[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        document.querySelectorAll('.lang-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang === 'jp' ? 'ja' : lang;
+        localStorage.setItem('ng-lang', lang);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', e => { e.preventDefault(); applyLang(el.getAttribute('data-lang')); });
+    });
+
+    const initLang = localStorage.getItem('ng-lang') || 'en';
+    applyLang(initLang);
+
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+    (function animRing() { rx += (mx-rx)*0.11; ry += (my-ry)*0.11; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+    });
+
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => { bar.style.width = (window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'; }, { passive: true });
+
+    const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    </script>
+</body>
+</html>

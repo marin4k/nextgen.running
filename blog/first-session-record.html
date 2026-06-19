@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The First Session Personal Record — nextgen.running</title>
+    <meta name="description" content="How a nextgen.running athlete achieved a high jump personal record in their very first coached session — and what this reveals about the power of methodology, proprioception, and deliberate technique over mere effort.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Noto+Serif+JP:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .lang-block { display: none; }
+        .lang-block.active { display: block; }
+
+        /* ─── POST HERO ─── */
+        .post-hero {
+            padding: 160px 52px 100px;
+            background: var(--bg);
+            position: relative; overflow: hidden;
+            min-height: 70vh;
+            display: flex; align-items: flex-end;
+        }
+        .post-hero-blobs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .post-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+        .post-blob-1 { width: 480px; height: 360px; background: var(--pink); opacity: 0.2; top: -10%; right: -4%; animation: blobA 11s ease-in-out infinite; }
+        .post-blob-2 { width: 360px; height: 280px; background: var(--mint); opacity: 0.16; bottom: -8%; left: -4%; animation: blobB 14s ease-in-out infinite; }
+        .post-blob-3 { width: 280px; height: 220px; background: var(--mint); opacity: 0.1; top: 40%; left: 45%; animation: blobA 17s ease-in-out infinite reverse; }
+        @keyframes blobA { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-14px) scale(1.04)} }
+        @keyframes blobB { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-14px,18px) scale(1.03)} }
+
+        .post-hero-inner { position: relative; z-index: 2; width: 100%; max-width: 900px; }
+        .post-back {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--muted); text-decoration: none; margin-bottom: 52px;
+            opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards; transition: color 0.2s;
+        }
+        .post-back:hover { color: var(--black); }
+        .post-back::before { content: '←'; font-size: 13px; }
+        .post-meta { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards; }
+        .post-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-dot { color: var(--faint); }
+        .post-date { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+        .post-read-time { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+        .post-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 112px); line-height: 0.92; letter-spacing: -0.01em; color: var(--black); margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s forwards; }
+        .post-title .iri { background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+        /* Hero stat callout */
+        .post-hero-stat { display: inline-flex; align-items: baseline; gap: 16px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards; }
+        .post-hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(64px, 9vw, 110px); line-height: 1; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-hero-stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); line-height: 1.4; max-width: 140px; }
+        .post-divider { width: 100%; height: 1px; background: var(--border); margin-top: 48px; }
+
+        /* ─── ARTICLE BODY ─── */
+        .post-body { background: var(--bg); padding: 80px 52px 120px; }
+        .post-content { max-width: 720px; margin: 0 auto; }
+        .post-lead { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--black); margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards; }
+        .post-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5vw, 56px); letter-spacing: 0.02em; color: var(--black); margin: 80px 0 32px; padding-bottom: 20px; position: relative; }
+        .post-h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 52px; height: 2px; background: var(--iri); }
+        .post-h3 { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 500; color: var(--black); margin: 40px 0 14px; letter-spacing: 0.01em; }
+        .post-p { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(17,17,17,0.78); margin-bottom: 24px; }
+
+        .post-quote { margin: 52px 0; padding: 40px 44px; background: var(--bg-alt); border: 1px solid var(--border); position: relative; }
+        .post-quote::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--iri); }
+        .post-quote-text { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 18px; line-height: 1.85; font-style: italic; color: rgba(17,17,17,0.7); }
+        .post-quote-attr { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 20px; display: block; }
+
+        /* Session breakdown steps */
+        .post-session-steps { margin: 40px 0; display: flex; flex-direction: column; gap: 2px; }
+        .post-session-step { display: flex; gap: 0; background: rgba(255,255,255,0.55); border: 1px solid var(--border); overflow: hidden; position: relative; transition: background 0.3s; }
+        .post-session-step:hover { background: rgba(255,255,255,0.9); }
+        .post-session-step::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-session-step:hover::after { width: 100%; }
+        .post-session-num { width: 64px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 36px; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; padding: 28px 0; }
+        .post-session-body { padding: 28px 28px 28px 0; flex: 1; }
+        .post-session-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+        .post-session-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--black); margin-bottom: 8px; }
+        .post-session-desc { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
+
+        /* Result stat strip */
+        .post-result-strip { margin: 52px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .post-result-cell { padding: 36px 28px; background: var(--dark); position: relative; overflow: hidden; }
+        .post-result-cell::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--iri); }
+        .post-result-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 72px); line-height: 1; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; margin-bottom: 8px; }
+        .post-result-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,244,242,0.35); line-height: 1.4; }
+
+        /* ─── CLOSING CTA ─── */
+        .post-closing { margin-top: 80px; padding: 48px 44px; background: var(--dark); position: relative; overflow: hidden; }
+        .post-closing-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .post-closing-blob-1 { position: absolute; width: 300px; height: 240px; background: var(--mint); opacity: 0.12; border-radius: 50%; filter: blur(80px); top: -20%; right: -5%; }
+        .post-closing-blob-2 { position: absolute; width: 250px; height: 200px; background: var(--pink); opacity: 0.1; border-radius: 50%; filter: blur(80px); bottom: -20%; left: -5%; }
+        .post-closing-inner { position: relative; z-index: 2; }
+        .post-closing-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,244,242,0.3); margin-bottom: 16px; }
+        .post-closing-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); color: var(--white); margin-bottom: 16px; line-height: 1; }
+        .post-closing-title span { background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-closing-sub { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 14px; line-height: 1.85; color: rgba(245,244,242,0.45); margin-bottom: 32px; max-width: 380px; }
+        .post-closing-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 14px 28px; border: 1px solid rgba(245,244,242,0.22); transition: border-color 0.2s, background 0.2s; }
+        .post-closing-btn:hover { border-color: rgba(245,244,242,0.6); background: rgba(245,244,242,0.05); }
+        .post-closing-btn::after { content: '→'; font-size: 13px; }
+
+        /* ─── RELATED POSTS ─── */
+        .post-related { padding: 80px 52px; background: var(--bg-alt); border-top: 1px solid var(--border); }
+        .post-related-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+        .post-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 720px; }
+        .post-related-card { background: rgba(255,255,255,0.55); padding: 36px 32px; border: 1px solid var(--border); text-decoration: none; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; transition: background 0.3s; }
+        .post-related-card:hover { background: rgba(255,255,255,0.9); }
+        .post-related-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-related-card:hover::after { width: 100%; }
+        .post-related-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-related-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--black); line-height: 1.1; }
+        .post-related-arrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .post-related-card:hover .post-related-arrow { color: var(--black); }
+        .post-related-arrow::after { content: '→'; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .post-hero { padding: 130px 24px 72px; min-height: auto; }
+            .post-body { padding: 56px 24px 80px; }
+            .post-result-strip { grid-template-columns: 1fr 1fr; }
+            .post-related { padding: 56px 24px; }
+            .post-related-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 520px) {
+            .post-result-strip { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-left">
+            <img src="../Next%20Gen.png" alt="Next Gen" class="nav-logo-img">
+            <a href="../index.html" class="nav-brand">nextgen<span>.running</span></a>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html#blog" class="nav-blog" data-i18n="nav_blog">Blog</a>
+            <div class="nav-lang">
+                <a href="#" data-lang="en" class="active">EN</a>
+                <a href="#" data-lang="jp">JP</a>
+                <a href="#" data-lang="ru">RU</a>
+            </div>
+            <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- BLOG POST HERO (light) -->
+    <section class="post-hero">
+        <div class="post-hero-blobs">
+            <div class="post-blob post-blob-1"></div>
+            <div class="post-blob post-blob-2"></div>
+            <div class="post-blob post-blob-3"></div>
+        </div>
+        <div class="post-hero-inner">
+            <a href="../index.html#blog" class="post-back" data-i18n="post_back">Back to Blog</a>
+            <div class="post-meta">
+                <span class="post-tag" data-i18n="post_tag">Coaching</span>
+                <span class="post-dot">·</span>
+                <span class="post-date" data-i18n="post_date">February 2025</span>
+                <span class="post-dot">·</span>
+                <span class="post-read-time" data-i18n="post_readtime">5 min read</span>
+            </div>
+            <h1 class="post-title" data-i18n="post_title">THE FIRST<br>SESSION<br><span class="iri">PERSONAL RECORD</span></h1>
+            <div class="post-hero-stat">
+                <span class="post-hero-stat-num">+10cm</span>
+                <span class="post-hero-stat-label" data-i18n="post_stat_label">above previous personal best in a single session</span>
+            </div>
+            <div class="post-divider"></div>
+        </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <article class="post-body">
+        <div class="post-content">
+
+            <!-- ENGLISH -->
+            <div class="lang-block lang-en">
+                <p class="post-lead">The bar was set at 95 centimeters. A height this athlete had attempted before — in physical education classes, without coaching — and never cleared. Two hours later, the bar was at 1 meter 5 centimeters. Ten centimeters above any height they had ever jumped.</p>
+                <p class="post-p">This was not a story about an exceptionally gifted athlete. It was a story about what happens when you replace random effort with deliberate methodology. And it is a story that repeats itself, in different forms, in almost every first session we run at nextgen.running.</p>
+
+                <!-- RESULT STRIP -->
+                <div class="post-result-strip reveal">
+                    <div class="post-result-cell">
+                        <div class="post-result-num">95cm</div>
+                        <div class="post-result-label">Starting height —<br>never cleared before</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">1.05m</div>
+                        <div class="post-result-label">Final height —<br>cleared in session 1</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">2hrs</div>
+                        <div class="post-result-label">Time from first<br>to final jump</div>
+                    </div>
+                </div>
+
+                <h2 class="post-h2 reveal">WHAT HAPPENED IN THAT SESSION</h2>
+                <p class="post-p">Before any jumping took place, we spent the first forty minutes of the session on something that surprises most people: we didn't go near the bar at all. There was no "let's see where you are" opening attempt. No warming up by jumping at a low height. Instead, we broke the event into its component parts and worked on each one individually.</p>
+                <div class="post-session-steps reveal">
+                    <div class="post-session-step">
+                        <div class="post-session-num">01</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Phase One</div>
+                            <div class="post-session-title">THE APPROACH RUN</div>
+                            <p class="post-session-desc">The curved run-up that determines the angle and velocity at which the athlete arrives at the bar. Most recreational high jumpers run straight at the bar, or use a flat approach. The curved approach positions the body to rotate over the bar efficiently — using centripetal forces rather than fighting against them. We walked the curve before we ever ran it.</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">02</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Phase Two</div>
+                            <div class="post-session-title">THE TAKEOFF</div>
+                            <p class="post-session-desc">Which foot to plant, at what point in the curve, and how to convert horizontal momentum into vertical lift. The takeoff is the most technical moment in the high jump — a fraction of a second that can add or subtract ten centimeters from a jump without any change in speed or effort. We drilled the takeoff step repeatedly, without a bar, until it felt instinctive.</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">03</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Phase Three</div>
+                            <div class="post-session-title">BODY POSITION OVER THE BAR</div>
+                            <p class="post-session-desc">The Fosbury Flop technique — used by virtually every elite high jumper in the world — involves arching backward over the bar in a way that feels completely counterintuitive. The back goes over first; the hips follow; the legs clear last. For a beginner, this feels wrong. We practiced the arch position on the ground until the body began to recognize the shape.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="post-p">Only once each component had been internalized individually did we bring them together. The approach. The takeoff. The arch. First at walk pace, then at jog pace, then with a bar at 75 centimeters — well below any difficulty. By the time we raised the bar to 95 centimeters, the athlete wasn't attempting a jump. They were executing a sequence they already knew.</p>
+
+                <h2 class="post-h2 reveal">THE ROLE OF PROPRIOCEPTION</h2>
+                <p class="post-p">Proprioception is the body's ability to sense its own position in space. It is what allows you to walk in the dark without falling, or catch yourself when you trip. In athletic training, proprioception is the invisible foundation beneath all technique work — and understanding it changes how you think about coaching entirely.</p>
+                <p class="post-p">When a beginner attempts a high jump without coaching, their proprioceptive system has no reference point. They don't know where their body is in space relative to the bar. They don't know what the takeoff foot feels like when it's planted correctly. They have no internal sense of whether their back is arched or not. The result is guessing — and guessing produces inconsistent, frustrated attempts that reinforce nothing.</p>
+                <div class="post-quote">
+                    <p class="post-quote-text">Coaching creates a proprioceptive reference point. When we guide an athlete's body through a correct movement — physically positioning them, giving verbal cues, using video replay — we are uploading information directly into their body awareness. Once the body knows what correct feels like, it can begin to find it on its own.</p>
+                    <p class="post-quote-attr">— on proprioception and first-session learning</p>
+                </div>
+                <p class="post-p">This is why the first session is often so productive with a new athlete. The proprioceptive system has not yet been patterned with years of incorrect habits. It is receptive. And when given clear, structured information about what the correct movement feels like, it absorbs that information quickly and efficiently. The body learns faster than most people expect — when it is given something precise to learn.</p>
+
+                <h2 class="post-h2 reveal">CONFIDENCE AS A TECHNICAL TOOL</h2>
+                <p class="post-p">There is something else that happened in that session — something that doesn't appear in the coaching methodology books but is just as real as any technical drill.</p>
+                <p class="post-p">When the athlete cleared 95 centimeters for the first time, their reaction was not excitement. It was focus. They turned, walked back to the start of the approach, and asked to go higher. No celebration. No hesitation. Just a quiet certainty that the next height was within reach.</p>
+                <p class="post-p">Confidence, when it comes from genuine technical understanding rather than wishful thinking, functions as a performance amplifier. The athlete was not thinking "I hope I make it." They were thinking "I know what I need to do." That cognitive shift — from hoping to knowing — removes a layer of physical tension that is genuinely measurable in athletic performance. Tight muscles don't jump high. Relaxed, prepared ones do.</p>
+                <p class="post-p">We raised the bar to 1 meter. It cleared on the second attempt. Then 1 meter 5 centimeters — cleared on the third.</p>
+
+                <h2 class="post-h2 reveal">WHAT THIS MEANS FOR COACHING</h2>
+                <p class="post-p">The first-session personal record isn't rare. It happens consistently when three conditions are met: a technically sound methodology, an athlete who is willing to listen and slow down, and a coach who prioritizes understanding over repetition.</p>
+                <p class="post-p">What the session demonstrated was a principle that guides everything at nextgen.running: performance does not come from trying harder. It comes from moving better. The bar doesn't know how much effort you're putting in. It only registers whether your body arrived in the right position at the right moment.</p>
+                <p class="post-p">For coaches: the first session is your most important session. Not because of what the athlete achieves in those two hours, but because of what they learn to believe about their own potential. A good first session — one built on real technique, clear structure, and earned confidence — permanently changes the ceiling an athlete sets for themselves.</p>
+                <p class="post-p">For athletes and parents: you are more coachable than you think. The improvement you're looking for often isn't hidden behind more training hours. It's hidden behind better information about how to move. Find the coach who can give you that, and the results tend to follow — faster than you expect.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">YOUR FIRST<br><span>SESSION</span></h3>
+                        <p class="post-closing-sub">Join nextgen.running in Tokyo. One session with Arsentii and you'll understand why methodology matters more than effort alone.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Book a Session</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUSSIAN -->
+            <div class="lang-block lang-ru">
+                <p class="post-lead">Планка стояла на отметке 95 сантиметров. Высота, которую этот атлет уже пробовал — на уроках физкультуры, без тренера, — и никогда не брал. Два часа спустя планка была на 1 метре 5 сантиметрах. На десять сантиметров выше любой высоты, которую он когда-либо прыгал.</p>
+                <p class="post-p">Это не история о невероятно одарённом атлете. Это история о том, что происходит, когда случайные усилия заменяются осознанной методологией. И это история, которая повторяется — в разных формах — почти на каждой первой тренировке в nextgen.running.</p>
+
+                <!-- RESULT STRIP -->
+                <div class="post-result-strip reveal">
+                    <div class="post-result-cell">
+                        <div class="post-result-num">95см</div>
+                        <div class="post-result-label">Начальная высота —<br>никогда не бралась</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">1.05м</div>
+                        <div class="post-result-label">Финальная высота —<br>взята на первой тренировке</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">2ч</div>
+                        <div class="post-result-label">Время от первого<br>до последнего прыжка</div>
+                    </div>
+                </div>
+
+                <h2 class="post-h2 reveal">ЧТО ПРОИЗОШЛО НА ТОЙ ТРЕНИРОВКЕ</h2>
+                <p class="post-p">Прежде чем начались прыжки, мы провели первые сорок минут на чём-то, что удивляет большинство людей: к планке мы вообще не подходили. Никаких «давайте посмотрим, где ты сейчас». Никакого разминочного прыжка с малой высоты. Вместо этого мы разложили упражнение на составляющие и проработали каждую в отдельности.</p>
+                <div class="post-session-steps reveal">
+                    <div class="post-session-step">
+                        <div class="post-session-num">01</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Фаза первая</div>
+                            <div class="post-session-title">РАЗБЕГ</div>
+                            <p class="post-session-desc">Дугообразный разбег, который определяет угол и скорость, с которой атлет подходит к планке. Большинство любителей бегут прямо на планку или с плоского захода. Дугообразный разбег позиционирует тело для эффективного перехода через планку — используя центростремительные силы, а не борясь с ними. Сначала мы шагали по дуге, прежде чем побежали.</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">02</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Фаза вторая</div>
+                            <div class="post-session-title">ТОЛЧОК</div>
+                            <p class="post-session-desc">Какую ногу ставить, в какой точке дуги, и как преобразовать горизонтальный импульс в вертикальный подъём. Толчок — самый технически сложный момент в прыжках в высоту: доля секунды, которая может прибавить или отнять десять сантиметров без изменения скорости или усилий. Мы многократно отрабатывали шаг толчка без планки, пока он не стал инстинктивным.</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">03</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">Фаза третья</div>
+                            <div class="post-session-title">ПОЛОЖЕНИЕ НАД ПЛАНКОЙ</div>
+                            <p class="post-session-desc">Техника Фосбери-Флоп — которую используют практически все элитные прыгуны в высоту в мире — предполагает прогиб назад через планку способом, который ощущается совершенно неинтуитивным. Сначала проходит спина, затем бёдра, последними — ноги. Для новичка это кажется неправильным. Мы отрабатывали положение прогиба на земле, пока тело не стало узнавать эту форму.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="post-p">Только когда каждый компонент был освоен отдельно, мы собрали их вместе. Разбег. Толчок. Прогиб. Сначала в темпе ходьбы, потом трусцой, затем с планкой на 75 сантиметрах — значительно ниже любой сложности. К моменту, когда мы подняли планку на 95 сантиметров, атлет не пытался прыгнуть — он выполнял последовательность, которую уже знал.</p>
+
+                <h2 class="post-h2 reveal">РОЛЬ ПРОПРИОЦЕПЦИИ</h2>
+                <p class="post-p">Проприоцепция — способность тела ощущать своё положение в пространстве. Именно благодаря ей вы можете ходить в темноте не падая или поймать равновесие, когда споткнулись. В спортивной тренировке проприоцепция — это невидимый фундамент под всей технической работой. И понимание этого полностью меняет подход к тренерству.</p>
+                <p class="post-p">Когда новичок без тренера пытается прыгнуть в высоту, его проприоцептивная система не имеет точки отсчёта. Он не знает, где его тело находится относительно планки. Не знает, как ощущается правильно поставленная толчковая нога. Не имеет внутреннего ощущения — прогнут он или нет. Результат — угадывание. А угадывание порождает непоследовательные, фрустрирующие попытки, которые ничего не закрепляют.</p>
+                <div class="post-quote">
+                    <p class="post-quote-text">Тренинг создаёт проприоцептивную точку отсчёта. Когда мы проводим тело атлета через правильное движение — физически его позиционируя, давая словесные подсказки, используя видеоразбор — мы загружаем информацию непосредственно в его телесное восприятие. Как только тело знает, каким ощущается правильное движение, оно начинает находить его самостоятельно.</p>
+                    <p class="post-quote-attr">— о проприоцепции и обучении на первой тренировке</p>
+                </div>
+                <p class="post-p">Именно поэтому первая тренировка с новым атлетом часто столь продуктивна. Проприоцептивная система ещё не закрепила годами неправильные привычки. Она восприимчива. И когда ей предоставляется чёткая, структурированная информация о том, каким ощущается правильное движение, она усваивает эту информацию быстро и эффективно. Тело учится быстрее, чем ожидает большинство людей — когда получает что-то точное для освоения.</p>
+
+                <h2 class="post-h2 reveal">УВЕРЕННОСТЬ КАК ТЕХНИЧЕСКИЙ ИНСТРУМЕНТ</h2>
+                <p class="post-p">В той тренировке произошло ещё кое-что — что не попадает в методические книги, но столь же реально, как любое упражнение.</p>
+                <p class="post-p">Когда атлет взял 95 сантиметров впервые, его реакция была не радостью. Это была сосредоточенность. Он повернулся, вернулся к началу разбега и попросил поднять выше. Никаких праздновий. Никаких колебаний. Только тихая уверенность, что следующая высота ему по силам.</p>
+                <p class="post-p">Уверенность, которая исходит из подлинного технического понимания, а не из желаемого мышления, работает как усилитель результата. Атлет думал не «надеюсь, получится», а «я знаю, что нужно сделать». Это когнитивное смещение — от надежды к знанию — снимает уровень физического напряжения, которое реально измеримо в спортивном выступлении. Напряжённые мышцы не прыгают высоко. Расслабленные, подготовленные — прыгают.</p>
+                <p class="post-p">Мы подняли планку на 1 метр. Взято со второй попытки. Затем 1 метр 5 сантиметров — взято с третьей.</p>
+
+                <h2 class="post-h2 reveal">ЧТО ЭТО ЗНАЧИТ ДЛЯ ТРЕНЕРСТВА</h2>
+                <p class="post-p">Личный рекорд на первой тренировке — не редкость. Это происходит стабильно при выполнении трёх условий: технически обоснованная методология, атлет, готовый слушать и замедлиться, и тренер, который ставит понимание выше повторения.</p>
+                <p class="post-p">То, что показала тренировка, — это принцип, который направляет всё в nextgen.running: результат приходит не от того, что ты сильнее стараешься. Он приходит от того, что ты лучше двигаешься. Планке безразлично, сколько усилий ты вкладываешь. Она регистрирует только одно: оказалось ли твоё тело в правильном положении в нужный момент.</p>
+                <p class="post-p">Для тренеров: первая тренировка — ваша самая важная тренировка. Не из-за того, чего атлет достигает за эти два часа, а из-за того, во что он начинает верить относительно своего потенциала. Хорошая первая тренировка — выстроенная на реальной технике, чёткой структуре и заслуженной уверенности — навсегда меняет потолок, который атлет устанавливает для себя.</p>
+                <p class="post-p">Для атлетов и родителей: вы более обучаемы, чем думаете. Прогресс, который вы ищете, часто скрыт не за большим количеством тренировочных часов, а за лучшей информацией о том, как двигаться. Найдите тренера, который может дать вам это, — и результаты, как правило, приходят быстрее, чем вы ожидаете.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">ТВОЯ ПЕРВАЯ<br><span>ТРЕНИРОВКА</span></h3>
+                        <p class="post-closing-sub">Присоединяйтесь к nextgen.running в Токио. Одно занятие с Арсентием — и вы поймёте, почему методология важнее одних лишь усилий.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Записаться</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JAPANESE -->
+            <div class="lang-block lang-jp">
+                <p class="post-lead">バーは95センチに設定されていました。このアスリートが以前、体育の授業でコーチなしに挑戦したことがある高さ——でも、一度もクリアできなかった高さです。2時間後、バーは1メートル5センチに上がっていました。これまで跳んだことのある最高記録より10センチ高い記録です。</p>
+                <p class="post-p">これは例外的に才能のある選手の話ではありません。これは、無計画な努力を意図的な方法論に置き換えたときに何が起こるかという話です。そして、これはnextgen.runningのほぼすべての初回セッションで、異なる形で繰り返される話です。</p>
+
+                <!-- RESULT STRIP -->
+                <div class="post-result-strip reveal">
+                    <div class="post-result-cell">
+                        <div class="post-result-num">95cm</div>
+                        <div class="post-result-label">開始時の高さ——<br>これまで越えられなかった</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">1.05m</div>
+                        <div class="post-result-label">最終的な高さ——<br>初回セッションで達成</div>
+                    </div>
+                    <div class="post-result-cell">
+                        <div class="post-result-num">2時間</div>
+                        <div class="post-result-label">最初から<br>最後の跳躍までの時間</div>
+                    </div>
+                </div>
+
+                <h2 class="post-h2 reveal">そのセッションで何が起きたか</h2>
+                <p class="post-p">跳躍が始まる前に、私たちはセッションの最初の40分間を、多くの人が驚くことに費やしました：バーには近づきもしませんでした。「今どこまでできるか見てみよう」という最初の試みもありませんでした。低い高さからウォームアップする跳躍もありませんでした。代わりに、その競技を構成要素に分解し、それぞれを個別に練習しました。</p>
+                <div class="post-session-steps reveal">
+                    <div class="post-session-step">
+                        <div class="post-session-num">01</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">フェーズ1</div>
+                            <div class="post-session-title">助走</div>
+                            <p class="post-session-desc">アスリートがバーに到達する角度と速度を決める曲線の助走。多くのアマチュア高跳び選手はバーに向かって直線で走るか、フラットなアプローチを使います。曲線アプローチは遠心力を利用してバーを効率的に超えるよう体を位置づけます。走る前に曲線を歩きました。</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">02</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">フェーズ2</div>
+                            <div class="post-session-title">踏み切り</div>
+                            <p class="post-session-desc">どちらの足を踏み切るか、カーブのどの地点で、そして水平方向の勢いをどのように垂直方向の跳躍に変換するか。踏み切りは高跳びで最も技術的な瞬間です——速度や努力を変えることなく、10センチを加えたり引いたりできる一瞬です。バーなしで踏み切りステップを何度も繰り返し、本能的に感じるまで練習しました。</p>
+                        </div>
+                    </div>
+                    <div class="post-session-step">
+                        <div class="post-session-num">03</div>
+                        <div class="post-session-body">
+                            <div class="post-session-label">フェーズ3</div>
+                            <div class="post-session-title">バー上の体の姿勢</div>
+                            <p class="post-session-desc">フォスベリーフロップ技術——世界のほぼすべてのエリート高跳び選手が使用する——は、全く直感に反するように感じる方法でバーの上を後ろ向きにアーチを描くことを含みます。最初に背中が通り、次に腰が続き、最後に脚がクリアします。初心者にとって、これは間違いに感じます。体がその形を認識するまで、地面でアーチ姿勢を練習しました。</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="post-p">各コンポーネントが個別に習得されてから初めて、それらを組み合わせました。助走。踏み切り。アーチ。最初はゆっくり歩いて、次にジョグのペースで、そして75センチのバーで——どんな困難さも十分に下回る高さで。バーが95センチに上がったとき、アスリートは跳躍を試みていませんでした。すでに知っているシーケンスを実行していたのです。</p>
+
+                <h2 class="post-h2 reveal">固有感覚の役割</h2>
+                <p class="post-p">固有感覚とは、体が空間における自分の位置を感知する能力です。暗闇の中でも転ばずに歩けるのも、つまずいたときに体を立て直せるのも、この能力によるものです。スポーツトレーニングにおいて、固有感覚はすべての技術作業の下にある見えない基盤です——そしてそれを理解することで、コーチングについての考え方が根本的に変わります。</p>
+                <p class="post-p">初心者がコーチングなしで高跳びを試みるとき、彼らの固有感覚系には基準点がありません。バーに対して体がどこにあるのかがわかりません。踏み切り足が正しく植えられたときの感覚がわかりません。自分が弓なりになっているかどうかの内的感覚がありません。結果は推測——推測は一貫性なく、フラストレーションの溜まる試みを生み出し、何も固定しません。</p>
+                <div class="post-quote">
+                    <p class="post-quote-text">コーチングは固有感覚の基準点を作ります。アスリートの体を正しい動きに導くとき——物理的に位置づけ、言葉でキューを与え、映像を使って——私たちは体の意識に直接情報をアップロードしています。体が正しい感覚を知ると、独自にそれを見つけ始めます。</p>
+                    <p class="post-quote-attr">— 固有感覚と初回セッションの学習について</p>
+                </div>
+                <p class="post-p">これが、新しいアスリートとの初回セッションがしばしば非常に生産的な理由です。固有感覚系はまだ何年もの誤った習慣でパターン化されていません。受容的です。そして正しい動きがどう感じるかについて明確で構造化された情報を与えられると、その情報を素早く効率的に吸収します。体は多くの人が期待するよりも速く学習します——学ぶべき精密なものが与えられたとき。</p>
+
+                <h2 class="post-h2 reveal">技術的ツールとしての自信</h2>
+                <p class="post-p">そのセッションには他に何かが起きました——コーチング方法論の本には載っていませんが、あらゆる技術的なドリルと同じくらいリアルなことが。</p>
+                <p class="post-p">アスリートが初めて95センチをクリアしたとき、彼の反応は喜びではありませんでした。集中力でした。彼は振り返り、助走の始まりまで歩き戻り、バーを上げるよう求めました。祝福なし。ためらいなし。ただ次の高さが手の届く範囲にあるという静かな確信。</p>
+                <p class="post-p">自信は、楽観的な思い込みからではなく本物の技術的理解から来るとき、パフォーマンスを増幅させる機能を持ちます。アスリートは「うまくいくといいな」ではなく「何をすべきか知っている」と考えていました。その認知的な変化——希望から知識へ——は、スポーツパフォーマンスで実際に測定可能な身体的緊張の層を取り除きます。緊張した筋肉は高く跳びません。リラックスした準備済みの筋肉が跳びます。</p>
+                <p class="post-p">バーを1メートルに上げました。2回目の試みでクリア。そして1メートル5センチ——3回目でクリア。</p>
+
+                <h2 class="post-h2 reveal">コーチングへの示唆</h2>
+                <p class="post-p">初回セッションでの自己記録は珍しくありません。三つの条件が満たされたとき一貫して起こります：技術的に健全な方法論、聞いて落ち着くことができるアスリート、そして繰り返しより理解を優先するコーチ。</p>
+                <p class="post-p">そのセッションが示したのは、nextgen.runningでのすべてのことを導く原則です：パフォーマンスはより懸命に努力することからは来ません。より良く動くことから来ます。バーはあなたがどれほど努力しているかを知りません。それが登録するのは一つだけ：体が正しい瞬間に正しい位置に到達したかどうか。</p>
+                <p class="post-p">コーチの皆さんへ：初回セッションはあなたの最も重要なセッションです。アスリートがその2時間で何を達成するかではなく、自分の可能性について何を信じるようになるかのために。本物の技術、明確な構造、そして本物の確信に基づいた良い初回セッションは、アスリートが自分のために設定する天井を永遠に変えます。</p>
+                <p class="post-p">アスリートと保護者の方へ：あなたは思っているより教わりやすいのです。あなたが探している改善は、多くの場合、より多くのトレーニング時間の背後に隠れているのではありません。どのように動くかについてのより良い情報の背後に隠れています。それを与えられるコーチを見つければ、結果は予想より早くついてくる傾向があります。</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">あなたの<br><span>初回セッション</span></h3>
+                        <p class="post-closing-sub">東京のnextgen.runningに参加してください。アルセンティとの1回のセッションで、なぜ方法論が努力だけより重要かを理解できます。</p>
+                        <a href="../index.html#cta" class="post-closing-btn">参加する</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- RELATED POSTS -->
+    <section class="post-related">
+        <p class="post-related-label" data-i18n="related_label">More from the Track</p>
+        <div class="post-related-grid">
+            <a href="sprint-mechanics.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related1_tag">Training</span>
+                <span class="post-related-title" data-i18n="related1_title">WHY SPRINT MECHANICS MATTER AT EVERY AGE</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+            <a href="running-shoes.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related2_tag">Gear Guide</span>
+                <span class="post-related-title" data-i18n="related2_title">HOW TO CHOOSE YOUR FIRST RUNNING SHOES</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="badge badge--foot"><div class="badge-dots"></div><div class="badge-glow"></div><div class="badge-text">NG</div></div>
+                <div class="footer-brand">nextgen<span>.running</span></div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-langs">
+                    <a href="#" class="footer-lang active" data-lang="en">ENGLISH</a>
+                    <a href="#" class="footer-lang" data-lang="jp">日本語</a>
+                    <a href="#" class="footer-lang" data-lang="ru">РУССКИЙ</a>
+                </div>
+                <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="footer-instagram" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 nextgen.running — All rights reserved</p>
+            <p class="footer-location">東京 · Tokyo, Japan</p>
+        </div>
+    </footer>
+
+    <script>
+    const T = {
+        en: {
+            nav_blog: 'Blog', post_back: 'Back to Blog', post_tag: 'Coaching',
+            post_date: 'February 2025', post_readtime: '5 min read',
+            post_stat_label: 'above previous personal best<br>in a single session',
+            post_title: 'THE FIRST<br>SESSION<br><span class="iri">PERSONAL RECORD</span>',
+            related_label: 'More from the Track', related_read: 'Read more',
+            related1_tag: 'Training', related1_title: 'WHY SPRINT MECHANICS MATTER AT EVERY AGE',
+            related2_tag: 'Gear Guide', related2_title: 'HOW TO CHOOSE YOUR FIRST RUNNING SHOES',
+        },
+        ru: {
+            nav_blog: 'Блог', post_back: 'Назад к блогу', post_tag: 'Методология',
+            post_date: 'Февраль 2025', post_readtime: '5 мин чтения',
+            post_stat_label: 'выше предыдущего личного рекорда<br>за одну тренировку',
+            post_title: 'ЛИЧНЫЙ РЕКОРД<br>НА ПЕРВОЙ<br><span class="iri">ТРЕНИРОВКЕ</span>',
+            related_label: 'Ещё с дорожки', related_read: 'Читать далее',
+            related1_tag: 'Тренировки', related1_title: 'ПОЧЕМУ ТЕХНИКА СПРИНТА ВАЖНА В ЛЮБОМ ВОЗРАСТЕ',
+            related2_tag: 'Экипировка', related2_title: 'КАК ВЫБРАТЬ ПЕРВЫЕ КРОССОВКИ ДЛЯ БЕГА',
+        },
+        jp: {
+            nav_blog: 'ブログ', post_back: 'ブログへ戻る', post_tag: 'コーチング',
+            post_date: '2025年2月', post_readtime: '5分',
+            post_stat_label: 'たった1回のセッションで<br>前の自己記録を上回った',
+            post_title: '初回セッションで<br><span class="iri">自己記録を更新</span>',
+            related_label: 'トラックからもっと読む', related_read: '続きを読む',
+            related1_tag: 'トレーニング', related1_title: 'スプリント技術はなぜどの年齢でも重要なのか',
+            related2_tag: 'ギアガイド', related2_title: '初めてのランニングシューズの選び方',
+        }
+    };
+
+    function applyLang(lang) {
+        const t = T[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        document.querySelectorAll('.lang-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang === 'jp' ? 'ja' : lang;
+        localStorage.setItem('ng-lang', lang);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', e => { e.preventDefault(); applyLang(el.getAttribute('data-lang')); });
+    });
+
+    const initLang = localStorage.getItem('ng-lang') || 'en';
+    applyLang(initLang);
+
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+    (function animRing() { rx += (mx-rx)*0.11; ry += (my-ry)*0.11; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+    });
+
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => { bar.style.width = (window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'; }, { passive: true });
+
+    const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    </script>
+</body>
+</html>

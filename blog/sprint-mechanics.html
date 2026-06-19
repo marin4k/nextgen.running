@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Sprint Mechanics Matter at Every Age — nextgen.running</title>
+    <meta name="description" content="Speed is the result, not the goal. Learn why sprint mechanics — stride patterns, arm drive, and foot strike — are the real foundation of athletic performance, and how to build them at any age.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Noto+Serif+JP:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .lang-block { display: none; }
+        .lang-block.active { display: block; }
+
+        /* ─── POST HERO ─── */
+        .post-hero {
+            padding: 160px 52px 100px;
+            background: var(--dark);
+            position: relative; overflow: hidden;
+            min-height: 70vh;
+            display: flex; align-items: flex-end;
+        }
+        .post-hero-blobs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .post-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+        .post-blob-1 { width: 520px; height: 400px; background: var(--mint); opacity: 0.14; top: -8%; right: -6%; animation: blobA 10s ease-in-out infinite; }
+        .post-blob-2 { width: 380px; height: 300px; background: var(--pink); opacity: 0.11; bottom: -8%; left: -4%; animation: blobB 13s ease-in-out infinite; }
+        @keyframes blobA { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(22px,-14px) scale(1.04)} }
+        @keyframes blobB { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-14px,20px) scale(1.03)} }
+
+        .post-hero-inner { position: relative; z-index: 2; width: 100%; max-width: 900px; }
+        .post-back {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: rgba(245,244,242,0.35); text-decoration: none; margin-bottom: 52px;
+            opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards; transition: color 0.2s;
+        }
+        .post-back:hover { color: rgba(245,244,242,0.8); }
+        .post-back::before { content: '←'; font-size: 13px; }
+        .post-meta { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards; }
+        .post-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-dot { color: rgba(245,244,242,0.2); }
+        .post-date { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,244,242,0.25); }
+        .post-read-time { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,244,242,0.25); }
+        .post-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 112px); line-height: 0.92; letter-spacing: -0.01em; color: var(--white); margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s forwards; }
+        .post-title .outline { -webkit-text-stroke: 2px rgba(245,244,242,0.35); color: transparent; }
+        .post-title .iri { background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-divider { width: 100%; height: 1px; background: rgba(245,244,242,0.08); margin-top: 48px; }
+
+        /* ─── ARTICLE BODY ─── */
+        .post-body { background: var(--bg); padding: 80px 52px 120px; }
+        .post-content { max-width: 720px; margin: 0 auto; }
+        .post-lead { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--black); margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards; }
+        .post-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5vw, 56px); letter-spacing: 0.02em; color: var(--black); margin: 80px 0 32px; padding-bottom: 20px; position: relative; }
+        .post-h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 52px; height: 2px; background: var(--iri); }
+        .post-h3 { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 500; color: var(--black); margin: 40px 0 14px; letter-spacing: 0.01em; }
+        .post-p { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(17,17,17,0.78); margin-bottom: 24px; }
+
+        .post-quote { margin: 52px 0; padding: 32px 36px; background: var(--dark); position: relative; overflow: hidden; }
+        .post-quote::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--iri); }
+        .post-quote-text { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 17px; line-height: 1.85; font-style: italic; color: rgba(245,244,242,0.7); position: relative; z-index: 1; }
+        .post-quote-attr { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,244,242,0.3); margin-top: 16px; position: relative; z-index: 1; }
+
+        .post-mechanics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 40px 0; }
+        .post-mechanics-card { background: rgba(255,255,255,0.65); padding: 32px 28px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .post-mechanics-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-mechanics-card:hover::after { width: 100%; }
+        .post-mechanics-num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: rgba(17,17,17,0.06); line-height: 1; margin-bottom: 12px; }
+        .post-mechanics-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; margin-bottom: 10px; }
+        .post-mechanics-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--black); margin-bottom: 12px; letter-spacing: 0.02em; }
+        .post-mechanics-desc { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
+
+        .post-drill-list { list-style: none; margin: 24px 0 40px; display: flex; flex-direction: column; gap: 0; }
+        .post-drill-list li { padding: 22px 0; border-bottom: 1px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300; line-height: 1.75; color: rgba(17,17,17,0.72); }
+        .post-drill-list li:first-child { border-top: 1px solid var(--border); }
+        .post-drill-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--black); display: block; margin-bottom: 4px; letter-spacing: 0.03em; }
+        .post-drill-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; display: block; margin-bottom: 8px; }
+
+        /* ─── CLOSING CTA ─── */
+        .post-closing { margin-top: 80px; padding: 48px 44px; background: var(--dark); position: relative; overflow: hidden; }
+        .post-closing-blobs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .post-closing-blob-1 { position: absolute; width: 300px; height: 240px; background: var(--mint); opacity: 0.12; border-radius: 50%; filter: blur(80px); top: -20%; right: -5%; }
+        .post-closing-blob-2 { position: absolute; width: 250px; height: 200px; background: var(--pink); opacity: 0.1; border-radius: 50%; filter: blur(80px); bottom: -20%; left: -5%; }
+        .post-closing-inner { position: relative; z-index: 2; }
+        .post-closing-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,244,242,0.3); margin-bottom: 16px; }
+        .post-closing-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 56px); color: var(--white); margin-bottom: 16px; line-height: 1; }
+        .post-closing-title span { background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-closing-sub { font-family: 'Noto Serif JP', serif; font-weight: 300; font-size: 14px; line-height: 1.85; color: rgba(245,244,242,0.45); margin-bottom: 32px; max-width: 380px; }
+        .post-closing-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 14px 28px; border: 1px solid rgba(245,244,242,0.22); transition: border-color 0.2s, background 0.2s; }
+        .post-closing-btn:hover { border-color: rgba(245,244,242,0.6); background: rgba(245,244,242,0.05); }
+        .post-closing-btn::after { content: '→'; font-size: 13px; }
+
+        /* ─── RELATED POSTS ─── */
+        .post-related { padding: 80px 52px; background: var(--bg-alt); border-top: 1px solid var(--border); }
+        .post-related-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+        .post-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 720px; }
+        .post-related-card { background: rgba(255,255,255,0.55); padding: 36px 32px; border: 1px solid var(--border); text-decoration: none; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; transition: background 0.3s; }
+        .post-related-card:hover { background: rgba(255,255,255,0.9); }
+        .post-related-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease; }
+        .post-related-card:hover::after { width: 100%; }
+        .post-related-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; background: var(--iri); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+        .post-related-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.02em; color: var(--black); line-height: 1.1; }
+        .post-related-arrow { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .post-related-card:hover .post-related-arrow { color: var(--black); }
+        .post-related-arrow::after { content: '→'; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .post-hero { padding: 130px 24px 72px; min-height: auto; }
+            .post-body { padding: 56px 24px 80px; }
+            .post-mechanics-grid { grid-template-columns: 1fr; }
+            .post-related { padding: 56px 24px; }
+            .post-related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-left">
+            <img src="../Next%20Gen.png" alt="Next Gen" class="nav-logo-img">
+            <a href="../index.html" class="nav-brand">nextgen<span>.running</span></a>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html#blog" class="nav-blog" data-i18n="nav_blog">Blog</a>
+            <div class="nav-lang">
+                <a href="#" data-lang="en" class="active">EN</a>
+                <a href="#" data-lang="jp">JP</a>
+                <a href="#" data-lang="ru">RU</a>
+            </div>
+            <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- BLOG POST HERO (dark) -->
+    <section class="post-hero">
+        <div class="post-hero-blobs">
+            <div class="post-blob post-blob-1"></div>
+            <div class="post-blob post-blob-2"></div>
+        </div>
+        <div class="post-hero-inner">
+            <a href="../index.html#blog" class="post-back" data-i18n="post_back">Back to Blog</a>
+            <div class="post-meta">
+                <span class="post-tag" data-i18n="post_tag">Training</span>
+                <span class="post-dot">·</span>
+                <span class="post-date" data-i18n="post_date">April 2025</span>
+                <span class="post-dot">·</span>
+                <span class="post-read-time" data-i18n="post_readtime">5 min read</span>
+            </div>
+            <h1 class="post-title" data-i18n="post_title">WHY SPRINT<br>MECHANICS MATTER<br><span class="iri">AT EVERY AGE</span></h1>
+            <div class="post-divider"></div>
+        </div>
+    </section>
+
+    <!-- ARTICLE BODY -->
+    <article class="post-body">
+        <div class="post-content">
+
+            <!-- ENGLISH -->
+            <div class="lang-block lang-en">
+                <p class="post-lead">Most conversations about speed end at the same place: "run faster." It's obvious advice — and nearly useless. In over eighteen years of training and seven years of coaching young athletes, one truth has become increasingly clear: speed is not something you chase. It's something you build, layer by layer, through the mechanics that produce it.</p>
+                <p class="post-p">That foundation is what we call sprint mechanics — the precise coordination of your stride, your arm drive, and the way your foot contacts the ground. Get these right, and speed becomes a natural byproduct. Get them wrong, and you can train as hard as you want and never reach your true potential.</p>
+
+                <h2 class="post-h2 reveal">THE ARCHITECTURE BEHIND SPEED</h2>
+                <p class="post-p">When we talk about sprint mechanics, we are talking about three interconnected systems. Each one is trainable, measurable, and responsive to focused practice at any age.</p>
+                <div class="post-mechanics-grid reveal">
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">01</div>
+                        <div class="post-mechanics-label">Foundation</div>
+                        <div class="post-mechanics-title">STRIDE MECHANICS</div>
+                        <p class="post-mechanics-desc">The pattern and rhythm of your steps — cadence, stride length, and the angle at which your leg swings through space. The goal: foot contact directly beneath the hips, not ahead of them.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">02</div>
+                        <div class="post-mechanics-label">Power Source</div>
+                        <div class="post-mechanics-title">ARM DRIVE</div>
+                        <p class="post-mechanics-desc">The often-overlooked engine of sprint performance. Your arms and legs move in opposition — and tight, inefficient arm swing creates tension that ripples down through the entire kinetic chain.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">03</div>
+                        <div class="post-mechanics-label">Ground Contact</div>
+                        <div class="post-mechanics-title">FOOT STRIKE</div>
+                        <p class="post-mechanics-desc">Where and how your foot meets the ground. In sprinting, forefoot or midfoot contact is almost always optimal. A heel strike at sprint pace applies a braking force with every single step.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">04</div>
+                        <div class="post-mechanics-label">Timing</div>
+                        <div class="post-mechanics-title">ACCELERATION PHASE</div>
+                        <p class="post-mechanics-desc">True sprinting has a distinct first 20–30 meters where the body is angled forward, steps are shorter and faster, and momentum builds progressively. Practicing this phase in isolation unlocks race-day starts.</p>
+                    </div>
+                </div>
+
+                <h3 class="post-h3">The Problem with "Just Run Faster"</h3>
+                <p class="post-p">Most untrained runners either overstride — landing with their foot far ahead of their center of mass, creating a braking force with every step — or understride, taking short, shuffling steps that waste energy and bleed speed. The ideal stride lands the foot directly beneath the hips. This isn't intuitive. It requires deliberate training to internalize.</p>
+                <p class="post-p">With arm drive, the arms should move forward and back, not across the body. Elbows should stay at roughly 90 degrees. Hands should be loose, not clenched. Hunched shoulders and a tense upper body are among the most common killers of sprint performance — and among the easiest to correct once an athlete knows to look for them.</p>
+
+                <div class="post-quote">
+                    <p class="post-quote-text">"Speed is a skill. Like any skill, it can be taught, refined, and improved with the right methodology. The athletes who make the most dramatic improvements are rarely the ones who try harder — they are the ones who move better."</p>
+                    <p class="post-quote-attr">— Arsentii Natalchuk, nextgen.running</p>
+                </div>
+
+                <h2 class="post-h2 reveal">WHY AGE DOESN'T LIMIT MECHANICS</h2>
+                <p class="post-p">Here is what makes mechanics so powerful as a coaching tool: they respond to training at any age. A seven-year-old and a forty-year-old can both improve their stride mechanics through focused practice. The body is adaptable, and the neuromuscular system — which controls movement patterns — continues responding to training stimulus throughout life.</p>
+                <p class="post-p">With young athletes, there is a particular opportunity. Motor patterns established in childhood tend to become deeply ingrained. Teaching correct mechanics at age seven or eight means those patterns are still present at fifteen and twenty-five. This is why every session at nextgen.running begins with mechanics — not just in the early weeks, but throughout every phase of an athlete's development.</p>
+                <p class="post-p">With adult athletes, the challenge is different. Years of habituated movement patterns — often built around a desk, a commute, and lifestyle shoes — mean there's more to unlearn before you can build. But the capacity to improve is still very much there. We have seen adults in their thirties and forties make dramatic improvements in their sprint times through mechanics work alone, without adding any training volume.</p>
+
+                <h2 class="post-h2 reveal">PRACTICAL DRILLS THAT BUILD THE FOUNDATION</h2>
+                <p class="post-p">The following drills are the backbone of any sprint mechanics program. They isolate specific components of the sprint cycle, allowing athletes to develop each element in isolation before combining them at full speed.</p>
+                <ul class="post-drill-list reveal">
+                    <li>
+                        <span class="post-drill-tag">Rhythm · Foot Strike · Hip Flexor</span>
+                        <span class="post-drill-name">A-SKIPS</span>
+                        Marching forward with an exaggerated knee drive and a pawing ground contact directly beneath the hips. A-skips build rhythm, reinforce proper foot strike timing, and develop the hip flexor strength that powers forward drive in every stride.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Cadence · Knee Drive · Power</span>
+                        <span class="post-drill-name">HIGH KNEES</span>
+                        Performed in place or moving forward, high knees develop cadence and teach athletes to drive the knee up aggressively — a movement that directly translates to stride power at race pace. Focus on driving up, not pushing back. The ground contact should be brief and springy.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Upper Body · Efficiency · Tension</span>
+                        <span class="post-drill-name">ARM DRIVE ISOLATION</span>
+                        Standing still, practice your arm swing in isolation. Drive the elbow back (not just forward), keep the hand loose, and prevent any crossing of the body's midline. Most athletes are surprised at how unnatural correct arm drive feels at first — and how different their sprint looks once it becomes habit.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Stride Length · Rhythm · Consistency</span>
+                        <span class="post-drill-name">WICKET RUNS</span>
+                        Running through a series of low hurdles or marker cones spaced at measured intervals trains consistent stride length and rhythm. The obstacles force athletes to find their natural cadence and maintain it under slight pressure — excellent preparation for race conditions.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Race Start · Momentum · Body Angle</span>
+                        <span class="post-drill-name">ACCELERATION PHASE WORK</span>
+                        True sprinting involves a distinct acceleration phase where the body leans forward, the steps are shorter and faster, and the athlete builds toward full speed progressively. Practicing this phase specifically — rather than always starting at full speed — builds the muscle memory for efficient starts on competition day.
+                    </li>
+                </ul>
+
+                <h2 class="post-h2 reveal">THE COACHING TAKEAWAY</h2>
+                <p class="post-p">Every training session at nextgen.running begins with mechanics — before intensity, before competition, before the clock. Not because we don't care about results, but precisely because we do. What you build first is what lasts.</p>
+                <p class="post-p">The athletes who improve most consistently are not the ones with the most natural talent. They are the ones who are willing to slow down, pay attention to what their body is doing, and make the corrections that compound over time. Sprint mechanics are not glamorous. They are foundational. And in our experience, there is no faster path to genuine speed improvement.</p>
+                <p class="post-p">Whether you are seven years old or forty-seven, whether you run the 60 meters or the 5K, the principles are the same. Move well first. The times will follow.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">TRAIN WITH<br><span>NEXTGEN</span></h3>
+                        <p class="post-closing-sub">Elite mechanics coaching for young athletes in Tokyo. Individual attention, structured methodology, and results from the very first session.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Join the Program</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RUSSIAN -->
+            <div class="lang-block lang-ru">
+                <p class="post-lead">Большинство разговоров о скорости заканчиваются одинаково: «бегите быстрее». Очевидный совет — и почти бесполезный. За восемнадцать лет тренировок и семь лет работы с юными спортсменами одна истина становилась всё яснее: скорость — это не то, за чем гонишься. Это то, что выстраивается слой за слоем — через механику, которая её производит.</p>
+                <p class="post-p">Именно эту основу мы называем техникой спринта — точная координация шага, работы рук и постановки стопы. Правильная техника делает скорость естественным следствием. Неправильная — и сколько ни тренируйся, истинного потенциала не достичь.</p>
+
+                <h2 class="post-h2 reveal">АРХИТЕКТУРА СКОРОСТИ</h2>
+                <p class="post-p">Когда мы говорим о технике спринта, мы говорим о трёх взаимосвязанных системах. Каждая из них поддаётся тренировке, измерению и развитию в любом возрасте.</p>
+                <div class="post-mechanics-grid reveal">
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">01</div>
+                        <div class="post-mechanics-label">Основа</div>
+                        <div class="post-mechanics-title">ТЕХНИКА ШАГА</div>
+                        <p class="post-mechanics-desc">Паттерн и ритм шагов — каденс, длина шага и угол маха ноги. Цель: контакт стопы прямо под бёдрами, а не впереди тела.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">02</div>
+                        <div class="post-mechanics-label">Двигатель</div>
+                        <div class="post-mechanics-title">РАБОТА РУК</div>
+                        <p class="post-mechanics-desc">Недооценённый двигатель спринта. Руки и ноги движутся попеременно — скованные руки создают напряжение, которое распространяется по всей кинетической цепи.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">03</div>
+                        <div class="post-mechanics-label">Контакт с землёй</div>
+                        <div class="post-mechanics-title">ПОСТАНОВКА СТОПЫ</div>
+                        <p class="post-mechanics-desc">Место и способ касания стопы земли. В спринте контакт передней или средней частью стопы оптимален почти всегда. Пяточный контакт при спринтовом темпе создаёт тормозящее усилие с каждым шагом.</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">04</div>
+                        <div class="post-mechanics-label">Тайминг</div>
+                        <div class="post-mechanics-title">ФАЗА РАЗГОНА</div>
+                        <p class="post-mechanics-desc">Истинный спринт имеет отчётливую фазу первых 20–30 метров: тело наклонено, шаги короче и чаще, импульс нарастает постепенно. Тренировка этой фазы в изоляции открывает возможности для эффективных стартов.</p>
+                    </div>
+                </div>
+
+                <h3 class="post-h3">Проблема с «просто беги быстрее»</h3>
+                <p class="post-p">Большинство нетренированных бегунов либо делают слишком длинный шаг — приземляясь далеко перед центром масс, создавая тормозящее усилие с каждым шагом, — либо слишком короткий, теряя энергию и скорость. Идеальный шаг приземляет стопу прямо под бёдрами. Это неинтуитивно — требует целенаправленной тренировки.</p>
+                <p class="post-p">В работе рук: руки должны двигаться вперёд-назад, не пересекая корпус. Локти — около 90 градусов. Кисти — расслаблены. Сутулость и напряжение плечевого пояса — одни из главных факторов, снижающих результат в спринте. И одни из самых лёгких для исправления, как только атлет начинает на это обращать внимание.</p>
+
+                <div class="post-quote">
+                    <p class="post-quote-text">«Скорость — это навык. Как любой навык, ей можно учить, совершенствовать и развивать с правильной методологией. Атлеты, которые прогрессируют быстрее всего, — это редко те, кто сильнее старается. Это те, кто лучше двигается.»</p>
+                    <p class="post-quote-attr">— Арсентий Натальчук, nextgen.running</p>
+                </div>
+
+                <h2 class="post-h2 reveal">ПОЧЕМУ ВОЗРАСТ НЕ ОГРАНИЧИВАЕТ ТЕХНИКУ</h2>
+                <p class="post-p">Вот что делает технику таким мощным инструментом тренировки: она отзывается на работу в любом возрасте. Семилетний ребёнок и сорокалетний взрослый могут улучшить свою технику бега через целенаправленные занятия. Тело адаптивно, а нейромышечная система, управляющая паттернами движений, продолжает реагировать на тренировочный стимул на протяжении всей жизни.</p>
+                <p class="post-p">С юными атлетами — особая возможность. Двигательные паттерны, заложенные в детстве, как правило, становятся глубоко укоренившимися. Научить правильной технике в семь-восемь лет — значит сохранить эти паттерны в пятнадцать и двадцать пять. Именно поэтому каждое занятие в nextgen.running начинается с техники — не только в первые недели, но на протяжении всего развития атлета.</p>
+                <p class="post-p">Со взрослыми атлетами задача другая. Годы привычных движений — как правило, связанных со столом, дорогой на работу и повседневной обувью — означают, что сначала нужно многое «разучить». Но способность улучшаться никуда не уходит. Мы видели, как взрослые в тридцать-сорок лет резко улучшали свои результаты только за счёт работы над техникой — без увеличения объёма тренировок.</p>
+
+                <h2 class="post-h2 reveal">ПРАКТИЧЕСКИЕ УПРАЖНЕНИЯ ДЛЯ ФОРМИРОВАНИЯ ОСНОВЫ</h2>
+                <p class="post-p">Следующие упражнения — основа любой программы по технике спринта. Они изолируют отдельные компоненты спринтового цикла, позволяя развивать каждый элемент отдельно перед объединением на полной скорости.</p>
+                <ul class="post-drill-list reveal">
+                    <li>
+                        <span class="post-drill-tag">Ритм · Постановка стопы · Сгибатели бедра</span>
+                        <span class="post-drill-name">СЕМЕНЯЩИЙ БЕГ (A-SKIPS)</span>
+                        Марш вперёд с подчёркнутым подъёмом колена и загребающим контактом стопы прямо под бёдрами. Развивает ритм, закрепляет правильный тайминг постановки стопы и укрепляет сгибатели бедра — двигатель переднего толчка в каждом шаге.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Каденс · Подъём колена · Мощность</span>
+                        <span class="post-drill-name">БЕГ С ВЫСОКИМ ПОДЪЁМОМ БЕДРА</span>
+                        Выполняется на месте или в движении. Развивает каденс и учит агрессивно поднимать колено — движение, которое напрямую влияет на мощность шага на соревновательной скорости. Фокус на подъём вверх, а не толчок назад. Контакт с землёй должен быть коротким и пружинящим.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Верхняя часть тела · Эффективность · Напряжение</span>
+                        <span class="post-drill-name">ИЗОЛИРОВАННАЯ РАБОТА РУК</span>
+                        Стоя на месте, отрабатывайте движение рук в изоляции. Отводите локоть назад (не только вперёд), держите кисть расслабленной, не допускайте пересечения средней линии тела. Большинство атлетов удивляются, насколько неестественно поначалу ощущается правильная работа рук — и насколько другим становится спринт, когда это входит в привычку.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Длина шага · Ритм · Постоянство</span>
+                        <span class="post-drill-name">БАРЬЕРНЫЙ БЕГ (WICKET RUNS)</span>
+                        Бег через серию низких барьеров или конусов, расставленных на определённых расстояниях. Препятствия заставляют найти естественный каденс и поддерживать его под лёгким давлением — отличная подготовка к условиям соревнований.
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">Старт · Разгон · Угол корпуса</span>
+                        <span class="post-drill-name">ОТРАБОТКА ФАЗЫ РАЗГОНА</span>
+                        Настоящий спринт включает отчётливую фазу разгона: тело наклонено вперёд, шаги короткие и частые, скорость нарастает постепенно. Тренировка этой фазы отдельно — а не всегда начиная на полной скорости — формирует мышечную память для эффективных стартов в соревновательный день.
+                    </li>
+                </ul>
+
+                <h2 class="post-h2 reveal">ГЛАВНЫЙ ВЫВОД</h2>
+                <p class="post-p">Каждое занятие в nextgen.running начинается с техники — до интенсивности, до соревновательного элемента, до хронометра. Не потому что нам всё равно на результаты, а именно потому что они важны. То, что закладывается первым, остаётся дольше всего.</p>
+                <p class="post-p">Атлеты, которые прогрессируют стабильнее всего, — не те, у кого больше всего природного таланта. Это те, кто готов замедлиться, обратить внимание на то, что делает их тело, и вносить исправления, которые накапливаются со временем. Техника спринта — не гламурно. Это фундамент. И в нашем опыте нет более быстрого пути к настоящему прогрессу в скорости.</p>
+                <p class="post-p">Вам семь лет или сорок семь, вы бегаете 60 метров или 5 километров — принципы одни и те же. Сначала двигайтесь правильно. Результаты придут.</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">ТРЕНИРУЙСЯ С<br><span>NEXTGEN</span></h3>
+                        <p class="post-closing-sub">Профессиональное обучение технике спринта для юных атлетов в Токио. Индивидуальное внимание, системная методология и результаты с первого занятия.</p>
+                        <a href="../index.html#cta" class="post-closing-btn">Записаться</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JAPANESE -->
+            <div class="lang-block lang-jp">
+                <p class="post-lead">スピードについての会話のほとんどは、同じ結論で終わります：「もっと速く走れ」。明らかなアドバイスですが、ほとんど役に立ちません。18年以上のトレーニング経験と7年の若いアスリートのコーチング経験を通じて、一つの真実がますます明確になっています：スピードは追いかけるものではありません。それはスピードを生み出すメカニクスを通じて、層を重ねて構築するものです。</p>
+                <p class="post-p">その基盤こそが私たちがスプリントメカニクスと呼ぶもの——ストライド、腕の振り、足の接地の正確な協調です。これを正しく理解すれば、スピードは自然な副産物となります。間違えれば、どれほど懸命に練習してもポテンシャルに届けません。</p>
+
+                <h2 class="post-h2 reveal">スピードの構造</h2>
+                <p class="post-p">スプリントメカニクスについて話すとき、私たちは三つの相互に関連するシステムについて話しています。それぞれが訓練可能で、測定可能で、どの年齢でも集中した練習に応答します。</p>
+                <div class="post-mechanics-grid reveal">
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">01</div>
+                        <div class="post-mechanics-label">基盤</div>
+                        <div class="post-mechanics-title">ストライドメカニクス</div>
+                        <p class="post-mechanics-desc">ステップのパターンとリズム——ケイデンス、歩幅、脚が空間をスイングする角度。目標：足が前方ではなく、腰の真下に接地すること。</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">02</div>
+                        <div class="post-mechanics-label">パワーソース</div>
+                        <div class="post-mechanics-title">腕の振り</div>
+                        <p class="post-mechanics-desc">スプリントパフォーマンスでよく見落とされるエンジン。腕と脚は対角線上に動きます——非効率な腕の振りはキネティックチェーン全体に緊張をもたらします。</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">03</div>
+                        <div class="post-mechanics-label">地面との接触</div>
+                        <div class="post-mechanics-title">フットストライク</div>
+                        <p class="post-mechanics-desc">足がどこでどのように地面に触れるか。スプリントでは、前足部または中足部での接地がほぼ常に最適です。スプリントペースでの踵着地は毎歩制動力をかけます。</p>
+                    </div>
+                    <div class="post-mechanics-card">
+                        <div class="post-mechanics-num">04</div>
+                        <div class="post-mechanics-label">タイミング</div>
+                        <div class="post-mechanics-title">加速段階</div>
+                        <p class="post-mechanics-desc">真のスプリントには、体が前傾し、歩幅が短く速く、勢いが段階的に増す最初の20〜30mという特有の加速段階があります。この段階を単独で練習することで、レース当日のスタートが改善されます。</p>
+                    </div>
+                </div>
+
+                <h3 class="post-h3">「もっと速く走れ」の問題</h3>
+                <p class="post-p">訓練されていないランナーのほとんどは、オーバーストライド——重心の前方に足を着地し、毎歩制動力をかける——かアンダーストライドで、エネルギーを無駄にしてスピードを失います。理想的なストライドは足を腰の真下に着地させます。これは直感的ではありません。習得するには意識的な訓練が必要です。</p>
+                <p class="post-p">腕の振りでは、腕は前後に動かし、体を横切らないようにします。肘は約90度。手は緩めます。猫背と上体の緊張はスプリントパフォーマンスを低下させる最も一般的な原因の一つです——そして一度気づけば、最も修正しやすい原因でもあります。</p>
+
+                <div class="post-quote">
+                    <p class="post-quote-text">「スピードはスキルです。あらゆるスキルと同じように、適切な方法論があれば教え、磨き、改善できます。最も劇的な改善をする選手たちは、より努力する選手ではなく——より良く動く選手です。」</p>
+                    <p class="post-quote-attr">— アルセンティ・ナタルチュク, nextgen.running</p>
+                </div>
+
+                <h2 class="post-h2 reveal">なぜ年齢がメカニクスを制限しないか</h2>
+                <p class="post-p">メカニクスがコーチングツールとして強力な理由がここにあります：どの年齢でもトレーニングに応答するのです。7歳の子どもも40歳の大人も、集中した練習を通じてストライドメカニクスを改善できます。体は適応力があり、動作パターンを制御する神経筋システムは生涯を通じてトレーニング刺激に反応し続けます。</p>
+                <p class="post-p">若いアスリートには特別な機会があります。幼少期に確立された動作パターンは深く根付く傾向があります。7〜8歳で正しいメカニクスを教えることは、15歳と25歳でもそのパターンが残ることを意味します。だからこそnextgen.runningのすべてのセッションはメカニクスから始まります——最初の数週間だけでなく、アスリートの発達のすべての段階で。</p>
+                <p class="post-p">大人のアスリートでは課題が異なります。デスク、通勤、ライフスタイルシューズを中心に構築された何年もの習慣的な動作パターンは、構築する前に多くのことを「ほどく」必要があることを意味します。しかし、改善する能力は依然としてそこにあります。30〜40代の大人が、トレーニング量を増やすことなく、メカニクス作業だけでスプリントタイムを劇的に改善するのを見てきました。</p>
+
+                <h2 class="post-h2 reveal">基盤を作る実践的なドリル</h2>
+                <p class="post-p">以下のドリルはスプリントメカニクスプログラムの骨格です。スプリントサイクルの特定のコンポーネントを分離し、フルスピードで組み合わせる前に各要素を個別に発展させます。</p>
+                <ul class="post-drill-list reveal">
+                    <li>
+                        <span class="post-drill-tag">リズム · フットストライク · 股関節屈筋</span>
+                        <span class="post-drill-name">Aスキップ</span>
+                        誇張した膝の駆動と、腰の真下での足の掻き寄せ動作で前進するマーチング。Aスキップはリズムを作り、適切な足の接地タイミングを強化し、すべてのストライドで前進駆動力となる股関節屈筋の強度を発展させます。
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">ケイデンス · 膝の駆動 · パワー</span>
+                        <span class="post-drill-name">ハイニー</span>
+                        原地または前進しながら行います。ケイデンスを発展させ、膝を積極的に上げることを教えます——レースペースでのストライドパワーに直結する動きです。上方向への駆動に集中し、後方への押しつけではありません。地面との接触は短く弾むようにします。
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">上半身 · 効率 · 緊張</span>
+                        <span class="post-drill-name">腕振りの単独練習</span>
+                        静止した状態で、腕の振りを単独で練習します。肘を後ろに駆動し、手を緩め、体の中心線を横切らないようにします。ほとんどのアスリートは、正しい腕の振りが最初どれほど不自然に感じるか——そしてそれが習慣になると自分のスプリントがどれほど変わるかに驚きます。
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">歩幅 · リズム · 一貫性</span>
+                        <span class="post-drill-name">ウィケットラン</span>
+                        測定された間隔で設置されたミニハードルやコーンのシリーズを通して走ることで、一貫した歩幅とリズムを訓練します。障害物はアスリートに自然なケイデンスを見つけさせ、軽いプレッシャー下でそれを維持させます——レース条件への優れた準備。
+                    </li>
+                    <li>
+                        <span class="post-drill-tag">レーススタート · 勢い · 体の角度</span>
+                        <span class="post-drill-name">加速段階の練習</span>
+                        真のスプリントには、体が前傾し、歩幅が短く速く、アスリートが徐々にトップスピードに向かって加速する特有の加速段階があります。常にフルスピードからスタートするのではなく、この段階を具体的に練習することで、競技日の効率的なスタートのための筋肉記憶が構築されます。
+                    </li>
+                </ul>
+
+                <h2 class="post-h2 reveal">コーチングの結論</h2>
+                <p class="post-p">nextgen.runningのすべてのトレーニングセッションはメカニクスから始まります——強度の前、競争の前、時計の前に。結果を気にしないからではなく、むしろ気にするからこそ。最初に構築したものが最も長く続きます。</p>
+                <p class="post-p">最も一貫して改善するアスリートは、最も天性の才能がある人たちではありません。時間をかけて、自分の体が何をしているかに注意を払い、時間とともに複利で積み重なる修正を加える意志がある人たちです。スプリントメカニクスは華やかではありません。それは基礎的なものです。そして私たちの経験では、本当のスピード改善への道はこれより速いものはありません。</p>
+                <p class="post-p">あなたが7歳でも47歳でも、60メートルを走っても5キロを走っても、原則は同じです。まず良く動く。タイムはついてきます。</p>
+
+                <div class="post-closing reveal">
+                    <div class="post-closing-blobs"><div class="post-closing-blob-1"></div><div class="post-closing-blob-2"></div></div>
+                    <div class="post-closing-inner">
+                        <p class="post-closing-eyebrow">Tokyo · 東京 · Токио</p>
+                        <h3 class="post-closing-title">NEXTGENで<br><span>トレーニング</span></h3>
+                        <p class="post-closing-sub">東京の若いアスリートへの本格的なスプリント技術指導。個別指導、体系的な方法論、そして初回から成果を実感。</p>
+                        <a href="../index.html#cta" class="post-closing-btn">参加する</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- RELATED POSTS -->
+    <section class="post-related">
+        <p class="post-related-label" data-i18n="related_label">More from the Track</p>
+        <div class="post-related-grid">
+            <a href="first-session-record.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related1_tag">Coaching</span>
+                <span class="post-related-title" data-i18n="related1_title">THE FIRST SESSION PERSONAL RECORD</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+            <a href="running-shoes.html" class="post-related-card reveal">
+                <span class="post-related-tag" data-i18n="related2_tag">Gear Guide</span>
+                <span class="post-related-title" data-i18n="related2_title">HOW TO CHOOSE YOUR FIRST RUNNING SHOES</span>
+                <span class="post-related-arrow" data-i18n="related_read">Read more</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="badge badge--foot"><div class="badge-dots"></div><div class="badge-glow"></div><div class="badge-text">NG</div></div>
+                <div class="footer-brand">nextgen<span>.running</span></div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-langs">
+                    <a href="#" class="footer-lang active" data-lang="en">ENGLISH</a>
+                    <a href="#" class="footer-lang" data-lang="jp">日本語</a>
+                    <a href="#" class="footer-lang" data-lang="ru">РУССКИЙ</a>
+                </div>
+                <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="footer-instagram" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 nextgen.running — All rights reserved</p>
+            <p class="footer-location">東京 · Tokyo, Japan</p>
+        </div>
+    </footer>
+
+    <script>
+    const T = {
+        en: {
+            nav_blog: 'Blog', post_back: 'Back to Blog', post_tag: 'Training',
+            post_date: 'April 2025', post_readtime: '5 min read',
+            post_title: 'WHY SPRINT<br>MECHANICS MATTER<br><span class="iri">AT EVERY AGE</span>',
+            related_label: 'More from the Track', related_read: 'Read more',
+            related1_tag: 'Coaching', related1_title: 'THE FIRST SESSION PERSONAL RECORD',
+            related2_tag: 'Gear Guide', related2_title: 'HOW TO CHOOSE YOUR FIRST RUNNING SHOES',
+        },
+        ru: {
+            nav_blog: 'Блог', post_back: 'Назад к блогу', post_tag: 'Тренировки',
+            post_date: 'Апрель 2025', post_readtime: '5 мин чтения',
+            post_title: 'ПОЧЕМУ ТЕХНИКА<br>СПРИНТА ВАЖНА<br><span class="iri">В ЛЮБОМ ВОЗРАСТЕ</span>',
+            related_label: 'Ещё с дорожки', related_read: 'Читать далее',
+            related1_tag: 'Методология', related1_title: 'ЛИЧНЫЙ РЕКОРД НА ПЕРВОЙ ТРЕНИРОВКЕ',
+            related2_tag: 'Экипировка', related2_title: 'КАК ВЫБРАТЬ ПЕРВЫЕ КРОССОВКИ ДЛЯ БЕГА',
+        },
+        jp: {
+            nav_blog: 'ブログ', post_back: 'ブログへ戻る', post_tag: 'トレーニング',
+            post_date: '2025年4月', post_readtime: '5分',
+            post_title: 'スプリント技術は<br>なぜどの年齢でも<br><span class="iri">重要なのか</span>',
+            related_label: 'トラックからもっと読む', related_read: '続きを読む',
+            related1_tag: 'コーチング', related1_title: '初回セッションで自己記録を更新',
+            related2_tag: 'ギアガイド', related2_title: '初めてのランニングシューズの選び方',
+        }
+    };
+
+    function applyLang(lang) {
+        const t = T[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        document.querySelectorAll('.lang-block').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.add('active'));
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang === 'jp' ? 'ja' : lang;
+        localStorage.setItem('ng-lang', lang);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', e => { e.preventDefault(); applyLang(el.getAttribute('data-lang')); });
+    });
+
+    const initLang = localStorage.getItem('ng-lang') || 'en';
+    applyLang(initLang);
+
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+    (function animRing() { rx += (mx-rx)*0.11; ry += (my-ry)*0.11; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+    });
+
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => { bar.style.width = (window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'; }, { passive: true });
+
+    const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nextgen.running — Tokyo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Noto+Serif+JP:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── BLOG ─── */
+        .blog { padding: 140px 52px; background: var(--bg); }
+        .blog-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 72px; }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1.28fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+        }
+        .blog-card {
+            background: rgba(255,255,255,0.55); padding: 44px 36px 40px;
+            border: 1px solid rgba(17,17,17,0.06);
+            display: flex; flex-direction: column;
+            transition: background 0.3s; position: relative; overflow: hidden;
+        }
+        .blog-card--featured {
+            grid-column: 1; grid-row: 1 / span 2;
+            padding: 52px 48px 48px;
+            background: rgba(255,255,255,0.7);
+        }
+        .blog-card--featured .blog-title { font-size: 40px; line-height: 1.02; margin-bottom: 24px; }
+        .blog-card--featured .blog-excerpt { font-size: 14px; line-height: 1.85; }
+        .blog-card--featured .blog-featured-label {
+            display: inline-block; margin-bottom: 20px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.26em; text-transform: uppercase;
+            padding: 5px 12px; border: 1px solid var(--border);
+            color: var(--muted);
+        }
+        .blog-card:hover { background: rgba(255,255,255,0.9); }
+        .blog-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease;
+        }
+        .blog-card:hover::after { width: 100%; }
+        .blog-meta {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 24px; flex-wrap: wrap;
+        }
+        .blog-tag {
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            background: var(--iri);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+        }
+        .blog-date {
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase;
+        }
+        .blog-read-time {
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase;
+        }
+        .blog-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 28px;
+            letter-spacing: 0.02em; color: var(--black);
+            line-height: 1.05; margin-bottom: 18px;
+        }
+        .blog-excerpt {
+            font-size: 13px; line-height: 1.8; color: var(--muted);
+            font-weight: 300; flex: 1; margin-bottom: 32px;
+        }
+        .blog-read {
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--black); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px;
+            opacity: 0.45; transition: opacity 0.2s;
+        }
+        .blog-read:hover { opacity: 1; }
+        .blog-read::after {
+            content: '→'; font-size: 14px; transition: transform 0.2s;
+        }
+        .blog-read:hover::after { transform: translateX(4px); }
+
+        /* ─── BEHOLD INSTAGRAM FEED ─── */
+        .insta-feed-wrap { width: 100%; }
+        behold-widget { --behold-border-radius: 0px; }
+
+        /* ─── NAV BLOG LINK ─── */
+        .nav-blog {
+            font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--black); text-decoration: none;
+            opacity: 0.38; transition: opacity 0.2s;
+        }
+        .nav-blog:hover { opacity: 1; }
+
+        /* ─── LANG ACTIVE STATE ─── */
+        .nav-lang a.active { opacity: 1; }
+
+        @media (max-width: 900px) {
+            .blog { padding: 80px 24px; }
+            .blog-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .blog-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .blog-card--featured { grid-column: 1; grid-row: auto; }
+        }
+        @media (min-width: 521px) and (max-width: 900px) {
+            .blog-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+            .blog-card--featured { grid-column: 1 / span 2; grid-row: auto; }
+        }
+
+        /* ─── GALLERY ─── */
+        .gallery { padding: 140px 52px; background: var(--bg); }
+        .gallery-header { margin-bottom: 64px; }
+        .gallery-grid { columns: 4; column-gap: 4px; }
+        .gallery-item {
+            break-inside: avoid; margin-bottom: 4px;
+            overflow: hidden; position: relative; cursor: none;
+        }
+        .gallery-item img {
+            width: 100%; display: block;
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gallery-item::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(126,212,178,0.18) 0%, rgba(224,160,188,0.18) 100%);
+            opacity: 0; transition: opacity 0.35s;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item .gallery-zoom {
+            position: absolute; bottom: 14px; right: 14px; z-index: 2;
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--white); opacity: 0;
+            transition: opacity 0.3s; pointer-events: none;
+        }
+        .gallery-item:hover .gallery-zoom { opacity: 0.7; }
+
+        /* ─── LIGHTBOX ─── */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(8,8,8,0.97);
+            z-index: 10000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .lightbox.active { opacity: 1; pointer-events: all; }
+        .lightbox-img {
+            max-width: 90vw; max-height: 88vh; object-fit: contain;
+            display: block; transition: opacity 0.18s ease;
+        }
+        .lightbox-close {
+            position: fixed; top: 28px; right: 32px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: rgba(245,244,242,0.4); background: none; border: none;
+            cursor: none; padding: 12px; transition: color 0.2s;
+        }
+        .lightbox-close:hover { color: var(--white); }
+        .lightbox-prev, .lightbox-next {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(245,244,242,0.35); background: none; border: none;
+            cursor: none; padding: 28px 24px; transition: color 0.2s, transform 0.2s;
+        }
+        .lightbox-prev { left: 12px; }
+        .lightbox-next { right: 12px; }
+        .lightbox-prev:hover { color: var(--white); transform: translateY(-50%) translateX(-4px); }
+        .lightbox-next:hover { color: var(--white); transform: translateY(-50%) translateX(4px); }
+        .lightbox-counter {
+            position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.24em; text-transform: uppercase;
+            color: rgba(245,244,242,0.25);
+        }
+
+        @media (max-width: 900px) {
+            .gallery { padding: 80px 24px; }
+            .gallery-grid { columns: 2; }
+        }
+        @media (max-width: 520px) {
+            .gallery-grid { columns: 1; }
+        }
+
+        /* ─── SCHEDULE ─── */
+        .schedule { padding: 140px 52px; background: var(--bg-alt); }
+        .schedule-header { margin-bottom: 64px; }
+        .schedule-time-row {
+            display: flex; align-items: center; gap: 28px;
+            padding: 28px 36px; margin-bottom: 48px;
+            background: rgba(255,255,255,0.55);
+            border: 1px solid var(--border);
+            position: relative; overflow: hidden; flex-wrap: wrap;
+        }
+        .schedule-time-row::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background: var(--iri);
+        }
+        .schedule-time-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted);
+        }
+        .schedule-time-sep { width: 1px; height: 40px; background: var(--border); }
+        .schedule-time-value {
+            font-family: 'Bebas Neue', sans-serif; font-size: 54px; line-height: 1;
+            background: var(--iri);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+        }
+        .schedule-time-jp {
+            font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300;
+            color: var(--faint); letter-spacing: 0.08em;
+        }
+        .schedule-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .schedule-card {
+            background: rgba(255,255,255,0.55); padding: 52px 44px 44px;
+            border: 1px solid rgba(17,17,17,0.06);
+            position: relative; overflow: hidden; transition: background 0.3s;
+            display: flex; flex-direction: column;
+        }
+        .schedule-card:hover { background: rgba(255,255,255,0.9); }
+        .schedule-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--iri); transition: width 0.4s ease;
+        }
+        .schedule-card:hover::after { width: 100%; }
+        .schedule-card-bg-num {
+            position: absolute; right: 20px; top: 12px;
+            font-family: 'Bebas Neue', sans-serif; font-size: 120px; line-height: 1;
+            color: rgba(17,17,17,0.04); pointer-events: none; user-select: none;
+        }
+        .schedule-card-when {
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.28em; text-transform: uppercase;
+            background: var(--iri);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; color: transparent;
+            margin-bottom: 22px; display: inline-block;
+        }
+        .schedule-location-name {
+            font-family: 'Bebas Neue', sans-serif; font-size: 38px; line-height: 1.0;
+            color: var(--black); letter-spacing: 0.02em; margin-bottom: 6px;
+        }
+        .schedule-location-jp {
+            font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 300;
+            color: var(--faint); margin-bottom: 24px; letter-spacing: 0.06em;
+        }
+        .schedule-location-desc {
+            font-size: 13px; line-height: 1.8; color: var(--muted);
+            font-weight: 300; margin-bottom: 20px;
+        }
+        .schedule-map-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--muted); text-decoration: none;
+            transition: color 0.2s; margin-bottom: 20px;
+        }
+        .schedule-map-link::after { content: '↗'; }
+        .schedule-map-link:hover { color: var(--black); }
+        .schedule-map-wrap {
+            margin: 0 -44px -44px;
+            height: 280px;
+            position: relative;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .schedule-map-wrap img {
+            width: 100%; height: 100%; display: block;
+            object-fit: cover; object-position: center;
+            filter: grayscale(0.2) contrast(1.05);
+            transition: filter 0.5s, transform 0.6s;
+        }
+        .schedule-card:hover .schedule-map-wrap img {
+            filter: grayscale(0) contrast(1);
+            transform: scale(1.03);
+        }
+        .schedule-map-overlay {
+            position: absolute; inset: 0; cursor: pointer;
+        }
+
+        /* ─── LANG DROPDOWN ─── */
+        .nav-lang-select { position: relative; }
+        .nav-lang-btn {
+            display: flex; align-items: center; gap: 7px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--black); background: none;
+            border: 1px solid rgba(17,17,17,0.18);
+            padding: 6px 12px 6px 14px; cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            line-height: 1;
+        }
+        .nav-lang-btn:hover { border-color: rgba(17,17,17,0.5); background: rgba(17,17,17,0.04); }
+        .nav-lang-chevron {
+            width: 10px; height: 10px; flex-shrink: 0;
+            transition: transform 0.22s ease;
+            opacity: 0.45;
+        }
+        .nav-lang-select.open .nav-lang-chevron { transform: rotate(180deg); }
+        .nav-lang-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background: rgba(237,236,235,0.97); backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            list-style: none; padding: 6px 0; min-width: 150px;
+            z-index: 200; box-shadow: 0 8px 32px rgba(17,17,17,0.08);
+        }
+        .nav-lang-select.open .nav-lang-menu { display: block; }
+        .nav-lang-menu li a {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 16px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--black); text-decoration: none;
+            opacity: 0.35; transition: opacity 0.15s, background 0.15s;
+        }
+        .nav-lang-menu li a:hover { opacity: 1; background: rgba(17,17,17,0.04); }
+        .nav-lang-menu li a.active { opacity: 1; }
+        .nav-lang-menu li a .lang-full {
+            font-size: 9px; opacity: 0.5; letter-spacing: 0.06em;
+            text-transform: none; font-family: 'DM Sans', sans-serif;
+        }
+
+        @media (max-width: 900px) {
+            .schedule { padding: 80px 24px; }
+            .schedule-cards { grid-template-columns: 1fr; }
+            .schedule-time-sep { display: none; }
+            .schedule-card { padding: 40px 24px 36px; }
+            .schedule-map-wrap { margin: 0 -24px -36px; height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-left">
+            <img src="Next%20Gen.png" alt="Next Gen" class="nav-logo-img">
+            <a href="#" class="nav-brand">nextgen<span>.running</span></a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-lang-select" id="langSelect">
+                <button class="nav-lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="langLabel">EN</span>
+                    <svg class="nav-lang-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="2,3.5 5,6.5 8,3.5"/>
+                    </svg>
+                </button>
+                <ul class="nav-lang-menu" role="listbox" id="langMenu">
+                    <li><a href="#" data-lang="en" role="option" class="active">EN <span class="lang-full">English</span></a></li>
+                    <li><a href="#" data-lang="jp" role="option">JP <span class="lang-full">日本語</span></a></li>
+                    <li><a href="#" data-lang="ru" role="option">RU <span class="lang-full">Русский</span></a></li>
+                </ul>
+            </div>
+            <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4.5"/>
+                    <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="hero-inner">
+            <div class="hero-badge-wrap">
+                <img src="IMG_6054_circle.png" alt="nextgen.running athletes in action" class="hero-photo">
+            </div>
+            <div>
+                <p class="hero-eyebrow">Tokyo · 東京 · Токио</p>
+                <h1 class="hero-title">
+                    <span class="line"><span data-i18n="hero_line1">THE</span></span>
+                    <span class="line"><span class="outline" data-i18n="hero_line2">NEXT</span></span>
+                    <span class="line"><span class="iri" data-i18n="hero_line3">GENERATION</span></span>
+                </h1>
+                <p class="hero-sub">
+                    <span data-i18n="hero_sub"></span>
+                    <span class="jp" data-i18n="hero_sub_jp"></span>
+                </p>
+                <div class="hero-ctas">
+                    <a href="#cta" class="btn-dark" data-i18n="hero_cta1">Join the Program</a>
+                    <a href="#cta" class="btn-ghost" data-i18n="hero_cta2">登録する</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANNOUNCEMENT -->
+    <div class="announcement">
+        <span class="ann-dot"></span>
+        <span class="ann-highlight" data-i18n="ann_highlight">Now officially registered with JAAF</span>
+        <span class="ann-sep">·</span>
+        <span data-i18n="ann_club">JAAF START · Club ID: <strong style="color:rgba(245,244,242,0.7)">518</strong></span>
+        <span class="ann-sep">·</span>
+        <span data-i18n="ann_upcoming">Upcoming Competition:</span>
+        <span class="ann-date">May 5–6</span>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <span class="ticker-item">東京</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">SPEED</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">走る</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">TECHNIQUE</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">Москва</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">FORM</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">技術</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">POWER</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">チャンピオン</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">CHAMPION</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">東京</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">SPEED</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">走る</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">TECHNIQUE</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">Москва</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">FORM</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">技術</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">POWER</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">チャンピオン</span><span class="ticker-item iri">·</span>
+            <span class="ticker-item">CHAMPION</span><span class="ticker-item iri">·</span>
+        </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <section class="schedule" id="schedule">
+        <div class="schedule-header">
+            <p class="eyebrow eyebrow--dark" data-i18n="sched_eyebrow">スケジュール · Schedule · Расписание</p>
+            <h2 class="section-title reveal" data-i18n="sched_title">WHERE WE<br><span class="outline">TRAIN</span></h2>
+        </div>
+
+        <div class="schedule-time-row reveal">
+            <div class="schedule-time-label" data-i18n="sched_every">Every Sunday</div>
+            <div class="schedule-time-sep"></div>
+            <div class="schedule-time-value">9:30–11:00</div>
+            <div class="schedule-time-sep"></div>
+            <div class="schedule-time-jp">毎週日曜日</div>
+        </div>
+
+        <div class="schedule-cards">
+            <div class="schedule-card reveal">
+                <div class="schedule-card-bg-num">01</div>
+                <span class="schedule-card-when" data-i18n="sched_when1">1st Sunday of each month</span>
+                <h3 class="schedule-location-name" data-i18n="sched_loc1_name">ODA FIELD</h3>
+                <p class="schedule-location-jp">陸上競技場（織田フィールド）</p>
+                <p class="schedule-location-desc" data-i18n="sched_loc1_desc">Competition-grade athletics track — reserved for the first Sunday of every month. A performance environment that matches the intensity of our training.</p>
+                <a href="https://maps.app.goo.gl/87YgRtmiR8QYnmQ57?g_st=ic" target="_blank" rel="noopener" class="schedule-map-link" data-i18n="sched_map">Open in Maps</a>
+                <div class="schedule-map-wrap">
+                    <img src="photo/Ota.jpeg" alt="Komazawa Olympic Park Athletic Field" loading="lazy">
+                    <a href="https://maps.app.goo.gl/87YgRtmiR8QYnmQ57?g_st=ic" target="_blank" rel="noopener" class="schedule-map-overlay" aria-label="Open in Google Maps"></a>
+                </div>
+            </div>
+            <div class="schedule-card reveal" style="transition-delay:0.12s">
+                <div class="schedule-card-bg-num">02</div>
+                <span class="schedule-card-when" data-i18n="sched_when2">Every other Sunday</span>
+                <h3 class="schedule-location-name" data-i18n="sched_loc2_name">YOYOGI PARK</h3>
+                <p class="schedule-location-jp">代々木公園</p>
+                <p class="schedule-location-desc" data-i18n="sched_loc2_desc">Tokyo's iconic open-air park — our regular weekly training ground. All Sundays except the first. Fresh air, open space, consistent routine.</p>
+                <a href="https://maps.app.goo.gl/6jZvAV6J4VwRY5348?g_st=ic" target="_blank" rel="noopener" class="schedule-map-link" data-i18n="sched_map">Open in Maps</a>
+                <div class="schedule-map-wrap">
+                    <img src="photo/Yoyogi.jpeg" alt="Yoyogi Park Tokyo" loading="lazy">
+                    <a href="https://maps.app.goo.gl/6jZvAV6J4VwRY5348?g_st=ic" target="_blank" rel="noopener" class="schedule-map-overlay" aria-label="Open in Google Maps"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COACH -->
+    <section class="coach">
+        <div class="coach-photos">
+            <div class="coach-photo">
+                <img src="A8574C7A-7BAF-45E6-8A4C-7C5A979FCF59.JPG" alt="Arsentii Natalchuk — high jump competition">
+            </div>
+            <div class="coach-photo">
+                <img src="D75EAF0F-4989-4D5B-AA55-971DF19D28BF.JPG" alt="Arsentii Natalchuk — clearing the bar">
+            </div>
+            <div class="coach-photo">
+                <img src="A167511A-55F0-40B9-A89C-C644C41C5340.JPG" alt="Arsentii Natalchuk — in action">
+            </div>
+        </div>
+        <div class="coach-content">
+        <div>
+            <p class="eyebrow eyebrow--light" data-i18n="coach_eyebrow">コーチについて · About the Coach</p>
+            <div class="coach-stats">
+                <div class="stat reveal">
+                    <div class="stat-num" data-target="18">0</div>
+                    <div class="stat-label"><span data-i18n="stat1_label">Years in Sport</span> <span class="jp">競技歴</span></div>
+                </div>
+                <div class="stat reveal" style="transition-delay:0.12s">
+                    <div class="stat-num" data-target="7">0</div>
+                    <div class="stat-label"><span data-i18n="stat2_label">Years Coaching</span> <span class="jp">指導歴</span></div>
+                </div>
+                <div class="stat reveal" style="transition-delay:0.24s">
+                    <div class="stat-num" data-target="200">0</div>
+                    <div class="stat-label"><span data-i18n="stat3_label">Young Athletes Trained</span> <span class="jp">若いアスリート</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="coach-right reveal">
+            <h2 class="coach-name">ARSENTII NATALCHUK</h2>
+            <p class="coach-title-text" data-i18n="coach_title">Мастер спорта · Track &amp; Field Athlete &amp; Coach<br>陸上競技選手・コーチ</p>
+            <p class="coach-bio" data-i18n="coach_bio">With 18 years in track &amp; field and 7 years of dedicated coaching, Arsentii brings elite athletic experience to young athletes in Tokyo. He works with students from ASIG, TAC, and TIS, as well as private clients — applying a highly individualised approach to every athlete he trains.</p>
+            <p class="coach-quote" data-i18n="coach_quote">"Performance is not случайность — it is engineered."</p>
+            <div class="coach-credentials">
+                <div class="credential" data-i18n="cred1">18 Years in Track &amp; Field</div>
+                <div class="credential" data-i18n="cred2">7 Years Coaching Young Athletes</div>
+                <div class="credential" data-i18n="cred3">Partnered with ASIG, TAC &amp; TIS</div>
+                <div class="credential" data-i18n="cred4">Fluent in Russian, Japanese &amp; English</div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section class="program">
+        <div class="program-header">
+            <div>
+                <p class="eyebrow eyebrow--dark" data-i18n="program_eyebrow">プログラム · The Program</p>
+                <h2 class="section-title reveal" data-i18n="program_title">BUILT TO<br><span class="outline">PERFORM</span></h2>
+            </div>
+            <p class="program-sub reveal" data-i18n="program_sub">科学的なトレーニングで子供たちの可能性を引き出す</p>
+        </div>
+        <div class="program-grid">
+            <div class="program-card reveal">
+                <div class="card-num">01</div>
+                <div class="card-bar"></div>
+                <h3 class="card-title" data-i18n="card1_title">RUNNING &amp; SPRINTS</h3>
+                <p class="card-jp" data-i18n="card1_jp">ランニング・スプリント</p>
+                <p class="card-desc" data-i18n="card1_desc">Stride mechanics, acceleration, and sprint form built from the ground up — with results from the very first session.</p>
+            </div>
+            <div class="program-card reveal" style="transition-delay:0.08s">
+                <div class="card-num">02</div>
+                <div class="card-bar"></div>
+                <h3 class="card-title" data-i18n="card2_title">JUMP TECHNIQUE</h3>
+                <p class="card-jp" data-i18n="card2_jp">跳躍技術・走高跳</p>
+                <p class="card-desc" data-i18n="card2_desc">High jump and long jump coaching with technical precision — personal records achieved through structured, progressive training.</p>
+            </div>
+            <div class="program-card reveal" style="transition-delay:0.16s">
+                <div class="card-num">03</div>
+                <div class="card-bar"></div>
+                <h3 class="card-title" data-i18n="card3_title">BADMINTON &amp; RUGBY</h3>
+                <p class="card-jp" data-i18n="card3_jp">バドミントン・ラグビー</p>
+                <p class="card-desc" data-i18n="card3_desc">Team sport development combining agility, coordination, and competitive mindset — building athletes who excel in multiple disciplines.</p>
+            </div>
+            <div class="program-card reveal" style="transition-delay:0.24s">
+                <div class="card-num">04</div>
+                <div class="card-bar"></div>
+                <h3 class="card-title" data-i18n="card4_title">PRIVATE COACHING</h3>
+                <p class="card-jp" data-i18n="card4_jp">プライベートコーチング</p>
+                <p class="card-desc" data-i18n="card4_desc">One-on-one sessions for kids and adults. Full individual attention, personalised strategy, and accelerated results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="results">
+        <div class="results-header">
+            <p class="eyebrow eyebrow--dark" data-i18n="results_eyebrow">Proven Results · 実績</p>
+            <h2 class="section-title reveal" data-i18n="results_title">EXCELLENCE<br><span class="outline">LEAVES A TRACK RECORD</span></h2>
+        </div>
+        <div class="results-grid">
+            <div class="result-card reveal">
+                <div class="result-stat">−20s</div>
+                <p class="result-desc" data-i18n="res1_desc">400m sprint improved in 3 months<span class="result-detail">1:25 → 1:05</span></p>
+            </div>
+            <div class="result-card reveal" style="transition-delay:0.1s">
+                <div class="result-stat">17yr</div>
+                <p class="result-desc" data-i18n="res2_desc">School record broken at ASIG<span class="result-detail">Standing for 17 years</span></p>
+            </div>
+            <div class="result-card reveal" style="transition-delay:0.2s">
+                <div class="result-stat">1st</div>
+                <p class="result-desc" data-i18n="res3_desc">High jump personal record<span class="result-detail">Achieved in the first session</span></p>
+            </div>
+            <div class="result-card reveal" style="transition-delay:0.3s">
+                <div class="result-stat">#1</div>
+                <p class="result-desc" data-i18n="res4_desc">Fastest 6th grader in school history<span class="result-detail">nextgen.running athlete</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <p class="eyebrow eyebrow--dark" data-i18n="gallery_eyebrow">トレーニング · Gallery · Галерея</p>
+            <h2 class="section-title reveal" data-i18n="gallery_title">IN ACTION<br><span class="outline">GALLERY</span></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal" data-index="0"><img src="photo/IMG_9177.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="1" style="transition-delay:0.04s"><img src="photo/IMG_9182.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="2" style="transition-delay:0.08s"><img src="photo/IMG_9186.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="3" style="transition-delay:0.12s"><img src="photo/IMG_9189.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="4" style="transition-delay:0.04s"><img src="photo/IMG_9193.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="5" style="transition-delay:0.08s"><img src="photo/IMG_9201.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="6" style="transition-delay:0.12s"><img src="photo/IMG_9207.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="7" style="transition-delay:0.16s"><img src="photo/IMG_9209.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="8" style="transition-delay:0.08s"><img src="photo/IMG_9213.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="9" style="transition-delay:0.12s"><img src="photo/IMG_9226.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="10" style="transition-delay:0.16s"><img src="photo/IMG_9240.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="11" style="transition-delay:0.2s"><img src="photo/IMG_9244.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="12" style="transition-delay:0.12s"><img src="photo/IMG_9248.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="13" style="transition-delay:0.16s"><img src="photo/IMG_9252.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="14" style="transition-delay:0.2s"><img src="photo/IMG_9254.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="15" style="transition-delay:0.24s"><img src="photo/IMG_9842.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="16" style="transition-delay:0.16s"><img src="photo/IMG_9843.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="17" style="transition-delay:0.2s"><img src="photo/IMG_9848.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="18" style="transition-delay:0.24s"><img src="photo/IMG_9851.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="19" style="transition-delay:0.28s"><img src="photo/IMG_9853.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="20" style="transition-delay:0.2s"><img src="photo/IMG_9862.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="21" style="transition-delay:0.24s"><img src="photo/IMG_9865.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+            <div class="gallery-item reveal" data-index="22" style="transition-delay:0.28s"><img src="photo/IMG_9872.JPG" loading="lazy" alt="Training"><span class="gallery-zoom">↗ View</span></div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="lightbox-close" id="lbClose">ESC · Close</button>
+        <button class="lightbox-prev" id="lbPrev">← Prev</button>
+        <img class="lightbox-img" id="lbImg" src="" alt="Training photo">
+        <button class="lightbox-next" id="lbNext">Next →</button>
+        <div class="lightbox-counter" id="lbCounter">01 / 23</div>
+    </div>
+
+    <!-- SCHOOLS -->
+    <div class="schools">
+        <div class="schools-inner">
+            <p class="schools-label" data-i18n="schools_label">We work with</p>
+            <div class="schools-divider"></div>
+            <div class="schools-list">
+                <span class="school-name">ASIG</span>
+                <span class="school-name">TAC</span>
+                <span class="school-name">TIS</span>
+                <span class="school-name" data-i18n="schools_private">Private Students</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAAF -->
+    <section class="jaaf">
+        <div class="jaaf-inner">
+            <div class="jaaf-left reveal">
+                <div class="jaaf-logo-box">
+                    <img src="jaaf6171.webp" alt="Japan Association of Athletics Federations" class="jaaf-logo">
+                </div>
+                <div class="jaaf-official">
+                    <span class="jaaf-official-dot"></span>
+                    <span class="jaaf-official-text" data-i18n="jaaf_official">Officially Registered</span>
+                </div>
+                <p class="jaaf-club-id">JAAF START · Club ID: <span>518</span></p>
+            </div>
+            <div class="reveal">
+                <p class="eyebrow eyebrow--light" data-i18n="jaaf_eyebrow">Official Status · 公式登録</p>
+                <h2 class="section-title" style="color:var(--white); margin-bottom:32px;" data-i18n="jaaf_title">COMPETITION<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.3)">READY</span></h2>
+                <p class="jaaf-desc" data-i18n="jaaf_desc">Next Gen Athletics Club is now officially registered in the JAAF START system. Our athletes can compete in official track &amp; field competitions and have their results formally recognized — entering the arena of real performance.</p>
+
+                <div class="competition-box">
+                    <div class="comp-label" data-i18n="comp_label">Upcoming<br>Competition</div>
+                    <div class="comp-date">MAY 5–6</div>
+                    <div class="comp-note" data-i18n="comp_note">School Competitions<br>東京 · Official Track &amp; Field</div>
+                </div>
+
+                <p class="eyebrow eyebrow--light" style="margin-bottom:20px;" data-i18n="jaaf_how">How to Register · 登録方法</p>
+                <div class="jaaf-steps">
+                    <div class="jaaf-step">
+                        <span class="step-num">01</span>
+                        <span class="step-text" data-i18n="step1">Create an account in JAAF START</span>
+                    </div>
+                    <div class="jaaf-step">
+                        <span class="step-num">02</span>
+                        <span class="step-text" data-i18n="step2">Find Next Gen Athletics Club — Club ID: 518</span>
+                    </div>
+                    <div class="jaaf-step">
+                        <span class="step-num">03</span>
+                        <span class="step-text" data-i18n="step3">Submit a membership request and await approval</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="blog" id="blog">
+        <div class="blog-header">
+            <div>
+                <p class="eyebrow eyebrow--dark" data-i18n="blog_eyebrow">ブログ · Blog · Блог</p>
+                <h2 class="section-title reveal" data-i18n="blog_title">FROM THE<br><span class="outline">TRACK</span></h2>
+            </div>
+            <p class="program-sub reveal" data-i18n="blog_sub">Training insights, competition updates, and athlete stories.</p>
+        </div>
+        <div class="blog-grid">
+
+            <!-- FEATURED: Gear Guide -->
+            <div class="blog-card blog-card--featured reveal">
+                <span class="blog-featured-label" data-i18n="blog_latest">Latest Post</span>
+                <div class="blog-meta">
+                    <span class="blog-tag" data-i18n="blog2_tag">Gear Guide</span>
+                    <span class="blog-date">May 2025</span>
+                    <span class="blog-read-time">· 6 min</span>
+                </div>
+                <h3 class="blog-title" data-i18n="blog2_title">HOW TO CHOOSE YOUR FIRST RUNNING SHOES</h3>
+                <p class="blog-excerpt" data-i18n="blog2_excerpt">You don't need the most expensive shoes to start running well. We break down what actually matters — comfort, fit, foot type, cushioning — and recommend beginner-friendly models from Asics, Nike, Adidas, New Balance, and Hoka.</p>
+                <a href="blog/running-shoes.html" class="blog-read" data-i18n="blog_read">Read more</a>
+            </div>
+
+            <!-- Training -->
+            <div class="blog-card reveal" style="transition-delay:0.1s">
+                <div class="blog-meta">
+                    <span class="blog-tag" data-i18n="blog1_tag">Training</span>
+                    <span class="blog-date">April 2025</span>
+                    <span class="blog-read-time">· 5 min</span>
+                </div>
+                <h3 class="blog-title" data-i18n="blog1_title">WHY SPRINT MECHANICS MATTER AT EVERY AGE</h3>
+                <p class="blog-excerpt" data-i18n="blog1_excerpt">Most coaches focus on speed — we focus on the architecture behind it. Proper stride mechanics, arm drive, and foot strike patterns are the foundation of every fast athlete, regardless of age or discipline.</p>
+                <a href="blog/sprint-mechanics.html" class="blog-read" data-i18n="blog_read">Read more</a>
+            </div>
+
+            <!-- Coaching -->
+            <div class="blog-card reveal" style="transition-delay:0.2s">
+                <div class="blog-meta">
+                    <span class="blog-tag" data-i18n="blog3_tag">Coaching</span>
+                    <span class="blog-date">February 2025</span>
+                    <span class="blog-read-time">· 5 min</span>
+                </div>
+                <h3 class="blog-title" data-i18n="blog3_title">THE FIRST SESSION PERSONAL RECORD</h3>
+                <p class="blog-excerpt" data-i18n="blog3_excerpt">One of our athletes achieved a high jump personal record in their very first coached session. Not luck — methodology. Here is how we approach technique introduction with beginners to unlock immediate results.</p>
+                <a href="blog/first-session-record.html" class="blog-read" data-i18n="blog_read">Read more</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SHOES -->
+    <section class="shoes" id="shoes">
+        <div class="shoes-header">
+            <div>
+                <p class="eyebrow eyebrow--light" data-i18n="shoes_eyebrow">Gear Reviews · シューズレビュー · Обзоры кроссовок</p>
+                <h2 class="section-title reveal" style="color:var(--white);" data-i18n="shoes_title">COACH<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.28)">APPROVED</span></h2>
+            </div>
+            <p class="shoes-sub reveal" data-i18n="shoes_sub">Tested on the track. Recommended by Arsentii for young athletes training in Tokyo.</p>
+        </div>
+        <div class="shoes-grid">
+
+            <div class="shoe-card reveal">
+                <div class="shoe-top">
+                    <div class="shoe-brand-score">
+                        <span class="shoe-brand">ASICS</span>
+                        <div class="shoe-score">9.4</div>
+                    </div>
+                    <div class="shoe-badges">
+                        <span class="shoe-badge shoe-badge--speed" data-i18n="shoe_cat_speed">Speed Work</span>
+                        <span class="shoe-badge shoe-badge--kids" data-i18n="shoe_for_kids">Kids &amp; Adults</span>
+                    </div>
+                </div>
+                <h3 class="shoe-name">GEL-DS TRAINER 28</h3>
+                <p class="shoe-excerpt" data-i18n="shoe1_excerpt">Responsive, stable, and built for repetition. The Gel-DS handles sprint drills, track intervals, and competition warm-ups without complaint. Exceptional energy return for the price — our most-recommended all-rounder for young athletes just stepping up their training volume.</p>
+                <div class="shoe-bestfor">
+                    <span class="shoe-bestfor-label" data-i18n="shoe_bestfor">Best for:</span>
+                    <span class="shoe-bestfor-tags" data-i18n="shoe1_tags">Track intervals · Sprint drills · Competition day</span>
+                </div>
+            </div>
+
+            <div class="shoe-card reveal" style="transition-delay:0.1s">
+                <div class="shoe-top">
+                    <div class="shoe-brand-score">
+                        <span class="shoe-brand">NIKE</span>
+                        <div class="shoe-score">8.8</div>
+                    </div>
+                    <div class="shoe-badges">
+                        <span class="shoe-badge shoe-badge--daily" data-i18n="shoe_cat_daily">Daily Training</span>
+                        <span class="shoe-badge shoe-badge--kids" data-i18n="shoe_for_all">All Ages</span>
+                    </div>
+                </div>
+                <h3 class="shoe-name">AIR ZOOM PEGASUS 41</h3>
+                <p class="shoe-excerpt" data-i18n="shoe2_excerpt">The Pegasus is a workhorse — durable, cushioned, and versatile enough for track days, field sessions, and multi-sport training alike. Kids grow into it fast. Slightly heavier than a pure speed shoe, but the support makes it ideal for athletes still developing their gait patterns.</p>
+                <div class="shoe-bestfor">
+                    <span class="shoe-bestfor-label" data-i18n="shoe_bestfor">Best for:</span>
+                    <span class="shoe-bestfor-tags" data-i18n="shoe2_tags">Multi-sport · Long training blocks · Developing runners</span>
+                </div>
+            </div>
+
+            <div class="shoe-card reveal" style="transition-delay:0.2s">
+                <div class="shoe-top">
+                    <div class="shoe-brand-score">
+                        <span class="shoe-brand">ADIDAS</span>
+                        <div class="shoe-score">9.1</div>
+                    </div>
+                    <div class="shoe-badges">
+                        <span class="shoe-badge shoe-badge--comp" data-i18n="shoe_cat_comp">Competition</span>
+                        <span class="shoe-badge shoe-badge--kids" data-i18n="shoe_for_advanced">Advanced</span>
+                    </div>
+                </div>
+                <h3 class="shoe-name">ADIZERO SL 2</h3>
+                <p class="shoe-excerpt" data-i18n="shoe3_excerpt">Lightweight and fast — the Adizero SL is what you lace up when the race matters. Minimal stack height means athletes feel the track directly, which accelerates proprioceptive development. Not for every training session, but unbeatable for time trials and official meets.</p>
+                <div class="shoe-bestfor">
+                    <span class="shoe-bestfor-label" data-i18n="shoe_bestfor">Best for:</span>
+                    <span class="shoe-bestfor-tags" data-i18n="shoe3_tags">Race day · Time trials · High jump approach runs</span>
+                </div>
+            </div>
+
+            <div class="shoe-card reveal" style="transition-delay:0.3s">
+                <div class="shoe-top">
+                    <div class="shoe-brand-score">
+                        <span class="shoe-brand">NEW BALANCE</span>
+                        <div class="shoe-score">8.6</div>
+                    </div>
+                    <div class="shoe-badges">
+                        <span class="shoe-badge shoe-badge--daily" data-i18n="shoe_cat_rec">Recovery</span>
+                        <span class="shoe-badge shoe-badge--kids" data-i18n="shoe_for_young">Young Athletes</span>
+                    </div>
+                </div>
+                <h3 class="shoe-name">FUELCELL REBEL V4</h3>
+                <p class="shoe-excerpt" data-i18n="shoe4_excerpt">Maximum cushion, zero compromise on bounce. The FuelCell Rebel absorbs the load on recovery days so athletes come back fresher. Wide toe box makes it particularly well-suited for kids whose feet are still widening. A strong second shoe for any serious young athlete's rotation.</p>
+                <div class="shoe-bestfor">
+                    <span class="shoe-bestfor-label" data-i18n="shoe_bestfor">Best for:</span>
+                    <span class="shoe-bestfor-tags" data-i18n="shoe4_tags">Recovery runs · Easy sessions · Wide-foot athletes</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="cta-blobs">
+            <div class="cta-blob cta-blob-1"></div>
+            <div class="cta-blob cta-blob-2"></div>
+        </div>
+        <div class="cta-content">
+            <p class="cta-eyebrow" data-i18n="cta_eyebrow">Записаться · Apply Now · 今すぐ参加</p>
+            <h2 class="cta-title reveal" data-i18n="cta_title">JOIN THE<br><span class="iri">NEXT GEN</span></h2>
+            <p class="cta-sub" data-i18n="cta_sub">This is not массовый спорт. This is intentional development — for those who value quality, results, and long-term growth.</p>
+            <div class="cta-buttons">
+                <a href="mailto:s3n9nut@gmail.com" class="btn-iri" data-i18n="cta_btn1">Contact Us</a>
+                <a href="mailto:s3n9nut@gmail.com" class="btn-ghost-light" data-i18n="cta_btn2">登録する</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="insta" id="instagram">
+        <div class="insta-header">
+            <div>
+                <p class="eyebrow eyebrow--dark" data-i18n="insta_eyebrow">インスタグラム · Instagram · Инстаграм</p>
+                <h2 class="section-title reveal" data-i18n="insta_title">ON THE<br><span class="outline">GRAM</span></h2>
+            </div>
+            <div class="reveal">
+                <a href="https://www.instagram.com/nextgen.running" target="_blank" rel="noopener" class="insta-handle-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/></svg>
+                    <span data-i18n="insta_handle">@nextgen.running</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="insta-feed-wrap">
+            <behold-widget feed-id="5THStaTIlzNoZQCD03m1"></behold-widget>
+        </div>
+
+        <div class="insta-footer-bar" style="justify-content:flex-end; margin-top:40px;">
+            <a href="https://www.instagram.com/nextgen.running" target="_blank" rel="noopener" class="insta-follow-btn" data-i18n="insta_btn">Follow on Instagram</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-left">
+                <div class="badge badge--foot">
+                    <div class="badge-dots"></div>
+                    <div class="badge-glow"></div>
+                    <div class="badge-text">NG</div>
+                </div>
+                <div class="footer-brand">nextgen<span>.running</span></div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-langs">
+                    <a href="#" class="footer-lang" data-lang="en">ENGLISH</a>
+                    <a href="#" class="footer-lang" data-lang="jp">日本語</a>
+                    <a href="#" class="footer-lang" data-lang="ru">РУССКИЙ</a>
+                </div>
+                <a href="https://www.instagram.com/nextgen.running?igsh=OHNoODNnbjV0Znk4" target="_blank" rel="noopener" class="footer-instagram" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4.5"/>
+                        <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 nextgen.running — All rights reserved</p>
+            <p class="footer-location">東京 · Tokyo, Japan</p>
+        </div>
+    </footer>
+
+    <script>
+      (() => {
+        const d=document,s=d.createElement("script");s.type="module";
+        s.src="https://w.behold.so/widget.js";d.head.append(s);
+      })();
+    </script>
+
+    <script>
+    // ─── TRANSLATIONS ───
+    const T = {
+        en: {
+            nav_blog: 'Blog',
+            hero_line1: 'THE',
+            hero_line2: 'NEXT',
+            hero_line3: 'GENERATION',
+            hero_sub: 'Elite athletic development in Tokyo. Where potential is refined into performance.',
+            hero_sub_jp: '可能性をパフォーマンスへと磨き上げる',
+            hero_cta1: 'Join the Program',
+            hero_cta2: 'Register',
+            ann_highlight: 'Now officially registered with JAAF',
+            ann_club: 'JAAF START · Club ID: <strong style="color:rgba(245,244,242,0.7)">518</strong>',
+            ann_upcoming: 'Upcoming Competition:',
+            coach_eyebrow: 'About the Coach',
+            stat1_label: 'Years in Sport',
+            stat2_label: 'Years Coaching',
+            stat3_label: 'Young Athletes Trained',
+            coach_title: 'Master of Sport · Track & Field Athlete & Coach',
+            coach_bio: 'With 18 years in track & field and 7 years of dedicated coaching, Arsentii brings elite athletic experience to young athletes in Tokyo. He works with students from ASIG, TAC, and TIS, as well as private clients — applying a highly individualised approach to every athlete he trains.',
+            coach_quote: '"Performance is not an accident — it is engineered."',
+            cred1: '18 Years in Track & Field',
+            cred2: '7 Years Coaching Young Athletes',
+            cred3: 'Partnered with ASIG, TAC & TIS',
+            cred4: 'Fluent in Russian, Japanese & English',
+            program_eyebrow: 'The Program',
+            program_title: 'BUILT TO<br><span class="outline">PERFORM</span>',
+            program_sub: 'Science-based training that unlocks every child\'s potential.',
+            card1_title: 'RUNNING & SPRINTS',
+            card1_jp: 'Sprint & Running Training',
+            card1_desc: 'Stride mechanics, acceleration, and sprint form built from the ground up — with results from the very first session.',
+            card2_title: 'JUMP TECHNIQUE',
+            card2_jp: 'High Jump & Long Jump',
+            card2_desc: 'High jump and long jump coaching with technical precision — personal records achieved through structured, progressive training.',
+            card3_title: 'BADMINTON & RUGBY',
+            card3_jp: 'Multi-Sport Development',
+            card3_desc: 'Team sport development combining agility, coordination, and competitive mindset — building athletes who excel in multiple disciplines.',
+            card4_title: 'PRIVATE COACHING',
+            card4_jp: 'One-on-One Sessions',
+            card4_desc: 'One-on-one sessions for kids and adults. Full individual attention, personalised strategy, and accelerated results.',
+            results_eyebrow: 'Proven Results',
+            results_title: 'EXCELLENCE<br><span class="outline">LEAVES A TRACK RECORD</span>',
+            res1_desc: '400m sprint improved in 3 months<span class="result-detail">1:25 → 1:05</span>',
+            res2_desc: 'School record broken at ASIG<span class="result-detail">Standing for 17 years</span>',
+            res3_desc: 'High jump personal record<span class="result-detail">Achieved in the first session</span>',
+            res4_desc: 'Fastest 6th grader in school history<span class="result-detail">nextgen.running athlete</span>',
+            schools_label: 'We work with',
+            schools_private: 'Private Students',
+            jaaf_official: 'Officially Registered',
+            jaaf_eyebrow: 'Official Status',
+            jaaf_title: 'COMPETITION<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.3)">READY</span>',
+            jaaf_desc: 'Next Gen Athletics Club is now officially registered in the JAAF START system. Our athletes can compete in official track & field competitions and have their results formally recognized — entering the arena of real performance.',
+            comp_label: 'Upcoming<br>Competition',
+            comp_note: 'School Competitions<br>Tokyo · Official Track & Field',
+            jaaf_how: 'How to Register',
+            step1: 'Create an account in JAAF START',
+            step2: 'Find Next Gen Athletics Club — Club ID: 518',
+            step3: 'Submit a membership request and await approval',
+            blog_eyebrow: 'From the Track',
+            blog_title: 'FROM THE<br><span class="outline">TRACK</span>',
+            blog_sub: 'Training insights, gear guides, and athlete stories.',
+            blog_latest: 'Latest Post',
+            blog1_tag: 'Training',
+            blog1_title: 'WHY SPRINT MECHANICS MATTER AT EVERY AGE',
+            blog1_excerpt: 'Most coaches focus on speed — we focus on the architecture behind it. Proper stride mechanics, arm drive, and foot strike patterns are the foundation of every fast athlete, regardless of age or discipline.',
+            blog2_tag: 'Gear Guide',
+            blog2_title: 'HOW TO CHOOSE YOUR FIRST RUNNING SHOES',
+            blog2_excerpt: 'You don\'t need the most expensive shoes to start running well. We break down what actually matters — comfort, fit, foot type, cushioning — and recommend beginner-friendly models from Asics, Nike, Adidas, New Balance, and Hoka.',
+            blog3_tag: 'Coaching',
+            blog3_title: 'THE FIRST SESSION PERSONAL RECORD',
+            blog3_excerpt: 'One of our athletes achieved a high jump personal record in their very first coached session. Not luck — methodology. Here is how we approach technique introduction with beginners to unlock immediate results.',
+            blog_read: 'Read more',
+            nav_shoes: 'Shoes',
+            shoes_eyebrow: 'Gear Reviews',
+            shoes_title: 'COACH<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.28)">APPROVED</span>',
+            shoes_sub: 'Tested on the track. Recommended by Arsentii for young athletes training in Tokyo.',
+            shoe_cat_speed: 'Speed Work',
+            shoe_for_kids: 'Kids & Adults',
+            shoe_cat_daily: 'Daily Training',
+            shoe_for_all: 'All Ages',
+            shoe_cat_comp: 'Competition',
+            shoe_for_advanced: 'Advanced',
+            shoe_cat_rec: 'Recovery',
+            shoe_for_young: 'Young Athletes',
+            shoe_bestfor: 'Best for:',
+            shoe1_excerpt: 'Responsive, stable, and built for repetition. The Gel-DS handles sprint drills, track intervals, and competition warm-ups without complaint. Exceptional energy return for the price — our most-recommended all-rounder for young athletes just stepping up their training volume.',
+            shoe1_tags: 'Track intervals · Sprint drills · Competition day',
+            shoe2_excerpt: 'The Pegasus is a workhorse — durable, cushioned, and versatile enough for track days, field sessions, and multi-sport training alike. Kids grow into it fast. Slightly heavier than a pure speed shoe, but the support makes it ideal for athletes still developing their gait patterns.',
+            shoe2_tags: 'Multi-sport · Long training blocks · Developing runners',
+            shoe3_excerpt: 'Lightweight and fast — the Adizero SL is what you lace up when the race matters. Minimal stack height means athletes feel the track directly, which accelerates proprioceptive development. Not for every training session, but unbeatable for time trials and official meets.',
+            shoe3_tags: 'Race day · Time trials · High jump approach runs',
+            shoe4_excerpt: 'Maximum cushion, zero compromise on bounce. The FuelCell Rebel absorbs the load on recovery days so athletes come back fresher. Wide toe box makes it particularly well-suited for kids whose feet are still widening. A strong second shoe for any serious young athlete\'s rotation.',
+            shoe4_tags: 'Recovery runs · Easy sessions · Wide-foot athletes',
+            cta_eyebrow: 'Apply Now',
+            cta_title: 'JOIN THE<br><span class="iri">NEXT GEN</span>',
+            cta_sub: 'This is not mass sport. This is intentional development — for those who value quality, results, and long-term growth.',
+            cta_btn1: 'Contact Us',
+            cta_btn2: 'Register',
+            insta_eyebrow: 'インスタグラム · Instagram · Инстаграм',
+            insta_title: 'ON THE<br><span class="outline">GRAM</span>',
+            insta_handle: '@nextgen.running',
+            insta_btn: 'Follow on Instagram',
+            gallery_eyebrow: 'Training Gallery',
+            gallery_title: 'IN ACTION<br><span class="outline">GALLERY</span>',
+            nav_schedule: 'Schedule',
+            sched_eyebrow: 'スケジュール · Schedule · Расписание',
+            sched_title: 'WHERE WE<br><span class="outline">TRAIN</span>',
+            sched_every: 'Every Sunday',
+            sched_when1: '1st Sunday of each month',
+            sched_when2: 'Every other Sunday',
+            sched_loc1_name: 'ODA FIELD',
+            sched_loc1_desc: 'Competition-grade athletics track — reserved for the first Sunday of every month. A performance environment that matches the intensity of our training.',
+            sched_loc2_name: 'YOYOGI PARK',
+            sched_loc2_desc: 'Tokyo\'s iconic open-air park — our regular weekly training ground. All Sundays except the first. Fresh air, open space, consistent routine.',
+            sched_map: 'Open in Maps',
+        },
+        ru: {
+            nav_blog: 'Блог',
+            hero_line1: 'СЛЕДУЮЩЕЕ',
+            hero_line2: 'ПОКО',
+            hero_line3: 'ЛЕНИЕ',
+            hero_sub: 'Профессиональная спортивная подготовка в Токио. Где потенциал превращается в результат.',
+            hero_sub_jp: '可能性をパフォーマンスへと磨き上げる',
+            hero_cta1: 'Записаться',
+            hero_cta2: '登録する',
+            ann_highlight: 'Официально зарегистрированы в JAAF',
+            ann_club: 'JAAF START · ID клуба: <strong style="color:rgba(245,244,242,0.7)">518</strong>',
+            ann_upcoming: 'Ближайшие соревнования:',
+            coach_eyebrow: 'О тренере',
+            stat1_label: 'Лет в лёгкой атлетике',
+            stat2_label: 'Лет тренерской работы',
+            stat3_label: 'Подготовленных юных спортсменов',
+            coach_title: 'Мастер спорта · Спортсмен и тренер по лёгкой атлетике',
+            coach_bio: 'Имея 18 лет опыта в лёгкой атлетике и 7 лет тренерской практики, Арсентий передаёт молодым спортсменам Токио свой элитный опыт. Он работает с учениками школ ASIG, TAC и TIS, а также с частными клиентами — применяя строго индивидуальный подход к каждому.',
+            coach_quote: '"Результат — это не случайность, это инженерная задача."',
+            cred1: '18 лет в лёгкой атлетике',
+            cred2: '7 лет тренировки юных спортсменов',
+            cred3: 'Партнёр ASIG, TAC и TIS',
+            cred4: 'Свободно владеет русским, японским и английским',
+            program_eyebrow: 'Программа',
+            program_title: 'СОЗДАН<br><span class="outline">ПОБЕЖДАТЬ</span>',
+            program_sub: 'Научный подход к тренировкам, раскрывающий потенциал каждого ребёнка.',
+            card1_title: 'БЕГ И СПРИНТ',
+            card1_jp: 'Техника бега и спринт',
+            card1_desc: 'Механика шага, ускорение и техника спринта с нуля — с результатами уже с первой тренировки.',
+            card2_title: 'ТЕХНИКА ПРЫЖКОВ',
+            card2_jp: 'Прыжки в высоту и в длину',
+            card2_desc: 'Тренировка прыжков в высоту и в длину с техническим совершенством — личные рекорды через структурированные и прогрессивные занятия.',
+            card3_title: 'БАДМИНТОН И РЕГБИ',
+            card3_jp: 'Командные виды спорта',
+            card3_desc: 'Развитие в командных видах спорта — ловкость, координация, соревновательный дух. Воспитываем атлетов, которые блистают в разных дисциплинах.',
+            card4_title: 'ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ',
+            card4_jp: 'Персональный тренинг',
+            card4_desc: 'Индивидуальные занятия для детей и взрослых. Полное внимание, персональная стратегия и ускоренные результаты.',
+            results_eyebrow: 'Доказанные результаты',
+            results_title: 'МАСТЕРСТВО<br><span class="outline">ОСТАВЛЯЕТ СЛЕД</span>',
+            res1_desc: 'Улучшение бега на 400 м за 3 месяца<span class="result-detail">1:25 → 1:05</span>',
+            res2_desc: 'Побит школьный рекорд в ASIG<span class="result-detail">Простоял 17 лет</span>',
+            res3_desc: 'Личный рекорд по прыжкам в высоту<span class="result-detail">Достигнут на первой тренировке</span>',
+            res4_desc: 'Самый быстрый шестиклассник в истории школы<span class="result-detail">Спортсмен nextgen.running</span>',
+            schools_label: 'Мы работаем с',
+            schools_private: 'Частные клиенты',
+            jaaf_official: 'Официально зарегистрированы',
+            jaaf_eyebrow: 'Официальный статус',
+            jaaf_title: 'ГОТОВЫ К<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.3)">СОРЕВНОВАНИЯМ</span>',
+            jaaf_desc: 'Клуб Next Gen Athletics официально зарегистрирован в системе JAAF START. Наши спортсмены могут участвовать в официальных соревнованиях по лёгкой атлетике с формальным признанием результатов.',
+            comp_label: 'Ближайшие<br>соревнования',
+            comp_note: 'Школьные соревнования<br>Токио · Официальная лёгкая атлетика',
+            jaaf_how: 'Как зарегистрироваться',
+            step1: 'Создайте аккаунт в JAAF START',
+            step2: 'Найдите клуб Next Gen Athletics — ID клуба: 518',
+            step3: 'Отправьте заявку на вступление и ожидайте подтверждения',
+            blog_eyebrow: 'Блог',
+            blog_title: 'С<br><span class="outline">ДОРОЖКИ</span>',
+            blog_sub: 'Тренировочные инсайты, обзоры экипировки и истории спортсменов.',
+            blog_latest: 'Последняя статья',
+            blog1_tag: 'Тренировки',
+            blog1_title: 'ПОЧЕМУ ТЕХНИКА СПРИНТА ВАЖНА В ЛЮБОМ ВОЗРАСТЕ',
+            blog1_excerpt: 'Большинство тренеров сосредоточены на скорости — мы работаем с архитектурой, которая за ней стоит. Механика шага, работа рук и постановка стопы — фундамент любого быстрого спортсмена, вне зависимости от возраста.',
+            blog2_tag: 'Экипировка',
+            blog2_title: 'КАК ВЫБРАТЬ ПЕРВЫЕ КРОССОВКИ ДЛЯ БЕГА',
+            blog2_excerpt: 'Для хорошего старта не нужны самые дорогие кроссовки. Разбираем, что действительно важно — комфорт, посадка, тип стопы, амортизация — и подбираем модели от Asics, Nike, Adidas, New Balance и Hoka.',
+            blog3_tag: 'Методология',
+            blog3_title: 'ЛИЧНЫЙ РЕКОРД НА ПЕРВОЙ ТРЕНИРОВКЕ',
+            blog3_excerpt: 'Один из наших спортсменов установил личный рекорд по прыжкам в высоту на первом же занятии с тренером. Не удача — методология. Рассказываем, как мы подходим к освоению техники с новичками.',
+            blog_read: 'Читать далее',
+            nav_shoes: 'Кроссовки',
+            shoes_eyebrow: 'Обзоры экипировки',
+            shoes_title: 'ОДОБРЕНО<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.28)">ТРЕНЕРОМ</span>',
+            shoes_sub: 'Протестировано на дорожке. Рекомендовано Арсентием для юных спортсменов, тренирующихся в Токио.',
+            shoe_cat_speed: 'Скоростные',
+            shoe_for_kids: 'Дети и взрослые',
+            shoe_cat_daily: 'Ежедневные тренировки',
+            shoe_for_all: 'Все возрасты',
+            shoe_cat_comp: 'Соревнования',
+            shoe_for_advanced: 'Продвинутый уровень',
+            shoe_cat_rec: 'Восстановление',
+            shoe_for_young: 'Юные спортсмены',
+            shoe_bestfor: 'Лучше всего для:',
+            shoe1_excerpt: 'Отзывчивые, устойчивые и созданные для повторений. Gel-DS справляется со спринтерскими упражнениями, интервальными тренировками и разминкой перед соревнованиями без нареканий. Отличный возврат энергии за свою цену — наш самый рекомендуемый универсальный вариант для юных спортсменов, наращивающих объём тренировок.',
+            shoe1_tags: 'Интервалы на дорожке · Спринтерские упражнения · День соревнований',
+            shoe2_excerpt: 'Pegasus — рабочая лошадка: прочный, амортизирующий и достаточно универсальный для треков, полевых занятий и многовидового тренинга. Дети быстро к нему привыкают. Немного тяжелее чистой скоростной модели, но поддержка делает его идеальным для спортсменов, ещё формирующих паттерны бега.',
+            shoe2_tags: 'Многовидовые тренировки · Длинные блоки · Начинающие бегуны',
+            shoe3_excerpt: 'Лёгкий и быстрый — Adizero SL надевают, когда гонка имеет значение. Минимальная высота подошвы позволяет спортсменам напрямую чувствовать дорожку, ускоряя проприоцептивное развитие. Не для каждой тренировки, но вне конкуренции на контрольных и официальных соревнованиях.',
+            shoe3_tags: 'День гонки · Контрольные заезды · Разбег в прыжках в высоту',
+            shoe4_excerpt: 'Максимальная амортизация, ноль компромиссов по отдаче. FuelCell Rebel поглощает нагрузку в восстановительные дни, чтобы спортсмены возвращались свежими. Широкий носок делает его особенно подходящим для детей с расширяющимися стопами. Отличная вторая пара в ротации серьёзного юного спортсмена.',
+            shoe4_tags: 'Восстановительный бег · Лёгкие занятия · Широкая стопа',
+            cta_eyebrow: 'Записаться',
+            cta_title: 'ВСТУПИТЬ В<br><span class="iri">NEXT GEN</span>',
+            cta_sub: 'Это не массовый спорт. Это целенаправленное развитие — для тех, кто ценит качество, результаты и долгосрочный рост.',
+            cta_btn1: 'Связаться с нами',
+            cta_btn2: 'Записаться',
+            insta_eyebrow: 'Инстаграм · Instagram · インスタグラム',
+            insta_title: 'МЫ В<br><span class="outline">ИНСТАГРАМ</span>',
+            insta_handle: '@nextgen.running',
+            insta_btn: 'Подписаться в Instagram',
+            gallery_eyebrow: 'Фотогалерея',
+            gallery_title: 'В<br><span class="outline">ДЕЙСТВИИ</span>',
+            nav_schedule: 'Расписание',
+            sched_eyebrow: 'スケジュール · Schedule · Расписание',
+            sched_title: 'ГДЕ МЫ<br><span class="outline">ТРЕНИРУЕМСЯ</span>',
+            sched_every: 'Каждое воскресенье',
+            sched_when1: '1-е воскресенье каждого месяца',
+            sched_when2: 'Все остальные воскресенья',
+            sched_loc1_name: 'ODA FIELD',
+            sched_loc1_desc: 'Соревновательный легкоатлетический стадион — первое воскресенье каждого месяца. Атмосфера настоящих соревнований для интенсивных тренировок.',
+            sched_loc2_name: 'ПАРК ЙОЙОГИ',
+            sched_loc2_desc: 'Культовый парк Токио — наша регулярная еженедельная площадка для тренировок. Все воскресенья, кроме первого. Свежий воздух, открытое пространство, стабильный режим.',
+            sched_map: 'Открыть на карте',
+        },
+        jp: {
+            nav_blog: 'ブログ',
+            hero_line1: '次の',
+            hero_line2: '世代',
+            hero_line3: 'ランナー',
+            hero_sub: '東京でのエリートアスリート育成。可能性をパフォーマンスへと磨き上げる場所。',
+            hero_sub_jp: 'Elite athletic development in Tokyo.',
+            hero_cta1: 'プログラムに参加する',
+            hero_cta2: '今すぐ登録',
+            ann_highlight: 'JAAFに公式登録されました',
+            ann_club: 'JAAF START · クラブID: <strong style="color:rgba(245,244,242,0.7)">518</strong>',
+            ann_upcoming: '次回の大会:',
+            coach_eyebrow: 'コーチについて',
+            stat1_label: '競技歴',
+            stat2_label: '指導歴',
+            stat3_label: '指導した若いアスリート',
+            coach_title: 'スポーツマスター · 陸上競技選手・コーチ',
+            coach_bio: '陸上競技18年、指導7年の経験を持つアルセンティは、東京の若いアスリートにエリートレベルの経験を伝えます。ASIG・TAC・TISの生徒や個人クライアントと共に、一人ひとりに完全個別化されたアプローチで指導しています。',
+            coach_quote: '「結果は偶然ではなく、設計されるものだ。」',
+            cred1: '陸上競技18年',
+            cred2: '若手アスリート指導7年',
+            cred3: 'ASIG・TAC・TISと連携',
+            cred4: 'ロシア語・日本語・英語に堪能',
+            program_eyebrow: 'プログラム',
+            program_title: '結果を<br><span class="outline">出すために</span>',
+            program_sub: '科学的なトレーニングで子供たちの可能性を引き出す。',
+            card1_title: 'ランニング・スプリント',
+            card1_jp: 'Running & Sprint Training',
+            card1_desc: 'ストライド、加速、スプリントフォームを基礎から構築。初回セッションから成果が出ます。',
+            card2_title: '跳躍技術',
+            card2_jp: 'High Jump & Long Jump',
+            card2_desc: '走高跳・走幅跳を技術的な精度でコーチング。段階的なトレーニングで自己記録を更新。',
+            card3_title: 'バドミントン・ラグビー',
+            card3_jp: 'Multi-Sport Development',
+            card3_desc: '俊敏性・協調性・競技マインドを組み合わせたチームスポーツ。複数種目で活躍するアスリートを育成。',
+            card4_title: 'プライベートコーチング',
+            card4_jp: 'One-on-One Sessions',
+            card4_desc: '子供から大人まで個別セッション対応。完全個別指導で、パーソナル戦略と加速的な成長を実現。',
+            results_eyebrow: '実績',
+            results_title: '卓越性は<br><span class="outline">記録を残す</span>',
+            res1_desc: '400mスプリントが3ヶ月で向上<span class="result-detail">1:25 → 1:05</span>',
+            res2_desc: 'ASIGの校内記録を更新<span class="result-detail">17年ぶりの新記録</span>',
+            res3_desc: '走高跳の自己記録を更新<span class="result-detail">初回セッションで達成</span>',
+            res4_desc: '校内最速の6年生<span class="result-detail">nextgen.runningアスリート</span>',
+            schools_label: '連携校・所属',
+            schools_private: '個人クライアント',
+            jaaf_official: '公式登録済み',
+            jaaf_eyebrow: '公式ステータス',
+            jaaf_title: '大会に<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.3)">参加可能</span>',
+            jaaf_desc: 'Next Gen Athletics ClubはJAAF STARTシステムに公式登録されました。当クラブのアスリートは公式陸上競技大会に出場し、記録が正式に認定されます。',
+            comp_label: '次回の<br>大会',
+            comp_note: '学校対抗大会<br>東京 · 公式陸上競技',
+            jaaf_how: '登録方法',
+            step1: 'JAAF STARTにアカウントを作成する',
+            step2: 'Next Gen Athletics Club（クラブID: 518）を検索する',
+            step3: 'メンバーシップを申請し、承認を待つ',
+            blog_eyebrow: 'ブログ',
+            blog_title: 'トラック<br><span class="outline">から</span>',
+            blog_sub: 'トレーニングの知見、ギアガイド、アスリートのストーリー。',
+            blog_latest: '最新記事',
+            blog1_tag: 'トレーニング',
+            blog1_title: 'なぜスプリント技術はどの年齢でも重要なのか',
+            blog1_excerpt: '多くのコーチは速さに注目しますが、私たちはその背後にある構造に着目します。ストライドの仕組み、腕の動き、足の着地パターンが、年齢や種目を問わず、すべての速いアスリートの基盤です。',
+            blog2_tag: 'ギアガイド',
+            blog2_title: '初めてのランニングシューズの選び方',
+            blog2_excerpt: 'ランニングを始めるのに高価なシューズは必要ありません。本当に大切なこと——快適さ、フィット感、足型、クッション——を解説し、Asics、Nike、Adidas、New Balance、Hokaの初心者向けモデルをご紹介します。',
+            blog3_tag: 'コーチング',
+            blog3_title: '初回セッションで自己記録を更新',
+            blog3_excerpt: '当クラブのアスリートが初めてのコーチングセッションで走高跳の自己記録を達成しました。運ではなく方法論です。初心者に技術を導入し、即座に成果を引き出すアプローチを紹介します。',
+            blog_read: '続きを読む',
+            nav_shoes: 'シューズ',
+            shoes_eyebrow: 'ギアレビュー',
+            shoes_title: 'コーチが<br><span class="outline" style="-webkit-text-stroke-color:rgba(245,244,242,0.28)">認めた一足</span>',
+            shoes_sub: 'トラックで試し、アルセンティが東京でトレーニングする若いアスリートへ推薦するシューズ。',
+            shoe_cat_speed: 'スピード系',
+            shoe_for_kids: 'キッズ・大人',
+            shoe_cat_daily: '日常トレーニング',
+            shoe_for_all: '全年齢対応',
+            shoe_cat_comp: '競技用',
+            shoe_for_advanced: '上級者向け',
+            shoe_cat_rec: 'リカバリー',
+            shoe_for_young: '若いアスリート向け',
+            shoe_bestfor: 'おすすめシーン:',
+            shoe1_excerpt: 'レスポンシブで安定性が高く、繰り返しのトレーニングに対応。Gel-DSはスプリントドリル、インターバル、大会前ウォームアップを難なくこなします。コストパフォーマンスに優れたエネルギーリターン——トレーニング量を増やし始めた若いアスリートへの一番のおすすめです。',
+            shoe1_tags: 'トラックインターバル · スプリントドリル · 大会当日',
+            shoe2_excerpt: 'Pegasusは万能の働き者——耐久性、クッション性、汎用性を兼ね備え、トラック練習、フィールドセッション、マルチスポーツトレーニングに対応。子供にもすぐ馴染みます。純粋なスピードシューズよりやや重いですが、サポート力がまだ走り方を形成中のアスリートに最適です。',
+            shoe2_tags: 'マルチスポーツ · 長期トレーニング · 発展途上のランナー',
+            shoe3_excerpt: '軽くて速い——Adizero SLはレースが重要な日に履くシューズです。低いスタックハイトにより、アスリートはトラックを直接感じることができ、固有感覚の発達を促します。毎回のトレーニングには向きませんが、タイムトライアルや公式大会では他の追随を許しません。',
+            shoe3_tags: 'レース当日 · タイムトライアル · 走高跳の助走',
+            shoe4_excerpt: '最大のクッション性、バウンスは妥協なし。FuelCell Rebelはリカバリー日の負荷を吸収し、アスリートをよりフレッシュな状態に戻します。広いトゥボックスは足幅が広がりつつある子供に特に適しています。本格的な若いアスリートのローテーションに加えたい二足目として最適です。',
+            shoe4_tags: 'リカバリーラン · 軽めのセッション · 幅広の足のアスリート',
+            cta_eyebrow: '今すぐ参加',
+            cta_title: 'NEXT GENに<br><span class="iri">参加する</span>',
+            cta_sub: 'これはマス・スポーツではありません。質・結果・長期的な成長を大切にする方のための、意図的な育成プログラムです。',
+            cta_btn1: 'お問い合わせ',
+            cta_btn2: '登録する',
+            insta_eyebrow: 'インスタグラム · Instagram · Инстаграм',
+            insta_title: 'グラムで<br><span class="outline">チェック</span>',
+            insta_handle: '@nextgen.running',
+            insta_btn: 'インスタグラムをフォロー',
+            gallery_eyebrow: 'フォトギャラリー',
+            gallery_title: 'アクション<br><span class="outline">ギャラリー</span>',
+            nav_schedule: 'スケジュール',
+            sched_eyebrow: 'スケジュール · Schedule · Расписание',
+            sched_title: 'トレーニング<br><span class="outline">場所</span>',
+            sched_every: '毎週日曜日',
+            sched_when1: '毎月第1日曜日',
+            sched_when2: 'その他の日曜日',
+            sched_loc1_name: 'ODA FIELD',
+            sched_loc1_desc: '競技レベルの陸上トラック — 毎月第1日曜日に使用。本番の雰囲気でトレーニングに臨む特別な環境です。',
+            sched_loc2_name: '代々木公園',
+            sched_loc2_desc: '東京を代表するオープンエアの公園 — 定期的な週次トレーニングの場。第1日曜日以外の毎週日曜日に開催。新鮮な空気と広い空間で、ルーティンを築く。',
+            sched_map: '地図で開く',
+        }
+    };
+
+    let currentLang = 'en';
+
+    const langLabels = { en: 'EN', jp: 'JP', ru: 'RU' };
+
+    function applyLang(lang) {
+        currentLang = lang;
+        const t = T[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        const htmlLang = lang === 'jp' ? 'ja' : lang === 'ru' ? 'ru' : 'en';
+        document.documentElement.lang = htmlLang;
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+        });
+        // Update dropdown button label
+        const label = document.getElementById('langLabel');
+        if (label) label.textContent = langLabels[lang] || lang.toUpperCase();
+        localStorage.setItem('ng-lang', lang);
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            applyLang(el.getAttribute('data-lang'));
+            // Close dropdown after selection
+            const sel = document.getElementById('langSelect');
+            if (sel) { sel.classList.remove('open'); document.getElementById('langBtn').setAttribute('aria-expanded', 'false'); }
+        });
+    });
+
+    // ─── LANG DROPDOWN TOGGLE ───
+    const langBtn = document.getElementById('langBtn');
+    const langSelect = document.getElementById('langSelect');
+    if (langBtn) {
+        langBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            const isOpen = langSelect.classList.toggle('open');
+            langBtn.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', () => {
+            langSelect.classList.remove('open');
+            langBtn.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    // ─── CURSOR ───
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    });
+    (function animRing() {
+        rx += (mx - rx) * 0.11; ry += (my - ry) * 0.11;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+    });
+
+    // ─── SCROLL PROGRESS ───
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+        bar.style.width = (window.scrollY / (document.documentElement.scrollHeight - innerHeight) * 100) + '%';
+    }, { passive: true });
+
+    // ─── SCROLL REVEAL ───
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ─── COUNTER ───
+    const countObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            const el = e.target, target = +el.dataset.target;
+            let v = 0; const step = target / 55;
+            const t = setInterval(() => {
+                v += step;
+                if (v >= target) { el.textContent = target + (target === 200 ? '+' : ''); clearInterval(t); }
+                else el.textContent = Math.floor(v);
+            }, 16);
+            countObs.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => countObs.observe(el));
+
+    // ─── GALLERY LIGHTBOX ───
+    const galleryPhotos = [
+        'photo/IMG_9177.JPG','photo/IMG_9182.JPG','photo/IMG_9186.JPG',
+        'photo/IMG_9189.JPG','photo/IMG_9193.JPG','photo/IMG_9201.JPG',
+        'photo/IMG_9207.JPG','photo/IMG_9209.JPG','photo/IMG_9213.JPG',
+        'photo/IMG_9226.JPG','photo/IMG_9240.JPG','photo/IMG_9244.JPG',
+        'photo/IMG_9248.JPG','photo/IMG_9252.JPG','photo/IMG_9254.JPG',
+        'photo/IMG_9842.JPG','photo/IMG_9843.JPG','photo/IMG_9848.JPG',
+        'photo/IMG_9851.JPG','photo/IMG_9853.JPG','photo/IMG_9862.JPG',
+        'photo/IMG_9865.JPG','photo/IMG_9872.JPG'
+    ];
+    let lbIndex = 0;
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCounter = document.getElementById('lbCounter');
+
+    function lbShow(i) {
+        lbIndex = ((i % galleryPhotos.length) + galleryPhotos.length) % galleryPhotos.length;
+        lbImg.src = galleryPhotos[lbIndex];
+        lbCounter.textContent = String(lbIndex + 1).padStart(2,'0') + ' / ' + String(galleryPhotos.length).padStart(2,'0');
+    }
+    function lbOpen(i) {
+        lbShow(i);
+        lb.classList.add('active');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+        lb.classList.remove('active');
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+    }
+    function lbGo(dir) {
+        lbImg.style.opacity = '0';
+        setTimeout(() => { lbShow(lbIndex + dir); lbImg.style.opacity = '1'; }, 140);
+    }
+
+    document.querySelectorAll('.gallery-item').forEach(el => {
+        el.addEventListener('click', () => lbOpen(+el.dataset.index));
+    });
+    document.getElementById('lbClose').addEventListener('click', lbClose);
+    document.getElementById('lbPrev').addEventListener('click', () => lbGo(-1));
+    document.getElementById('lbNext').addEventListener('click', () => lbGo(1));
+    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+    document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape') lbClose();
+        if (e.key === 'ArrowLeft') lbGo(-1);
+        if (e.key === 'ArrowRight') lbGo(1);
+    });
+
+    </script>
+</body>
+</html>
