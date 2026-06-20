@@ -101,6 +101,89 @@
         /* ─── LANG ACTIVE STATE ─── */
         .nav-lang a.active { opacity: 1; }
 
+        /* ─── NAV LINKS ─── */
+        .nav-links {
+            display: flex; align-items: center; gap: 32px;
+            position: absolute; left: 50%; transform: translateX(-50%);
+        }
+        .nav-link {
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--black); text-decoration: none;
+            opacity: 0.42; transition: opacity 0.2s;
+            position: relative; padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1px; background: var(--black);
+            transition: width 0.22s ease;
+        }
+        .nav-link:hover { opacity: 1; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ─── NAV JOIN BUTTON ─── */
+        .nav-join {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--white); background: var(--black);
+            text-decoration: none; padding: 8px 16px;
+            border: 1px solid var(--black);
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .nav-join:hover { background: transparent; color: var(--black); }
+        .nav-join::after { content: '→'; font-size: 11px; }
+
+        /* ─── HAMBURGER ─── */
+        .nav-hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 4px;
+        }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 1.5px;
+            background: var(--black); transition: transform 0.25s, opacity 0.25s;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* ─── MOBILE DRAWER ─── */
+        .nav-drawer {
+            display: none; position: fixed; top: 61px; left: 0; right: 0;
+            background: rgba(245,244,242,0.97); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            flex-direction: column; gap: 0; z-index: 99;
+            padding: 8px 0 16px;
+        }
+        .nav-drawer.open { display: flex; }
+        .nav-drawer-link {
+            font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--black); text-decoration: none;
+            opacity: 0.5; padding: 14px 28px;
+            border-bottom: 1px solid var(--border);
+            transition: opacity 0.15s;
+        }
+        .nav-drawer-link:hover { opacity: 1; }
+        .nav-drawer-join {
+            margin: 16px 28px 0;
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--white); background: var(--black);
+            text-decoration: none; padding: 12px 20px;
+            transition: background 0.2s;
+        }
+        .nav-drawer-join::after { content: '→'; font-size: 11px; }
+        .nav-drawer-join:hover { background: #333; }
+
+        @media (max-width: 767px) {
+            .nav-links { display: none; }
+            .nav-join { display: none; }
+            .nav-hamburger { display: flex; }
+        }
+
         @media (max-width: 900px) {
             .blog { padding: 80px 24px; }
             .blog-header { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -214,7 +297,7 @@
             font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300;
             color: var(--faint); letter-spacing: 0.08em;
         }
-        .schedule-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .schedule-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
         .schedule-card {
             background: rgba(255,255,255,0.55); padding: 52px 44px 44px;
             border: 1px solid rgba(17,17,17,0.06);
@@ -282,6 +365,39 @@
             position: absolute; inset: 0; cursor: pointer;
         }
 
+        /* ─── JUNE CALENDAR ─── */
+        .sched-cal { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 40px; }
+        .sched-cal-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+        .sched-cal-month { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--black); }
+        .sched-cal-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(17,17,17,0.35); }
+        .sched-cal-list { display: flex; flex-direction: column; }
+        .sched-cal-row {
+            display: flex; align-items: center; gap: 20px;
+            padding: 14px 0; border-bottom: 1px solid var(--border);
+            font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--black);
+        }
+        .sched-cal-row.past { opacity: 0.3; }
+        .sched-cal-row.today { background: rgba(17,17,17,0.03); margin: 0 -8px; padding: 14px 8px; }
+        .sched-cal-date { min-width: 44px; font-weight: 500; }
+        .sched-cal-day { min-width: 28px; opacity: 0.45; font-size: 10px; }
+        .sched-cal-time { min-width: 88px; opacity: 0.55; font-size: 10px; }
+        .sched-cal-sep { opacity: 0.2; }
+        .sched-cal-loc { flex: 1; }
+        .sched-cal-jp { font-family: 'Noto Serif JP', serif; font-size: 10px; letter-spacing: 0.04em; text-transform: none; opacity: 0.45; margin-left: 10px; }
+        .sched-cal-rain { font-size: 9px; opacity: 0.5; letter-spacing: 0.06em; text-transform: none; margin-left: 6px; }
+        .sched-cal-badge {
+            font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.2em;
+            text-transform: uppercase; background: var(--black); color: var(--white);
+            padding: 3px 8px;
+        }
+        @media (max-width: 520px) {
+            .sched-cal-time { display: none; }
+            .sched-cal-sep { display: none; }
+            .sched-cal-row { gap: 12px; }
+        }
+
         /* ─── LANG DROPDOWN ─── */
         .nav-lang-select { position: relative; }
         .nav-lang-btn {
@@ -345,7 +461,14 @@
             <img src="Next%20Gen.png" alt="Next Gen" class="nav-logo-img">
             <a href="#" class="nav-brand">nextgen<span>.running</span></a>
         </div>
+        <div class="nav-links">
+            <a href="#schedule" class="nav-link" data-i18n="nav_schedule">Schedule</a>
+            <a href="#gallery" class="nav-link" data-i18n="nav_gallery">Gallery</a>
+            <a href="#blog" class="nav-link" data-i18n="nav_blog">Blog</a>
+            <a href="#shoes" class="nav-link" data-i18n="nav_shoes">Shoes</a>
+        </div>
         <div class="nav-right">
+            <a href="#cta" class="nav-join" data-i18n="nav_join">Join</a>
             <div class="nav-lang-select" id="langSelect">
                 <button class="nav-lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
                     <span id="langLabel">EN</span>
@@ -366,8 +489,20 @@
                     <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
                 </svg>
             </a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div class="nav-drawer" id="navDrawer">
+        <a href="#schedule" class="nav-drawer-link" data-i18n="nav_schedule">Schedule</a>
+        <a href="#gallery" class="nav-drawer-link" data-i18n="nav_gallery">Gallery</a>
+        <a href="#blog" class="nav-drawer-link" data-i18n="nav_blog">Blog</a>
+        <a href="#shoes" class="nav-drawer-link" data-i18n="nav_shoes">Shoes</a>
+        <a href="#cta" class="nav-drawer-join" data-i18n="nav_join">Join</a>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -454,7 +589,7 @@
         <div class="schedule-cards">
             <div class="schedule-card reveal">
                 <div class="schedule-card-bg-num">01</div>
-                <span class="schedule-card-when" data-i18n="sched_when1">1st Sunday of each month</span>
+                <span class="schedule-card-when" data-i18n="sched_when1">1st Sunday &amp; 3rd Saturday</span>
                 <h3 class="schedule-location-name" data-i18n="sched_loc1_name">ODA FIELD</h3>
                 <p class="schedule-location-jp">陸上競技場（織田フィールド）</p>
                 <p class="schedule-location-desc" data-i18n="sched_loc1_desc">Competition-grade athletics track — reserved for the first Sunday of every month. A performance environment that matches the intensity of our training.</p>
@@ -474,6 +609,64 @@
                 <div class="schedule-map-wrap">
                     <img src="photo/Yoyogi.jpeg" alt="Yoyogi Park Tokyo" loading="lazy">
                     <a href="https://maps.app.goo.gl/6jZvAV6J4VwRY5348?g_st=ic" target="_blank" rel="noopener" class="schedule-map-overlay" aria-label="Open in Google Maps"></a>
+                </div>
+            </div>
+            <div class="schedule-card reveal" style="transition-delay:0.24s">
+                <div class="schedule-card-bg-num">03</div>
+                <span class="schedule-card-when" data-i18n="sched_when3">Rain day alternative</span>
+                <h3 class="schedule-location-name" data-i18n="sched_loc3_name">BRILLIA RUNNING STADIUM</h3>
+                <p class="schedule-location-jp">新豊洲Brilliaランニングスタジアム</p>
+                <p class="schedule-location-desc" data-i18n="sched_loc3_desc">Tokyo's premier indoor athletics facility — a professional-grade track for special training sessions and competitions. 1-13-13 Ariake, Koto, Tokyo.</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=有明アーバンスポーツパーク+東京都江東区有明1-13-13" target="_blank" rel="noopener" class="schedule-map-link" data-i18n="sched_map">Open in Maps</a>
+                <div class="schedule-map-wrap">
+                    <img src="photo/running_stadiumBrillia.JPG" alt="Brillia Running Stadium Ariake Tokyo" loading="lazy">
+                    <a href="https://www.google.com/maps/search/?api=1&query=有明アーバンスポーツパーク+東京都江東区有明1-13-13" target="_blank" rel="noopener" class="schedule-map-overlay" aria-label="Open in Google Maps"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- JUNE CALENDAR -->
+        <div class="sched-cal reveal">
+            <div class="sched-cal-header">
+                <span class="sched-cal-month">June 2026</span>
+                <span class="sched-cal-sub">6月 · Июнь</span>
+            </div>
+            <div class="sched-cal-list">
+                <div class="sched-cal-row past">
+                    <span class="sched-cal-date">06/07</span>
+                    <span class="sched-cal-day">Sun</span>
+                    <span class="sched-cal-time">9:30–11:00</span>
+                    <span class="sched-cal-sep">·</span>
+                    <span class="sched-cal-loc">ODA FIELD <span class="sched-cal-jp">織田フィールド</span></span>
+                </div>
+                <div class="sched-cal-row past">
+                    <span class="sched-cal-date">06/14</span>
+                    <span class="sched-cal-day">Sun</span>
+                    <span class="sched-cal-time">9:30–11:00</span>
+                    <span class="sched-cal-sep">·</span>
+                    <span class="sched-cal-loc">YOYOGI PARK <span class="sched-cal-rain">/ Brillia if rain</span> <span class="sched-cal-jp">代々木公園</span></span>
+                </div>
+                <div class="sched-cal-row today">
+                    <span class="sched-cal-date">06/20</span>
+                    <span class="sched-cal-day">Sat</span>
+                    <span class="sched-cal-time">9:30–11:00</span>
+                    <span class="sched-cal-sep">·</span>
+                    <span class="sched-cal-loc">ODA FIELD <span class="sched-cal-jp">織田フィールド</span></span>
+                    <span class="sched-cal-badge">Today</span>
+                </div>
+                <div class="sched-cal-row">
+                    <span class="sched-cal-date">06/21</span>
+                    <span class="sched-cal-day">Sun</span>
+                    <span class="sched-cal-time">9:30–11:00</span>
+                    <span class="sched-cal-sep">·</span>
+                    <span class="sched-cal-loc">YOYOGI PARK <span class="sched-cal-rain">/ Brillia if rain</span> <span class="sched-cal-jp">代々木公園</span></span>
+                </div>
+                <div class="sched-cal-row">
+                    <span class="sched-cal-date">06/28</span>
+                    <span class="sched-cal-day">Sun</span>
+                    <span class="sched-cal-time">9:30–11:00</span>
+                    <span class="sched-cal-sep">·</span>
+                    <span class="sched-cal-loc">YOYOGI PARK <span class="sched-cal-rain">/ Brillia if rain</span> <span class="sched-cal-jp">代々木公園</span></span>
                 </div>
             </div>
         </div>
@@ -916,7 +1109,7 @@
     // ─── TRANSLATIONS ───
     const T = {
         en: {
-            nav_blog: 'Blog',
+            nav_blog: 'Blog', nav_gallery: 'Gallery', nav_join: 'Join',
             hero_line1: 'THE',
             hero_line2: 'NEXT',
             hero_line3: 'GENERATION',
@@ -1021,16 +1214,19 @@
             sched_eyebrow: 'スケジュール · Schedule · Расписание',
             sched_title: 'WHERE WE<br><span class="outline">TRAIN</span>',
             sched_every: 'Every Sunday',
-            sched_when1: '1st Sunday of each month',
+            sched_when1: '1st Sunday & 3rd Saturday',
             sched_when2: 'Every other Sunday',
             sched_loc1_name: 'ODA FIELD',
             sched_loc1_desc: 'Competition-grade athletics track — reserved for the first Sunday of every month. A performance environment that matches the intensity of our training.',
             sched_loc2_name: 'YOYOGI PARK',
             sched_loc2_desc: 'Tokyo\'s iconic open-air park — our regular weekly training ground. All Sundays except the first. Fresh air, open space, consistent routine.',
+            sched_when3: 'Rain day alternative',
+            sched_loc3_name: 'BRILLIA RUNNING STADIUM',
+            sched_loc3_desc: 'Tokyo\'s premier indoor athletics facility — a professional-grade track for special training sessions and competitions. Ariake, Koto, Tokyo.',
             sched_map: 'Open in Maps',
         },
         ru: {
-            nav_blog: 'Блог',
+            nav_blog: 'Блог', nav_gallery: 'Галерея', nav_join: 'Записаться',
             hero_line1: 'СЛЕДУЮЩЕЕ',
             hero_line2: 'ПОКО',
             hero_line3: 'ЛЕНИЕ',
@@ -1135,16 +1331,19 @@
             sched_eyebrow: 'スケジュール · Schedule · Расписание',
             sched_title: 'ГДЕ МЫ<br><span class="outline">ТРЕНИРУЕМСЯ</span>',
             sched_every: 'Каждое воскресенье',
-            sched_when1: '1-е воскресенье каждого месяца',
+            sched_when1: '1-е воскресенье и 3-я суббота',
             sched_when2: 'Все остальные воскресенья',
             sched_loc1_name: 'ODA FIELD',
             sched_loc1_desc: 'Соревновательный легкоатлетический стадион — первое воскресенье каждого месяца. Атмосфера настоящих соревнований для интенсивных тренировок.',
             sched_loc2_name: 'ПАРК ЙОЙОГИ',
             sched_loc2_desc: 'Культовый парк Токио — наша регулярная еженедельная площадка для тренировок. Все воскресенья, кроме первого. Свежий воздух, открытое пространство, стабильный режим.',
+            sched_when3: 'Замена при дожде',
+            sched_loc3_name: 'BRILLIA RUNNING STADIUM',
+            sched_loc3_desc: 'Ведущий крытый легкоатлетический комплекс Токио — профессиональный трек для специальных тренировок и соревнований. Ариаке, Кото, Токио.',
             sched_map: 'Открыть на карте',
         },
         jp: {
-            nav_blog: 'ブログ',
+            nav_blog: 'ブログ', nav_gallery: 'ギャラリー', nav_join: '参加する',
             hero_line1: '次の',
             hero_line2: '世代',
             hero_line3: 'ランナー',
@@ -1249,12 +1448,15 @@
             sched_eyebrow: 'スケジュール · Schedule · Расписание',
             sched_title: 'トレーニング<br><span class="outline">場所</span>',
             sched_every: '毎週日曜日',
-            sched_when1: '毎月第1日曜日',
+            sched_when1: '第1日曜日・第3土曜日',
             sched_when2: 'その他の日曜日',
             sched_loc1_name: 'ODA FIELD',
             sched_loc1_desc: '競技レベルの陸上トラック — 毎月第1日曜日に使用。本番の雰囲気でトレーニングに臨む特別な環境です。',
             sched_loc2_name: '代々木公園',
             sched_loc2_desc: '東京を代表するオープンエアの公園 — 定期的な週次トレーニングの場。第1日曜日以外の毎週日曜日に開催。新鮮な空気と広い空間で、ルーティンを築く。',
+            sched_when3: '雨天時の代替会場',
+            sched_loc3_name: 'ブリリアランニングスタジアム',
+            sched_loc3_desc: '東京最高峰の屋内陸上施設 — 特別トレーニングや競技会のためのプロ仕様トラック。東京都江東区有明1-13-13。',
             sched_map: '地図で開く',
         }
     };
@@ -1290,6 +1492,32 @@
             if (sel) { sel.classList.remove('open'); document.getElementById('langBtn').setAttribute('aria-expanded', 'false'); }
         });
     });
+
+    // ─── HAMBURGER ───
+    const hamburger = document.getElementById('navHamburger');
+    const drawer = document.getElementById('navDrawer');
+    if (hamburger && drawer) {
+        hamburger.addEventListener('click', e => {
+            e.stopPropagation();
+            const isOpen = drawer.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        drawer.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                drawer.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        document.addEventListener('click', e => {
+            if (!drawer.contains(e.target) && !hamburger.contains(e.target)) {
+                drawer.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 
     // ─── LANG DROPDOWN TOGGLE ───
     const langBtn = document.getElementById('langBtn');

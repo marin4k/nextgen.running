@@ -77,6 +77,11 @@
         .post-closing-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 14px 28px; border: 1px solid rgba(245,244,242,0.22); transition: border-color 0.2s, background 0.2s; }
         .post-closing-btn:hover { border-color: rgba(245,244,242,0.6); background: rgba(245,244,242,0.05); }
         .post-closing-btn::after { content: '→'; font-size: 13px; }
+        .back-home { display: flex; justify-content: center; padding: 56px 52px; background: var(--bg); }
+        .back-home-link { display: inline-flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(17,17,17,0.45); text-decoration: none; transition: color 0.2s; }
+        .back-home-link:hover { color: var(--black); }
+        .back-home-arrow { font-size: 16px; transition: transform 0.2s; }
+        .back-home-link:hover .back-home-arrow { transform: translateX(-4px); }
         .post-related { padding: 80px 52px; background: var(--bg-alt); border-top: 1px solid var(--border); }
         .post-related-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
         .post-related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 720px; }
@@ -431,6 +436,12 @@
             </a>
         </div>
     </section>
+
+    <div class="back-home">
+        <a href="../index.html" class="back-home-link">
+            <span class="back-home-arrow">←</span> Back to Home
+        </a>
+    </div>
 
     <footer>
         <div class="footer-inner">
