@@ -99,11 +99,11 @@
         .post-closing-btn { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; padding: 14px 28px; border: 1px solid rgba(245,244,242,0.22); transition: border-color 0.2s, background 0.2s; }
         .post-closing-btn:hover { border-color: rgba(245,244,242,0.6); background: rgba(245,244,242,0.05); }
         .post-closing-btn::after { content: '→'; font-size: 13px; }
-        .back-home { display: flex; justify-content: center; padding: 56px 52px; background: var(--bg); }
-        .back-home-link { display: inline-flex; align-items: center; gap: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(17,17,17,0.45); text-decoration: none; transition: color 0.2s; }
-        .back-home-link:hover { color: var(--black); }
-        .back-home-arrow { font-size: 16px; transition: transform 0.2s; }
-        .back-home-link:hover .back-home-arrow { transform: translateX(-4px); }
+        .back-home { position: fixed; bottom: 28px; right: 28px; z-index: 90; }
+        .back-home-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); background: var(--black); text-decoration: none; padding: 11px 18px; transition: background 0.2s, opacity 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+        .back-home-link:hover { background: #333; }
+        .back-home-arrow { font-size: 13px; transition: transform 0.2s; }
+        .back-home-link:hover .back-home-arrow { transform: translateX(-3px); }
 
         /* ─── RELATED POSTS ─── */
         .post-related { padding: 80px 52px; background: var(--bg-alt); border-top: 1px solid var(--border); }
@@ -458,7 +458,7 @@
     <!-- FOOTER -->
     <div class="back-home">
         <a href="../index.html" class="back-home-link">
-            <span class="back-home-arrow">←</span> Back to Home
+            <span class="back-home-arrow">←</span> <span data-i18n="back_home">Back to Home</span>
         </a>
     </div>
 
@@ -488,7 +488,7 @@
     <script>
     const T = {
         en: {
-            nav_blog: 'Blog', post_back: 'Back to Blog', post_tag: 'Coaching',
+            nav_blog: 'Blog', post_back: 'Back to Blog', back_home: 'Back to Home', post_tag: 'Coaching',
             post_date: 'February 2025', post_readtime: '5 min read',
             post_stat_label: 'above previous personal best<br>in a single session',
             post_title: 'THE FIRST<br>SESSION<br><span class="iri">PERSONAL RECORD</span>',
@@ -497,7 +497,7 @@
             related2_tag: 'Gear Guide', related2_title: 'HOW TO CHOOSE YOUR FIRST RUNNING SHOES',
         },
         ru: {
-            nav_blog: 'Блог', post_back: 'Назад к блогу', post_tag: 'Методология',
+            nav_blog: 'Блог', post_back: 'Назад к блогу', back_home: 'На главную', post_tag: 'Методология',
             post_date: 'Февраль 2025', post_readtime: '5 мин чтения',
             post_stat_label: 'выше предыдущего личного рекорда<br>за одну тренировку',
             post_title: 'ЛИЧНЫЙ РЕКОРД<br>НА ПЕРВОЙ<br><span class="iri">ТРЕНИРОВКЕ</span>',
@@ -506,7 +506,7 @@
             related2_tag: 'Экипировка', related2_title: 'КАК ВЫБРАТЬ ПЕРВЫЕ КРОССОВКИ ДЛЯ БЕГА',
         },
         jp: {
-            nav_blog: 'ブログ', post_back: 'ブログへ戻る', post_tag: 'コーチング',
+            nav_blog: 'ブログ', post_back: 'ブログへ戻る', back_home: 'ホームへ戻る', post_tag: 'コーチング',
             post_date: '2025年2月', post_readtime: '5分',
             post_stat_label: 'たった1回のセッションで<br>前の自己記録を上回った',
             post_title: '初回セッションで<br><span class="iri">自己記録を更新</span>',

@@ -184,6 +184,13 @@
             .nav-hamburger { display: flex; }
         }
 
+        /* ─── BACK TO TOP ─── */
+        .back-top { position: fixed; bottom: 28px; right: 28px; z-index: 90; }
+        .back-top-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); background: var(--black); text-decoration: none; padding: 11px 18px; transition: background 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+        .back-top-link:hover { background: #333; }
+        .back-top-arrow { font-size: 13px; transition: transform 0.2s; }
+        .back-top-link:hover .back-top-arrow { transform: translateY(-3px); }
+
         @media (max-width: 900px) {
             .blog { padding: 80px 24px; }
             .blog-header { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -1098,6 +1105,12 @@
         </div>
     </footer>
 
+    <div class="back-top">
+        <a href="#" class="back-top-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+            <span class="back-top-arrow">↑</span> <span data-i18n="back_top">Back to Top</span>
+        </a>
+    </div>
+
     <script>
       (() => {
         const d=document,s=d.createElement("script");s.type="module";
@@ -1224,6 +1237,7 @@
             sched_loc3_name: 'BRILLIA RUNNING STADIUM',
             sched_loc3_desc: 'Tokyo\'s premier indoor athletics facility — a professional-grade track for special training sessions and competitions. Ariake, Koto, Tokyo.',
             sched_map: 'Open in Maps',
+            back_top: 'Back to Top',
         },
         ru: {
             nav_blog: 'Блог', nav_gallery: 'Галерея', nav_join: 'Записаться',
@@ -1341,6 +1355,7 @@
             sched_loc3_name: 'BRILLIA RUNNING STADIUM',
             sched_loc3_desc: 'Ведущий крытый легкоатлетический комплекс Токио — профессиональный трек для специальных тренировок и соревнований. Ариаке, Кото, Токио.',
             sched_map: 'Открыть на карте',
+            back_top: 'Наверх',
         },
         jp: {
             nav_blog: 'ブログ', nav_gallery: 'ギャラリー', nav_join: '参加する',
@@ -1458,6 +1473,7 @@
             sched_loc3_name: 'ブリリアランニングスタジアム',
             sched_loc3_desc: '東京最高峰の屋内陸上施設 — 特別トレーニングや競技会のためのプロ仕様トラック。東京都江東区有明1-13-13。',
             sched_map: '地図で開く',
+            back_top: 'トップへ戻る',
         }
     };
 
